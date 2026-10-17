@@ -442,7 +442,7 @@
   // ---- Persistence (localStorage) ----
   function save(){
     if(!hasPersist) return;
-    try{ localStorage.setItem(KEY, JSON.stringify([].slice.call(watched))); }catch(e){}
+    try{ localStorage.setItem(KEY, JSON.stringify(Array.from(watched))); }catch(e){}
   }
   function load(){
     var note=document.getElementById("saveNote");
