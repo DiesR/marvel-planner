@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MCU · Planner di visione</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0C11; --bg2:#0F131A; --bg3:#161B24;
+    --line:#232A36; --line2:#2E3645;
+    --ink:#EAEDF3; --ink2:#9AA2B3; --ink3:#69707F;
+    --crimson:#E5314B; --crimson-dim:#7C1D2E; --crimson-soft:rgba(229,49,75,.14);
+    --teal:#35E0C4; --teal-dim:#12463F; --teal-soft:rgba(53,224,196,.14);
+    --radius:14px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;}
+  body{
+    background:
+      radial-gradient(1200px 600px at 80% -10%, rgba(229,49,75,.10), transparent 60%),
+      radial-gradient(900px 500px at -10% 10%, rgba(53,224,196,.06), transparent 55%),
+      var(--bg);
+    color:var(--ink);
+    font-family:"Inter",system-ui,sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:920px;margin:0 auto;padding:32px 20px 80px;}
+
+  /* ---------- Masthead ---------- */
+  .masthead{border-bottom:1px solid var(--line);padding-bottom:26px;margin-bottom:22px;}
+  .eyebrow{
+    font-family:"Oswald",sans-serif;font-weight:500;letter-spacing:.32em;
+    text-transform:uppercase;font-size:12px;color:var(--crimson);margin:0 0 6px;
+  }
+  .title{
+    font-family:"Oswald",sans-serif;font-weight:700;letter-spacing:.01em;
+    font-size:clamp(38px,8vw,62px);line-height:.98;margin:0;text-transform:uppercase;
+  }
+  .lede{color:var(--ink2);font-size:15px;max-width:56ch;margin:12px 0 0;}
+
+  /* ---------- Overall progress ---------- */
+  .overall{margin-top:24px;display:flex;align-items:flex-end;gap:22px;flex-wrap:wrap;}
+  .bignum{font-family:"Oswald",sans-serif;font-weight:600;line-height:1;}
+  .bignum b{font-size:52px;color:var(--ink);font-weight:700;}
+  .bignum span{font-size:22px;color:var(--ink3);}
+  .bignum small{display:block;font-family:"Inter";font-weight:600;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink2);margin-top:4px;}
+  .meter-block{flex:1;min-width:220px;}
+  .meter-top{display:flex;justify-content:space-between;font-size:12px;color:var(--ink2);margin-bottom:7px;font-weight:500;}
+  .meter{height:9px;border-radius:99px;background:var(--bg3);overflow:hidden;border:1px solid var(--line);}
+  .meter-fill{height:100%;width:0;border-radius:99px;
+    background:linear-gradient(90deg,var(--teal-dim),var(--teal));
+    box-shadow:0 0 14px rgba(53,224,196,.5);transition:width .5s cubic-bezier(.2,.7,.3,1);}
+
+  /* ---------- Controls ---------- */
+  .controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:22px 0 8px;
+    padding:12px;background:var(--bg2);border:1px solid var(--line);border-radius:var(--radius);}
+  .seg{display:inline-flex;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:3px;}
+  .seg button{
+    font-family:"Inter";font-size:13px;font-weight:600;color:var(--ink2);
+    background:transparent;border:0;padding:6px 12px;border-radius:7px;cursor:pointer;transition:.15s;
+  }
+  .seg button:hover{color:var(--ink);}
+  .seg button.on{background:var(--crimson);color:#fff;box-shadow:0 2px 10px rgba(229,49,75,.4);}
+  .chip{
+    font-family:"Inter";font-size:12.5px;font-weight:600;color:var(--ink2);cursor:pointer;
+    background:var(--bg);border:1px solid var(--line);border-radius:99px;padding:7px 13px;
+    display:inline-flex;align-items:center;gap:7px;transition:.15s;user-select:none;
+  }
+  .chip:hover{color:var(--ink);border-color:var(--line2);}
+  .chip.on{color:var(--ink);border-color:var(--teal);background:var(--teal-soft);}
+  .chip .dot{width:7px;height:7px;border-radius:99px;background:var(--ink3);transition:.15s;}
+  .chip.on .dot{background:var(--teal);box-shadow:0 0 8px var(--teal);}
+  .spacer{flex:1;}
+  .ghost{
+    font-family:"Inter";font-size:12.5px;font-weight:600;color:var(--ink2);cursor:pointer;
+    background:transparent;border:1px solid var(--line);border-radius:99px;padding:7px 13px;transition:.15s;
+  }
+  .ghost:hover{color:var(--crimson);border-color:var(--crimson-dim);}
+
+  /* ---------- Saga ---------- */
+  .saga{margin-top:34px;}
+  .saga-head{display:flex;align-items:baseline;gap:14px;margin-bottom:4px;}
+  .saga-name{font-family:"Oswald";font-weight:600;text-transform:uppercase;letter-spacing:.14em;
+    font-size:15px;color:var(--ink);margin:0;}
+  .saga-rule{flex:1;height:1px;background:linear-gradient(90deg,var(--line2),transparent);}
+  .saga-count{font-family:"Oswald";font-weight:500;font-size:13px;color:var(--ink3);letter-spacing:.06em;}
+
+  /* ---------- Phase ---------- */
+  .phase{background:var(--bg2);border:1px solid var(--line);border-radius:var(--radius);
+    margin-top:14px;overflow:hidden;}
+  .phase-head{display:flex;align-items:center;gap:14px;padding:15px 17px;cursor:pointer;
+    user-select:none;transition:background .15s;}
+  .phase-head:hover{background:var(--bg3);}
+  .ph-num{font-family:"Oswald";font-weight:700;font-size:26px;color:var(--crimson);line-height:1;
+    min-width:34px;}
+  .ph-meta{flex:1;min-width:0;}
+  .ph-name{font-family:"Oswald";font-weight:500;text-transform:uppercase;letter-spacing:.1em;
+    font-size:14px;color:var(--ink);}
+  .ph-years{font-size:12px;color:var(--ink3);margin-top:1px;}
+  .ring{position:relative;width:44px;height:44px;flex-shrink:0;}
+  .ring svg{transform:rotate(-90deg);}
+  .ring .bg{stroke:var(--line2);}
+  .ring .fg{stroke:var(--teal);stroke-linecap:round;transition:stroke-dashoffset .5s cubic-bezier(.2,.7,.3,1);
+    filter:drop-shadow(0 0 4px rgba(53,224,196,.6));}
+  .ring b{position:absolute;inset:0;display:grid;place-items:center;font-family:"Oswald";
+    font-weight:600;font-size:11px;color:var(--ink2);}
+  .chev{color:var(--ink3);transition:transform .25s;flex-shrink:0;}
+  .phase.collapsed .chev{transform:rotate(-90deg);}
+  .phase.collapsed .phase-body{display:none;}
+
+  /* ---------- Item list + spine ---------- */
+  .phase-body{padding:4px 17px 14px;}
+  .list{position:relative;padding-left:24px;}
+  .list::before{content:"";position:absolute;left:6px;top:14px;bottom:14px;width:2px;
+    background:var(--line2);border-radius:2px;}
+  .list .fill{position:absolute;left:6px;top:14px;width:2px;height:0;border-radius:2px;
+    background:linear-gradient(180deg,var(--teal),var(--teal-dim));
+    box-shadow:0 0 8px rgba(53,224,196,.4);transition:height .5s cubic-bezier(.2,.7,.3,1);}
+
+  .item{position:relative;display:flex;align-items:center;gap:12px;padding:9px 10px 9px 0;
+    border-bottom:1px solid rgba(35,42,54,.55);}
+  .item:last-child{border-bottom:0;}
+  .item.hide{display:none;}
+  .node{position:absolute;left:-24px;top:50%;transform:translate(-40%,-50%);
+    width:13px;height:13px;border-radius:99px;background:var(--bg2);
+    border:2px solid var(--line2);transition:.2s;z-index:1;}
+  .item.done .node{background:var(--teal);border-color:var(--teal);
+    box-shadow:0 0 0 4px var(--teal-soft),0 0 12px rgba(53,224,196,.7);}
+
+  .item label{display:flex;align-items:center;gap:12px;flex:1;min-width:0;cursor:pointer;}
+  .cbx{appearance:none;-webkit-appearance:none;flex-shrink:0;width:22px;height:22px;
+    border-radius:7px;border:2px solid var(--line2);background:var(--bg);cursor:pointer;
+    display:grid;place-items:center;transition:.15s;}
+  .cbx:hover{border-color:var(--teal);}
+  .cbx:checked{background:var(--teal);border-color:var(--teal);}
+  .cbx:checked::after{content:"";width:6px;height:11px;border:solid #06110F;border-width:0 2.5px 2.5px 0;
+    transform:rotate(45deg) translateY(-1px);}
+  .cbx:focus-visible{outline:2px solid var(--teal);outline-offset:2px;}
+
+  .titles{flex:1;min-width:0;}
+  .t-name{font-size:15px;font-weight:600;color:var(--ink);letter-spacing:-.01em;}
+  .item.done .t-name{color:var(--ink2);}
+  .item.done .t-name .txt{text-decoration:line-through;text-decoration-color:var(--teal-dim);}
+  .t-sub{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:3px;}
+  .yr{font-size:12px;color:var(--ink3);font-variant-numeric:tabular-nums;}
+  .tag{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    padding:2px 7px;border-radius:5px;border:1px solid var(--line2);color:var(--ink2);white-space:nowrap;}
+  .tag.alt{color:#C9A3E8;border-color:rgba(160,120,200,.4);background:rgba(150,110,190,.10);}
+  .tag.soon{color:var(--crimson);border-color:var(--crimson-dim);background:var(--crimson-soft);}
+  .tag.note{color:var(--ink3);border-color:transparent;background:var(--bg3);}
+
+  /* ---------- Footer ---------- */
+  .foot{margin-top:36px;padding-top:20px;border-top:1px solid var(--line);
+    color:var(--ink3);font-size:12.5px;line-height:1.7;}
+  .foot b{color:var(--ink2);font-weight:600;}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:14px;}
+  .legend span{display:inline-flex;align-items:center;gap:7px;font-size:12px;color:var(--ink2);}
+  .lg-dot{width:11px;height:11px;border-radius:99px;}
+  .save-note{margin-top:12px;font-size:11.5px;color:var(--ink3);}
+
+  @media (max-width:560px){
+    .wrap{padding:22px 14px 60px;}
+    .bignum b{font-size:42px;}
+    .controls{padding:10px;}
+    .t-name{font-size:14px;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none!important;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="eyebrow">Marvel Cinematic Universe</p>
+    <h1 class="title">Planner<br>di visione</h1>
+    <p class="lede">Tutti i film e le serie del MCU, divisi per saga e fase, in ordine di uscita. Spunta ciò che hai già visto — i progressi restano salvati su questo dispositivo.</p>
+
+    <div class="overall">
+      <div class="bignum"><b id="ov-done">0</b><span> / <span id="ov-tot">0</span></span><small>Completati</small></div>
+      <div class="meter-block">
+        <div class="meter-top"><span>Avanzamento</span><span id="ov-pct">0%</span></div>
+        <div class="meter"><div class="meter-fill" id="ov-fill"></div></div>
+      </div>
+    </div>
+  </header>
+
+  <div class="controls">
+    <div class="seg" id="typeSeg">
+      <button data-type="all" class="on">Tutti</button>
+      <button data-type="film">Film</button>
+      <button data-type="serie">Serie</button>
+      <button data-type="special">Speciali</button>
+    </div>
+    <div class="chip" id="chipAlt"><span class="dot"></span>Nascondi continuità alternativa</div>
+    <div class="chip" id="chipSoon"><span class="dot"></span>Nascondi non ancora usciti</div>
+    <div class="spacer"></div>
+    <button class="ghost" id="btnToggle">Comprimi tutto</button>
+    <button class="ghost" id="btnReset">Azzera</button>
+  </div>
+
+  <main id="app"></main>
+
+  <footer class="foot">
+    <div class="legend">
+      <span><i class="lg-dot" style="background:var(--teal)"></i>Visto</span>
+      <span><i class="lg-dot" style="background:var(--bg2);border:2px solid var(--line2)"></i>Da vedere</span>
+      <span><i class="lg-dot" style="background:rgba(150,110,190,.5)"></i>Continuità alternativa</span>
+      <span><i class="lg-dot" style="background:var(--crimson)"></i>In arrivo</span>
+    </div>
+    <p><b>Ordine.</b> La lista segue l'ordine di <b>uscita</b> all'interno di ciascuna fase: è quello consigliato per una prima visione e coincide quasi sempre con la cronologia interna. Le poche eccezioni "a ritroso" (Captain America: The First Avenger anni '40, Captain Marvel 1995, Black Widow tra Civil War e Infinity War, Deadpool &amp; Wolverine ambientato nel 2018/2024) contano solo per un rewatch in ordine cronologico stretto.</p>
+    <p style="margin-top:10px"><b>Continuità alternativa.</b> X-Men '97, Your Friendly Neighborhood Spider-Man e Marvel Zombies escono in questo periodo ma sono ambientati in linee temporali separate dalla Sacred Timeline: guardabili in qualsiasi momento, non obbligatori per la trama principale.</p>
+    <p class="save-note" id="saveNote"></p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  // ---- Dataset (default: type set, canon "main", status "out") ----
+  var DATA = [
+    { saga:"Saga dell'Infinito", phases:[
+      { n:1, name:"Fase Uno", years:"2008 – 2012", items:[
+        ["Iron Man","2008","film"],
+        ["The Incredible Hulk","2008","film"],
+        ["Iron Man 2","2010","film"],
+        ["Thor","2011","film"],
+        ["Captain America: The First Avenger","2011","film"],
+        ["The Avengers","2012","film"],
+      ]},
+      { n:2, name:"Fase Due", years:"2013 – 2015", items:[
+        ["Iron Man 3","2013","film"],
+        ["Thor: The Dark World","2013","film"],
+        ["Captain America: The Winter Soldier","2014","film"],
+        ["Guardians of the Galaxy","2014","film"],
+        ["Avengers: Age of Ultron","2015","film"],
+        ["Ant-Man","2015","film"],
+      ]},
+      { n:3, name:"Fase Tre", years:"2016 – 2019", items:[
+        ["Captain America: Civil War","2016","film"],
+        ["Doctor Strange","2016","film"],
+        ["Guardians of the Galaxy Vol. 2","2017","film"],
+        ["Spider-Man: Homecoming","2017","film"],
+        ["Thor: Ragnarok","2017","film"],
+        ["Black Panther","2018","film"],
+        ["Avengers: Infinity War","2018","film"],
+        ["Ant-Man and the Wasp","2018","film"],
+        ["Captain Marvel","2019","film"],
+        ["Avengers: Endgame","2019","film"],
+        ["Spider-Man: Far From Home","2019","film"],
+      ]},
+    ]},
+    { saga:"Saga del Multiverso", phases:[
+      { n:4, name:"Fase Quattro", years:"2021 – 2022", items:[
+        ["WandaVision","2021","serie"],
+        ["The Falcon and the Winter Soldier","2021","serie"],
+        ["Loki — Stagione 1","2021","serie"],
+        ["Black Widow","2021","film"],
+        ["What If…? — Stagione 1","2021","serie"],
+        ["Shang-Chi and the Legend of the Ten Rings","2021","film"],
+        ["Eternals","2021","film"],
+        ["Hawkeye","2021","serie"],
+        ["Spider-Man: No Way Home","2021","film"],
+        ["Moon Knight","2022","serie"],
+        ["Doctor Strange in the Multiverse of Madness","2022","film"],
+        ["Ms. Marvel","2022","serie"],
+        ["Thor: Love and Thunder","2022","film"],
+        ["I Am Groot — Stagione 1","2022","serie",{note:"corti"}],
+        ["She-Hulk: Attorney at Law","2022","serie"],
+        ["Werewolf by Night","2022","special"],
+        ["Black Panther: Wakanda Forever","2022","film"],
+        ["The Guardians of the Galaxy Holiday Special","2022","special"],
+      ]},
+      { n:5, name:"Fase Cinque", years:"2023 – 2025", items:[
+        ["Ant-Man and the Wasp: Quantumania","2023","film"],
+        ["Guardians of the Galaxy Vol. 3","2023","film"],
+        ["Secret Invasion","2023","serie"],
+        ["Loki — Stagione 2","2023","serie"],
+        ["The Marvels","2023","film"],
+        ["What If…? — Stagione 2","2023","serie"],
+        ["I Am Groot — Stagione 2","2023","serie",{note:"corti"}],
+        ["Echo","2024","serie"],
+        ["X-Men '97 — Stagione 1","2024","serie",{canon:"alt"}],
+        ["Deadpool & Wolverine","2024","film"],
+        ["Agatha All Along","2024","serie"],
+        ["What If…? — Stagione 3","2024","serie"],
+        ["Your Friendly Neighborhood Spider-Man — Stagione 1","2025","serie",{canon:"alt",note:"animata"}],
+        ["Captain America: Brave New World","2025","film"],
+        ["Daredevil: Born Again — Stagione 1","2025","serie"],
+        ["Thunderbolts*","2025","film"],
+        ["Ironheart","2025","serie"],
+      ]},
+      { n:6, name:"Fase Sei", years:"2025 – 2027", items:[
+        ["The Fantastic Four: First Steps","2025","film"],
+        ["Eyes of Wakanda","2025","serie",{note:"animata"}],
+        ["Marvel Zombies","2025","serie",{canon:"alt",note:"animata"}],
+        ["Wonder Man","2026","serie"],
+        ["Daredevil: Born Again — Stagione 2","2026","serie"],
+        ["The Punisher: One Last Kill","2026","special"],
+        ["X-Men '97 — Stagione 2","metà 2026","serie",{canon:"alt",status:"soon"}],
+        ["VisionQuest","2026","serie",{status:"soon"}],
+        ["Spider-Man: Brand New Day","31 lug 2026","film",{status:"soon"}],
+        ["Your Friendly Neighborhood Spider-Man — Stagione 2","fine 2026","serie",{canon:"alt",status:"soon",note:"animata"}],
+        ["Avengers: Doomsday","18 dic 2026","film",{status:"soon"}],
+        ["Daredevil: Born Again — Stagione 3","mar 2027","serie",{status:"soon"}],
+        ["Avengers: Secret Wars","17 dic 2027","film",{status:"soon"}],
+      ]},
+    ]},
+  ];
+
+  var TYPE_LABEL = { film:"Film", serie:"Serie", special:"Speciale" };
+  var KEY = "mcu-planner-v1";
+
+  // ---- State ----
+  var watched = new Set();
+  var hasPersist = false;
+  try{
+    window.localStorage.setItem("__t","1");
+    window.localStorage.removeItem("__t");
+    hasPersist = true;
+  }catch(e){}
+
+  function slug(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,""); }
+
+  // ---- Build DOM ----
+  var app = document.getElementById("app");
+  var allItems = []; // {id,type,canon,status,row}
+
+  DATA.forEach(function(saga){
+    var sBlock = document.createElement("section");
+    sBlock.className = "saga";
+    var sCount = document.createElement("span");
+    sCount.className = "saga-count";
+    var head = document.createElement("div");
+    head.className = "saga-head";
+    head.innerHTML = '<h2 class="saga-name">'+saga.saga+'</h2><div class="saga-rule"></div>';
+    head.appendChild(sCount);
+    sBlock.appendChild(head);
+    saga._countEl = sCount;
+
+    saga.phases.forEach(function(ph){
+      var pBlock = document.createElement("div");
+      pBlock.className = "phase";
+      var C = 2*Math.PI*17; // ring circumference (r=17)
+      pBlock.innerHTML =
+        '<div class="phase-head">'+
+          '<div class="ph-num">'+ph.n+'</div>'+
+          '<div class="ph-meta"><div class="ph-name">'+ph.name+'</div><div class="ph-years">'+ph.years+'</div></div>'+
+          '<div class="ring"><svg width="44" height="44" viewBox="0 0 44 44">'+
+            '<circle class="bg" cx="22" cy="22" r="17" fill="none" stroke-width="3.5"/>'+
+            '<circle class="fg" cx="22" cy="22" r="17" fill="none" stroke-width="3.5" '+
+              'stroke-dasharray="'+C+'" stroke-dashoffset="'+C+'"/>'+
+          '</svg><b>0%</b></div>'+
+          '<svg class="chev" width="16" height="16" viewBox="0 0 16 16"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>'+
+        '</div>'+
+        '<div class="phase-body"><div class="list"><div class="fill"></div></div></div>';
+
+      var list = pBlock.querySelector(".list");
+      ph._ring = pBlock.querySelector(".ring .fg");
+      ph._ringTxt = pBlock.querySelector(".ring b");
+      ph._fill = pBlock.querySelector(".fill");
+      ph._circ = C;
+      ph._items = [];
+
+      ph.items.forEach(function(it){
+        var t=it[0], y=it[1], type=it[2], opt=it[3]||{};
+        var canon=opt.canon||"main", status=opt.status||"out", note=opt.note||"";
+        var id="i-"+slug(t);
+        var row=document.createElement("div");
+        row.className="item";
+        row.dataset.id=id; row.dataset.type=type; row.dataset.canon=canon; row.dataset.status=status;
+
+        var tags='<span class="tag">'+TYPE_LABEL[type]+'</span>';
+        if(note) tags+='<span class="tag note">'+note+'</span>';
+        if(canon==="alt") tags+='<span class="tag alt">Continuità alt.</span>';
+        if(status==="soon") tags+='<span class="tag soon">In arrivo</span>';
+
+        row.innerHTML=
+          '<span class="node"></span>'+
+          '<label><input type="checkbox" class="cbx" id="cbx-'+id+'">'+
+          '<span class="titles"><span class="t-name"><span class="txt">'+t+'</span></span>'+
+          '<span class="t-sub"><span class="yr">'+y+'</span>'+tags+'</span></span></label>';
+
+        list.appendChild(row);
+        var rec={id:id,type:type,canon:canon,status:status,row:row,phase:ph,saga:saga};
+        ph._items.push(rec); allItems.push(rec);
+      });
+
+      sBlock.appendChild(pBlock);
+    });
+
+    app.appendChild(sBlock);
+  });
+
+  // ---- Progress calc (over currently visible items) ----
+  function isVisible(row){ return !row.classList.contains("hide"); }
+
+  function update(){
+    var ovDone=0, ovTot=0;
+    DATA.forEach(function(saga){
+      var sDone=0,sTot=0;
+      saga.phases.forEach(function(ph){
+        var d=0,t=0;
+        ph._items.forEach(function(r){
+          if(!isVisible(r.row)) return;
+          t++; if(watched.has(r.id)) d++;
+        });
+        var pct = t? d/t : 0;
+        ph._ring.style.strokeDashoffset = (ph._circ*(1-pct)).toFixed(1);
+        ph._ringTxt.textContent = Math.round(pct*100)+"%";
+        ph._fill.style.height = (pct*100)+"%";
+        sDone+=d; sTot+=t; ovDone+=d; ovTot+=t;
+      });
+      saga._countEl.textContent = sDone+" / "+sTot;
+    });
+    document.getElementById("ov-done").textContent=ovDone;
+    document.getElementById("ov-tot").textContent=ovTot;
+    var op = ovTot? Math.round(ovDone/ovTot*100):0;
+    document.getElementById("ov-pct").textContent=op+"%";
+    document.getElementById("ov-fill").style.width=op+"%";
+  }
+
+  // ---- Filters ----
+  var curType="all", hideAlt=false, hideSoon=false;
+  function applyFilters(){
+    allItems.forEach(function(r){
+      var show = (curType==="all"||r.type===curType) &&
+                 !(hideAlt && r.canon==="alt") &&
+                 !(hideSoon && r.status==="soon");
+      r.row.classList.toggle("hide", !show);
+    });
+    update();
+  }
+
+  // ---- Persistence (localStorage) ----
+  function save(){
+    if(!hasPersist) return;
+    try{ localStorage.setItem(KEY, JSON.stringify([].slice.call(watched))); }catch(e){}
+  }
+  function load(){
+    var note=document.getElementById("saveNote");
+    if(!hasPersist){ note.textContent="Nota: su questo dispositivo i progressi non vengono salvati tra una sessione e l'altra."; update(); return; }
+    note.textContent="I progressi vengono salvati automaticamente.";
+    try{
+      var raw=localStorage.getItem(KEY);
+      if(raw){
+        JSON.parse(raw).forEach(function(id){ watched.add(id); });
+        allItems.forEach(function(r){
+          if(watched.has(r.id)){
+            r.row.classList.add("done");
+            var cb=r.row.querySelector(".cbx"); if(cb) cb.checked=true;
+          }
+        });
+      }
+    }catch(e){}
+    update();
+  }
+
+  // ---- Events ----
+  app.addEventListener("change", function(e){
+    var cb=e.target; if(!cb.classList||!cb.classList.contains("cbx")) return;
+    var row=cb.closest(".item"); var id=row.dataset.id;
+    if(cb.checked){ watched.add(id); row.classList.add("done"); }
+    else{ watched.delete(id); row.classList.remove("done"); }
+    save(); update();
+  });
+
+  app.addEventListener("click", function(e){
+    var h=e.target.closest(".phase-head"); if(!h) return;
+    h.parentElement.classList.toggle("collapsed");
+  });
+
+  document.getElementById("typeSeg").addEventListener("click", function(e){
+    var b=e.target.closest("button"); if(!b) return;
+    curType=b.dataset.type;
+    [].forEach.call(this.children,function(x){ x.classList.toggle("on", x===b); });
+    applyFilters();
+  });
+  document.getElementById("chipAlt").addEventListener("click", function(){
+    hideAlt=!hideAlt; this.classList.toggle("on",hideAlt); applyFilters();
+  });
+  document.getElementById("chipSoon").addEventListener("click", function(){
+    hideSoon=!hideSoon; this.classList.toggle("on",hideSoon); applyFilters();
+  });
+
+  var allCollapsed=false;
+  document.getElementById("btnToggle").addEventListener("click", function(){
+    allCollapsed=!allCollapsed;
+    [].forEach.call(document.querySelectorAll(".phase"),function(p){ p.classList.toggle("collapsed",allCollapsed); });
+    this.textContent=allCollapsed?"Espandi tutto":"Comprimi tutto";
+  });
+  document.getElementById("btnReset").addEventListener("click", function(){
+    if(!confirm("Azzerare tutti i progressi? Le spunte verranno rimosse.")) return;
+    watched.clear();
+    allItems.forEach(function(r){ r.row.classList.remove("done"); var cb=r.row.querySelector(".cbx"); if(cb) cb.checked=false; });
+    save(); update();
+  });
+
+  load();
+})();
+</script>
+</body>
+</html>
