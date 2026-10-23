@@ -110,6 +110,28 @@ export const it = {
       stanLee: "Cameo di Stan Lee",
       source: "Fonte",
     },
+    trailer: {
+      open: "Guarda il trailer",
+      title: "Trailer: {name}",
+      notice:
+        "Il video è fornito da YouTube e viene caricato solo quando premi il pulsante: YouTube può ricevere dati come il tuo indirizzo IP.",
+      play: "Avvia il trailer",
+      frameTitle: "Trailer di {name}",
+    },
+    watch: {
+      heading: "Dove guardare",
+      region: "Paese",
+      stream: "In abbonamento",
+      free: "Gratis (con pubblicità)",
+      rent: "Noleggio",
+      buy: "Acquisto",
+      none: "Nessuna informazione sulla disponibilità in {country}.",
+      all: "Vedi tutte le opzioni",
+      attribution: "Dati sulla disponibilità forniti da",
+      disclaimer: "La disponibilità cambia spesso: controlla prima di guardare.",
+      loading: "Caricamento della disponibilità…",
+      error: "La disponibilità non è al momento consultabile.",
+    },
     open: "Scheda completa",
     loading: "Caricamento dei dettagli…",
     error: "Dettagli non disponibili al momento.",
@@ -266,7 +288,7 @@ export const it = {
     intro: "Questa pagina elenca tutto ciò che il sito salva sul tuo dispositivo.",
     noBannerHeading: "Nessun consenso da dare",
     noBannerBody:
-      "Il sito usa solo strumenti tecnici, necessari al servizio che chiedi (accesso, lingua, progressi, filtri). Per questi la normativa non richiede il consenso né un banner. Non usiamo cookie di analisi, pubblicità o profilazione e non carichiamo risorse di terze parti: se in futuro lo faremo, ti chiederemo prima il consenso.",
+      "Il sito usa solo strumenti tecnici, necessari al servizio che chiedi (accesso, lingua, progressi, filtri). Per questi la normativa non richiede il consenso né un banner. Non usiamo cookie di analisi, pubblicità o profilazione e non carichiamo risorse di terze parti, tranne il video del trailer, che viene caricato da YouTube solo se premi “Avvia il trailer”: se in futuro lo faremo, ti chiederemo prima il consenso.",
     tableCaption: "Cookie e dati salvati nel browser",
     columns: {
       name: "Nome",
@@ -301,7 +323,7 @@ export const it = {
   privacySettings: {
     title: "Preferenze privacy",
     intro:
-      "Questo sito non usa cookie di analisi, pubblicità o profilazione e non carica risorse di terze parti: non c'è nulla da accettare o rifiutare.",
+      "Questo sito non usa cookie di analisi, pubblicità o profilazione e non carica risorse di terze parti, tranne il video del trailer, che viene caricato da YouTube solo se premi “Avvia il trailer”: non c'è nulla da accettare o rifiutare.",
     clearHeading: "Dati su questo dispositivo",
     clearBody:
       "Cancella i progressi (se non hai un account), la lingua e i filtri salvati in questo browser. Non ti disconnette dall'account.",
@@ -354,7 +376,7 @@ export const it = {
     },
     cookies: {
       heading: "Cookie e archiviazione locale",
-      body: "Usiamo solo cookie tecnici, necessari al funzionamento: un cookie di sessione per mantenerti connesso. Non usiamo cookie di analisi, pubblicità o profilazione né cookie di terze parti, per cui non è richiesto il tuo consenso (art. 122 del Codice privacy, direttiva ePrivacy e linee guida del Garante del 10 giugno 2021). L'elenco completo è nella {link}.",
+      body: "Usiamo solo cookie tecnici, necessari al funzionamento: un cookie di sessione per mantenerti connesso. Non usiamo cookie di analisi, pubblicità o profilazione né cookie di terze parti (salvo quelli che YouTube può impostare se avvii tu un trailer), per cui non è richiesto il tuo consenso (art. 122 del Codice privacy, direttiva ePrivacy e linee guida del Garante del 10 giugno 2021). L'elenco completo è nella {link}.",
       link: "finestra «Preferenze privacy»",
     },
     providers: {

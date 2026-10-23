@@ -112,6 +112,28 @@ export const en: Messages = {
       stanLee: "Stan Lee cameo",
       source: "Source",
     },
+    trailer: {
+      open: "Watch trailer",
+      title: "Trailer: {name}",
+      notice:
+        "The video is provided by YouTube and loads only when you press the button: YouTube may receive data such as your IP address.",
+      play: "Play the trailer",
+      frameTitle: "Trailer of {name}",
+    },
+    watch: {
+      heading: "Where to watch",
+      region: "Country",
+      stream: "Streaming",
+      free: "Free (with ads)",
+      rent: "Rent",
+      buy: "Buy",
+      none: "No availability information for {country}.",
+      all: "See all options",
+      attribution: "Availability data provided by",
+      disclaimer: "Availability changes often: check before you watch.",
+      loading: "Loading availability…",
+      error: "Availability is not available right now.",
+    },
     open: "Full details",
     loading: "Loading details…",
     error: "Details are not available right now.",
@@ -269,7 +291,7 @@ export const en: Messages = {
     intro: "This page lists everything the site stores on your device.",
     noBannerHeading: "Nothing to consent to",
     noBannerBody:
-      "The site only uses technical tools that are needed for the service you ask for (sign-in, language, progress, filters). The law does not require consent or a banner for these. We do not use analytics, advertising or profiling cookies and we do not load third-party resources: if that ever changes, we will ask for your consent first.",
+      "The site only uses technical tools that are needed for the service you ask for (sign-in, language, progress, filters). The law does not require consent or a banner for these. We do not use analytics, advertising or profiling cookies and we do not load third-party resources, except the trailer video, which loads from YouTube only if you press “Play the trailer”: if that ever changes, we will ask for your consent first.",
     tableCaption: "Cookies and data stored in your browser",
     columns: {
       name: "Name",
@@ -304,7 +326,7 @@ export const en: Messages = {
   privacySettings: {
     title: "Privacy settings",
     intro:
-      "This site does not use analytics, advertising or profiling cookies and does not load third-party resources: there is nothing to accept or refuse.",
+      "This site does not use analytics, advertising or profiling cookies and does not load third-party resources, except the trailer video, which loads from YouTube only if you press “Play the trailer”: there is nothing to accept or refuse.",
     clearHeading: "Data on this device",
     clearBody:
       "Deletes the progress (if you have no account), the language and the filters saved in this browser. It does not sign you out.",
@@ -356,7 +378,7 @@ export const en: Messages = {
     },
     cookies: {
       heading: "Cookies and local storage",
-      body: "We only use technical cookies that are needed for the service to work: a session cookie to keep you signed in. We do not use analytics, advertising or profiling cookies, nor third-party cookies, so your consent is not required (art. 122 of the Italian Privacy Code, the ePrivacy Directive and the Italian Garante's guidelines of 10 June 2021). The full list is in the {link}.",
+      body: "We only use technical cookies that are needed for the service to work: a session cookie to keep you signed in. We do not use analytics, advertising or profiling cookies, nor third-party cookies (except those YouTube may set if you start a trailer), so your consent is not required (art. 122 of the Italian Privacy Code, the ePrivacy Directive and the Italian Garante's guidelines of 10 June 2021). The full list is in the {link}.",
       link: "“Privacy settings” window",
     },
     providers: {

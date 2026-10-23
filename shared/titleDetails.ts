@@ -11,6 +11,11 @@ export interface Episode {
   overview: string;
 }
 
+export interface Trailer {
+  key: string;
+  name: string;
+}
+
 export interface PlotText {
   text: string;
   language: Language;
@@ -29,5 +34,6 @@ export interface TitleDetails {
   creators: string[];
   cast: CastMember[];
   episodes: Episode[];
+  trailer: Trailer | null;
   plot: PlotText | null;
 }

@@ -1,10 +1,12 @@
 import type { Language } from "../../shared/languages";
-import type { Episode, TitleDetails } from "../../shared/titleDetails";
+import type { Episode, TitleDetails, Trailer } from "../../shared/titleDetails";
 import type { TmdbRef } from "../../shared/tmdbRefs";
+import type { WatchProviders } from "../../shared/watchProviders";
 
 const API_URL = "https://api.themoviedb.org/3";
 const MAX_CAST = 15;
 const FALLBACK_LANGUAGE: Language = "en";
+const YOUTUBE_KEY = /^[\w-]{6,20}$/;
 
 const TMDB_LOCALES: Record<Language, string> = {
   it: "it-IT",
@@ -17,6 +19,19 @@ const TMDB_LOCALES: Record<Language, string> = {
 interface TmdbCredits {
   cast?: { name: string; character?: string; order?: number }[];
   crew?: { name: string; job?: string }[];
+}
+
+interface TmdbVideo {
+  key: string;
+  name: string;
+  site: string;
+  type: string;
+  official?: boolean;
+  iso_639_1?: string;
+}
+
+interface TmdbVideos {
+  results?: TmdbVideo[];
 }
 
 interface TmdbExternalIds {
@@ -33,6 +48,7 @@ interface TmdbMovie {
   overview?: string;
   credits?: TmdbCredits;
   external_ids?: TmdbExternalIds;
+  videos?: TmdbVideos;
 }
 
 interface TmdbShow {
@@ -44,6 +60,7 @@ interface TmdbShow {
   overview?: string;
   created_by?: { name: string }[];
   credits?: TmdbCredits;
+  videos?: TmdbVideos;
 }
 
 interface TmdbSeason {
@@ -51,6 +68,7 @@ interface TmdbSeason {
   poster_path?: string | null;
   overview?: string;
   credits?: TmdbCredits;
+  videos?: TmdbVideos;
   episodes?: { episode_number: number; name: string; overview?: string }[];
 }
 
@@ -104,6 +122,23 @@ function directorsOf(credits?: TmdbCredits): string[] {
   return (credits?.crew ?? []).filter((member) => member.job === "Director").map((m) => m.name);
 }
 
+function pickTrailer(videos: TmdbVideos | undefined, language: Language): Trailer | null {
+  const rank = (video: TmdbVideo) =>
+    (video.iso_639_1 === language ? 0 : video.iso_639_1 === FALLBACK_LANGUAGE ? 2 : 4) +
+    (video.official ? 0 : 1);
+  const [best] = (videos?.results ?? [])
+    .filter(
+      (video) =>
+        video.site === "YouTube" && video.type === "Trailer" && YOUTUBE_KEY.test(video.key),
+    )
+    .toSorted((a, b) => rank(a) - rank(b));
+  return best ? { key: best.key, name: best.name } : null;
+}
+
+function videoLanguages(language: Language): string {
+  return `include_video_language=${[...new Set([language, FALLBACK_LANGUAGE])].join(",")}`;
+}
+
 function mapEpisodes(season: TmdbSeason | null): Episode[] {
   return (season?.episodes ?? [])
     .filter((episode) => episode.overview?.trim())
@@ -117,7 +152,7 @@ function mapEpisodes(season: TmdbSeason | null): Episode[] {
 async function movieDetails(token: string, id: number, language: Language): Promise<TmdbDetails> {
   const movie = await request<TmdbMovie>(
     token,
-    `/movie/${id}?append_to_response=credits,external_ids`,
+    `/movie/${id}?append_to_response=credits,external_ids,videos&${videoLanguages(language)}`,
     language,
   );
   return {
@@ -132,6 +167,7 @@ async function movieDetails(token: string, id: number, language: Language): Prom
     creators: [],
     cast: mapCast(movie.credits),
     episodes: [],
+    trailer: pickTrailer(movie.videos, language),
     wikidataId: movie.external_ids?.wikidata_id ?? null,
   };
 }
@@ -143,12 +179,16 @@ async function tvDetails(
   season?: number,
 ): Promise<TmdbDetails> {
   const [show, seasonData] = await Promise.all([
-    request<TmdbShow>(token, `/tv/${id}?append_to_response=credits`, language),
+    request<TmdbShow>(
+      token,
+      `/tv/${id}?append_to_response=credits,videos&${videoLanguages(language)}`,
+      language,
+    ),
     season === undefined
       ? Promise.resolve(null)
       : requestOptional<TmdbSeason>(
           token,
-          `/tv/${id}/season/${season}?append_to_response=credits`,
+          `/tv/${id}/season/${season}?append_to_response=credits,videos&${videoLanguages(language)}`,
           language,
         ),
   ]);
@@ -166,6 +206,7 @@ async function tvDetails(
     creators: (show.created_by ?? []).map((creator) => creator.name),
     cast: mapCast(credits),
     episodes: mapEpisodes(seasonData),
+    trailer: pickTrailer(seasonData?.videos, language) ?? pickTrailer(show.videos, language),
     wikidataId: null,
   };
 }
@@ -178,4 +219,44 @@ export function fetchTmdbDetails(
   return ref.kind === "movie"
     ? movieDetails(token, ref.id, language)
     : tvDetails(token, ref.id, language, ref.season);
+}
+
+interface TmdbProviderEntry {
+  provider_name: string;
+}
+
+interface TmdbWatchRegion {
+  link?: string;
+  flatrate?: TmdbProviderEntry[];
+  free?: TmdbProviderEntry[];
+  ads?: TmdbProviderEntry[];
+  rent?: TmdbProviderEntry[];
+  buy?: TmdbProviderEntry[];
+}
+
+const providerNames = (entries?: TmdbProviderEntry[]) => [
+  ...new Set((entries ?? []).map((entry) => entry.provider_name)),
+];
+
+export async function fetchWatchProviders(token: string, ref: TmdbRef): Promise<WatchProviders> {
+  const path = `/${ref.kind}/${ref.id}/watch/providers`;
+  const data = await request<{ results?: Record<string, TmdbWatchRegion> }>(token, path, "en");
+  const providers: WatchProviders = {};
+  for (const [region, entry] of Object.entries(data.results ?? {})) {
+    if (!entry.link) continue;
+    const options = {
+      link: entry.link,
+      stream: providerNames(entry.flatrate),
+      free: providerNames([...(entry.free ?? []), ...(entry.ads ?? [])]),
+      rent: providerNames(entry.rent),
+      buy: providerNames(entry.buy),
+    };
+    if (
+      options.stream.length + options.free.length + options.rent.length + options.buy.length >
+      0
+    ) {
+      providers[region] = options;
+    }
+  }
+  return providers;
 }

@@ -113,6 +113,28 @@ export const fr: Messages = {
       stanLee: "Caméo de Stan Lee",
       source: "Source",
     },
+    trailer: {
+      open: "Voir la bande-annonce",
+      title: "Bande-annonce : {name}",
+      notice:
+        "La vidéo est fournie par YouTube et ne se charge que lorsque vous appuyez sur le bouton : YouTube peut recevoir des données comme votre adresse IP.",
+      play: "Lancer la bande-annonce",
+      frameTitle: "Bande-annonce de {name}",
+    },
+    watch: {
+      heading: "Où regarder",
+      region: "Pays",
+      stream: "En abonnement",
+      free: "Gratuit (avec publicité)",
+      rent: "Location",
+      buy: "Achat",
+      none: "Aucune information de disponibilité pour {country}.",
+      all: "Voir toutes les options",
+      attribution: "Données de disponibilité fournies par",
+      disclaimer: "La disponibilité change souvent : vérifiez avant de regarder.",
+      loading: "Chargement de la disponibilité…",
+      error: "La disponibilité n'est pas consultable pour le moment.",
+    },
     open: "Fiche complète",
     loading: "Chargement des détails…",
     error: "Détails indisponibles pour le moment.",
@@ -270,7 +292,7 @@ export const fr: Messages = {
     intro: "Cette page recense tout ce que le site enregistre sur votre appareil.",
     noBannerHeading: "Aucun consentement à donner",
     noBannerBody:
-      "Le site n'utilise que des outils techniques, nécessaires au service que vous demandez (connexion, langue, progression, filtres). Pour ceux-ci, la réglementation n'exige ni consentement ni bandeau. Nous n'utilisons aucun cookie d'analyse, de publicité ou de profilage et ne chargeons aucune ressource tierce : si cela change un jour, nous vous demanderons d'abord votre consentement.",
+      "Le site n'utilise que des outils techniques, nécessaires au service que vous demandez (connexion, langue, progression, filtres). Pour ceux-ci, la réglementation n'exige ni consentement ni bandeau. Nous n'utilisons aucun cookie d'analyse, de publicité ou de profilage et ne chargeons aucune ressource tierce, à l'exception de la vidéo de la bande-annonce, chargée depuis YouTube uniquement si vous appuyez sur « Lancer la bande-annonce » : si cela change un jour, nous vous demanderons d'abord votre consentement.",
     tableCaption: "Cookies et données enregistrés dans votre navigateur",
     columns: {
       name: "Nom",
@@ -305,7 +327,7 @@ export const fr: Messages = {
   privacySettings: {
     title: "Préférences de confidentialité",
     intro:
-      "Ce site n'utilise aucun cookie d'analyse, de publicité ou de profilage et ne charge aucune ressource tierce : il n'y a rien à accepter ni à refuser.",
+      "Ce site n'utilise aucun cookie d'analyse, de publicité ou de profilage et ne charge aucune ressource tierce, à l'exception de la vidéo de la bande-annonce, chargée depuis YouTube uniquement si vous appuyez sur « Lancer la bande-annonce » : il n'y a rien à accepter ni à refuser.",
     clearHeading: "Données sur cet appareil",
     clearBody:
       "Supprime la progression (si vous n'avez pas de compte), la langue et les filtres enregistrés dans ce navigateur. Cela ne vous déconnecte pas.",
@@ -358,7 +380,7 @@ export const fr: Messages = {
     },
     cookies: {
       heading: "Cookies et stockage local",
-      body: "Nous n'utilisons que des cookies techniques, nécessaires au fonctionnement : un cookie de session pour vous maintenir connecté. Nous n'utilisons aucun cookie d'analyse, de publicité ou de profilage, ni cookie tiers ; votre consentement n'est donc pas requis (art. 122 du Code italien de la vie privée, directive ePrivacy et lignes directrices du Garante du 10 juin 2021). La liste complète figure dans la {link}.",
+      body: "Nous n'utilisons que des cookies techniques, nécessaires au fonctionnement : un cookie de session pour vous maintenir connecté. Nous n'utilisons aucun cookie d'analyse, de publicité ou de profilage, ni cookie tiers (sauf ceux que YouTube peut déposer si vous lancez une bande-annonce) ; votre consentement n'est donc pas requis (art. 122 du Code italien de la vie privée, directive ePrivacy et lignes directrices du Garante du 10 juin 2021). La liste complète figure dans la {link}.",
       link: "fenêtre « Préférences de confidentialité »",
     },
     providers: {

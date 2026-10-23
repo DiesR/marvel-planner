@@ -115,6 +115,28 @@ export const de: Messages = {
       stanLee: "Cameo von Stan Lee",
       source: "Quelle",
     },
+    trailer: {
+      open: "Trailer ansehen",
+      title: "Trailer: {name}",
+      notice:
+        "Das Video wird von YouTube bereitgestellt und erst geladen, wenn du auf die Schaltfläche klickst: YouTube kann Daten wie deine IP-Adresse erhalten.",
+      play: "Trailer abspielen",
+      frameTitle: "Trailer zu {name}",
+    },
+    watch: {
+      heading: "Wo ansehen",
+      region: "Land",
+      stream: "Im Abo",
+      free: "Kostenlos (mit Werbung)",
+      rent: "Leihen",
+      buy: "Kaufen",
+      none: "Keine Verfügbarkeitsinformationen für {country}.",
+      all: "Alle Optionen ansehen",
+      attribution: "Verfügbarkeitsdaten bereitgestellt von",
+      disclaimer: "Die Verfügbarkeit ändert sich oft: Prüfe sie vor dem Ansehen.",
+      loading: "Verfügbarkeit wird geladen…",
+      error: "Die Verfügbarkeit ist gerade nicht abrufbar.",
+    },
     open: "Alle Details",
     loading: "Details werden geladen …",
     error: "Details sind im Moment nicht verfügbar.",
@@ -271,7 +293,7 @@ export const de: Messages = {
     intro: "Diese Seite listet alles auf, was die Seite auf deinem Gerät speichert.",
     noBannerHeading: "Nichts, dem du zustimmen musst",
     noBannerBody:
-      "Die Seite verwendet nur technische Mittel, die für den von dir gewünschten Dienst nötig sind (Anmeldung, Sprache, Fortschritt, Filter). Dafür verlangt das Recht weder eine Einwilligung noch ein Banner. Wir setzen keine Analyse-, Werbe- oder Profiling-Cookies ein und laden keine Ressourcen von Dritten: Sollte sich das ändern, fragen wir vorher nach deiner Einwilligung.",
+      "Die Seite verwendet nur technische Mittel, die für den von dir gewünschten Dienst nötig sind (Anmeldung, Sprache, Fortschritt, Filter). Dafür verlangt das Recht weder eine Einwilligung noch ein Banner. Wir setzen keine Analyse-, Werbe- oder Profiling-Cookies ein und laden keine Ressourcen von Dritten, außer dem Trailer-Video, das nur von YouTube geladen wird, wenn du auf „Trailer abspielen“ klickst: Sollte sich das ändern, fragen wir vorher nach deiner Einwilligung.",
     tableCaption: "Cookies und im Browser gespeicherte Daten",
     columns: {
       name: "Name",
@@ -306,7 +328,7 @@ export const de: Messages = {
   privacySettings: {
     title: "Datenschutzeinstellungen",
     intro:
-      "Diese Seite verwendet keine Analyse-, Werbe- oder Profiling-Cookies und lädt keine Ressourcen von Dritten: Es gibt nichts zu akzeptieren oder abzulehnen.",
+      "Diese Seite verwendet keine Analyse-, Werbe- oder Profiling-Cookies und lädt keine Ressourcen von Dritten, außer dem Trailer-Video, das nur von YouTube geladen wird, wenn du auf „Trailer abspielen“ klickst: Es gibt nichts zu akzeptieren oder abzulehnen.",
     clearHeading: "Daten auf diesem Gerät",
     clearBody:
       "Löscht den Fortschritt (wenn du kein Konto hast), die Sprache und die Filter, die in diesem Browser gespeichert sind. Du wirst dabei nicht abgemeldet.",
@@ -359,7 +381,7 @@ export const de: Messages = {
     },
     cookies: {
       heading: "Cookies und lokaler Speicher",
-      body: "Wir verwenden nur technische Cookies, die für den Betrieb nötig sind: ein Sitzungs-Cookie, das dich angemeldet hält. Wir setzen keine Analyse-, Werbe- oder Profiling-Cookies und keine Cookies von Dritten ein, daher ist keine Einwilligung erforderlich (Art. 122 des italienischen Datenschutzkodex, ePrivacy-Richtlinie und Leitlinien des Garante vom 10. Juni 2021). Die vollständige Liste findest du im {link}.",
+      body: "Wir verwenden nur technische Cookies, die für den Betrieb nötig sind: ein Sitzungs-Cookie, das dich angemeldet hält. Wir setzen keine Analyse-, Werbe- oder Profiling-Cookies und keine Cookies von Dritten ein (außer solchen, die YouTube setzen kann, wenn du einen Trailer startest), daher ist keine Einwilligung erforderlich (Art. 122 des italienischen Datenschutzkodex, ePrivacy-Richtlinie und Leitlinien des Garante vom 10. Juni 2021). Die vollständige Liste findest du im {link}.",
       link: "Fenster „Datenschutzeinstellungen“",
     },
     providers: {

@@ -28,6 +28,12 @@ export const titleDetailsCache = sqliteTable(
   (table) => [primaryKey({ columns: [table.titleId, table.language] })],
 );
 
+export const titleWatchCache = sqliteTable("title_watch_cache", {
+  titleId: text("title_id").primaryKey(),
+  data: text("data").notNull(),
+  fetchedAt: integer("fetched_at", { mode: "timestamp_ms" }).notNull(),
+});
+
 export const titleRelease = sqliteTable("title_release", {
   titleId: text("title_id").primaryKey(),
   releaseDate: text("release_date"),

@@ -13,7 +13,7 @@ const SETTLED_TTL_MS = 90 * DAY_MS;
 const UNSETTLED_TTL_MS = DAY_MS;
 
 function isFresh(details: TitleDetails, fetchedAt: Date, now: number): boolean {
-  if (!("runtime" in details)) return false;
+  if (!("runtime" in details) || !("trailer" in details)) return false;
   const release = details.releaseDate ? Date.parse(details.releaseDate) : Number.NaN;
   const isSettled = !Number.isNaN(release) && now - release > SETTLED_AFTER_RELEASE_MS;
   return now - fetchedAt.getTime() < (isSettled ? SETTLED_TTL_MS : UNSETTLED_TTL_MS);

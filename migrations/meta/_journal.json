@@ -29,6 +29,13 @@
       "when": 1792768681678,
       "tag": "0003_catalog_candidate",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1792770540302,
+      "tag": "0004_title_watch_cache",
+      "breakpoints": true
     }
   ]
 }

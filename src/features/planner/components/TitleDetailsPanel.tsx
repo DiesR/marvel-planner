@@ -5,6 +5,8 @@ import { KeyScenes } from "./KeyScenes";
 import { PlotSection } from "./PlotSection";
 import { PostCreditsInfo } from "./PostCreditsInfo";
 import { SynopsisSection } from "./SynopsisSection";
+import { TrailerButton } from "./TrailerButton";
+import { WhereToWatch } from "./WhereToWatch";
 import { WithTitleDetails } from "./WithTitleDetails";
 
 interface TitleDetailsPanelProps {
@@ -53,6 +55,10 @@ export function TitleDetailsPanel({ titleId }: TitleDetailsPanelProps) {
               )}
             </dl>
 
+            {details.trailer && (
+              <TrailerButton trailer={details.trailer} titleName={details.name} />
+            )}
+
             <SynopsisSection synopsis={details.synopsis} />
 
             {details.cast.length > 0 && (
@@ -68,6 +74,8 @@ export function TitleDetailsPanel({ titleId }: TitleDetailsPanelProps) {
                 </ul>
               </section>
             )}
+
+            <WhereToWatch titleId={titleId} />
 
             <PlotSection details={details} />
             <PostCreditsInfo titleId={titleId} />
