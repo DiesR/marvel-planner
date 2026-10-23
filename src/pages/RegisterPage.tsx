@@ -2,23 +2,28 @@ import { Link, Navigate } from "react-router";
 import { PATHS } from "../app/paths";
 import { RegisterForm } from "../features/auth/components/RegisterForm";
 import { useAuth } from "../features/auth/hooks/useAuth";
+import { useI18n } from "../i18n/useI18n";
 
 export function RegisterPage() {
+  const { t, rich } = useI18n();
   const { user } = useAuth();
 
   if (user) return <Navigate to={PATHS.home} replace />;
 
   return (
     <section aria-labelledby="register-title">
-      <h1 id="register-title">Crea un account</h1>
-      <p>I progressi già salvati su questo dispositivo verranno aggiunti al tuo account.</p>
+      <h1 id="register-title">{t("auth.register.title")}</h1>
+      <p>{t("auth.register.intro")}</p>
       <RegisterForm />
       <p>
-        Creando un account dichiari di aver letto l'
-        <Link to={PATHS.privacy}>informativa sulla privacy</Link>.
+        {rich("auth.register.privacyNotice", {
+          link: <Link to={PATHS.privacy}>{t("auth.register.privacyLink")}</Link>,
+        })}
       </p>
       <p>
-        Hai già un account? <Link to={PATHS.login}>Accedi</Link>
+        {rich("auth.register.haveAccount", {
+          link: <Link to={PATHS.login}>{t("auth.register.loginLink")}</Link>,
+        })}
       </p>
     </section>
   );

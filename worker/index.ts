@@ -4,6 +4,7 @@ import { secureHeaders } from "hono/secure-headers";
 import { withContext } from "./middleware/context";
 import { siteGate } from "./middleware/siteGate";
 import { progressRoutes } from "./routes/progress";
+import { titleRoutes } from "./routes/titles";
 import type { AppEnv } from "./types";
 
 const api = new Hono<AppEnv>()
@@ -11,6 +12,7 @@ const api = new Hono<AppEnv>()
   .use(withContext)
   .on(["GET", "POST"], "/auth/*", (c) => c.var.auth.handler(c.req.raw))
   .route("/progress", progressRoutes)
+  .route("/titles", titleRoutes)
   .all("*", (c) => c.json({ error: "not_found" }, 404));
 
 const app = new Hono<AppEnv>()

@@ -1,4 +1,5 @@
 import { ProgressMeter } from "../../../components/ui/ProgressMeter";
+import { useI18n } from "../../../i18n/useI18n";
 import type { Phase } from "../types";
 import { computeProgress } from "../utils/progress";
 import { TitleItem } from "./TitleItem";
@@ -18,13 +19,15 @@ export function PhaseSection({
   onCollapsedChange,
   onToggleTitle,
 }: PhaseSectionProps) {
+  const { t } = useI18n();
   const progress = computeProgress(phase.titles, watched);
+  const phaseName = t(`catalog.phases.${phase.number}`);
 
   return (
     <details open={!isCollapsed} onToggle={(event) => onCollapsedChange(!event.currentTarget.open)}>
       <summary>
         <h3>
-          {phase.number} · {phase.name}
+          {phase.number} · {phaseName}
         </h3>
         <span>
           {phase.years} · {progress.done} / {progress.total}
@@ -32,7 +35,7 @@ export function PhaseSection({
       </summary>
 
       <ProgressMeter
-        label={`Avanzamento ${phase.name}`}
+        label={t("planner.phase.progress", { name: phaseName })}
         value={progress.done}
         max={progress.total}
       />
@@ -49,7 +52,7 @@ export function PhaseSection({
           ))}
         </ol>
       ) : (
-        <p>Nessun titolo corrisponde ai filtri.</p>
+        <p>{t("planner.phase.empty")}</p>
       )}
     </details>
   );

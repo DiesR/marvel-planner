@@ -1,11 +1,16 @@
 import { LogIn } from "lucide-react";
 import { useState, type FormEvent } from "react";
+import { useNavigate } from "react-router";
+import { PATHS } from "../../../app/paths";
+import { useI18n } from "../../../i18n/useI18n";
 import { useAuth } from "../hooks/useAuth";
 import { useAuthAction } from "../hooks/useAuthAction";
 
 export function LoginForm() {
+  const { t } = useI18n();
   const { login } = useAuth();
-  const { run, error, isPending } = useAuthAction(login);
+  const navigate = useNavigate();
+  const { run, error, isPending } = useAuthAction(login, () => navigate(PATHS.home));
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -17,7 +22,7 @@ export function LoginForm() {
   return (
     <form onSubmit={handleSubmit}>
       <label>
-        Email
+        {t("auth.email")}
         <input
           type="email"
           name="email"
@@ -28,7 +33,7 @@ export function LoginForm() {
         />
       </label>
       <label>
-        Password
+        {t("auth.password")}
         <input
           type="password"
           name="password"
@@ -41,7 +46,7 @@ export function LoginForm() {
       {error && <p role="alert">{error}</p>}
       <button type="submit" disabled={isPending}>
         <LogIn aria-hidden />
-        {isPending ? "Accesso in corso…" : "Accedi"}
+        {isPending ? t("auth.login.pending") : t("auth.login.button")}
       </button>
     </form>
   );

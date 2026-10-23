@@ -1,9 +1,11 @@
 import { Trash2 } from "lucide-react";
 import { useId, useState, type FormEvent } from "react";
+import { useI18n } from "../../../i18n/useI18n";
 import { useAuth } from "../../auth/hooks/useAuth";
 import { useAuthAction } from "../../auth/hooks/useAuthAction";
 
 export function DeleteAccountSection() {
+  const { t } = useI18n();
   const { deleteAccount } = useAuth();
   const { run, error, isPending } = useAuthAction(deleteAccount);
   const [password, setPassword] = useState("");
@@ -17,14 +19,11 @@ export function DeleteAccountSection() {
 
   return (
     <section aria-labelledby={headingId}>
-      <h2 id={headingId}>Elimina account</h2>
-      <p>
-        L'account, i progressi salvati e tutte le sessioni attive verranno cancellati in modo
-        definitivo. L'operazione non può essere annullata.
-      </p>
+      <h2 id={headingId}>{t("account.delete.heading")}</h2>
+      <p>{t("account.delete.warning")}</p>
       <form onSubmit={handleSubmit}>
         <label>
-          Password
+          {t("auth.password")}
           <input
             type="password"
             name="password"
@@ -41,12 +40,12 @@ export function DeleteAccountSection() {
             checked={isConfirmed}
             onChange={(event) => setIsConfirmed(event.target.checked)}
           />
-          Ho capito che l'eliminazione è definitiva
+          {t("account.delete.confirm")}
         </label>
         {error && <p role="alert">{error}</p>}
         <button type="submit" disabled={isPending || !isConfirmed}>
           <Trash2 aria-hidden />
-          {isPending ? "Eliminazione…" : "Elimina definitivamente"}
+          {isPending ? t("account.delete.pending") : t("account.delete.button")}
         </button>
       </form>
     </section>

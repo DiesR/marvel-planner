@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import type { TranslationKey } from "../../../i18n/types";
 import { isStorageAvailable } from "../../../lib/storage";
 import { useAuth } from "../../auth/hooks/useAuth";
 import type { AuthStatus } from "../../auth/types";
@@ -7,8 +8,8 @@ import { apiProgressRepository } from "../services/apiProgressRepository";
 import { localProgressRepository } from "../services/localProgressRepository";
 import { mergeDeviceProgressIntoAccount } from "../services/progressSync";
 
-const LOAD_ERROR = "Impossibile caricare i progressi. Ricarica la pagina.";
-const SAVE_ERROR = "Impossibile salvare la modifica. Controlla la connessione e riprova.";
+const LOAD_ERROR: TranslationKey = "planner.loadError";
+const SAVE_ERROR: TranslationKey = "planner.saveError";
 
 function withTitle(set: ReadonlySet<string>, id: string, isWatched: boolean): ReadonlySet<string> {
   const next = new Set(set);
@@ -24,7 +25,7 @@ export function useWatched() {
 
   const [watched, setWatched] = useState<ReadonlySet<string>>(new Set());
   const [loadedFor, setLoadedFor] = useState<AuthStatus | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<TranslationKey | null>(null);
 
   useEffect(() => {
     if (status === "loading") return;

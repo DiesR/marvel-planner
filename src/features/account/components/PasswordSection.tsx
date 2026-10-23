@@ -1,5 +1,6 @@
 import { KeyRound } from "lucide-react";
 import { useId, useState, type FormEvent } from "react";
+import { useI18n } from "../../../i18n/useI18n";
 import { MIN_PASSWORD_LENGTH } from "../../auth/constants";
 import { useAuth } from "../../auth/hooks/useAuth";
 import { useAuthAction } from "../../auth/hooks/useAuthAction";
@@ -7,6 +8,7 @@ import { useAuthAction } from "../../auth/hooks/useAuthAction";
 const EMPTY_FORM = { currentPassword: "", newPassword: "", confirmation: "" };
 
 export function PasswordSection() {
+  const { t } = useI18n();
   const { changePassword } = useAuth();
   const [form, setForm] = useState(EMPTY_FORM);
   const { run, error, isPending, isDone } = useAuthAction(changePassword, () =>
@@ -28,10 +30,10 @@ export function PasswordSection() {
 
   return (
     <section aria-labelledby={headingId}>
-      <h2 id={headingId}>Password</h2>
+      <h2 id={headingId}>{t("account.password.heading")}</h2>
       <form onSubmit={handleSubmit}>
         <label>
-          Password attuale
+          {t("account.password.current")}
           <input
             type="password"
             name="current-password"
@@ -42,7 +44,7 @@ export function PasswordSection() {
           />
         </label>
         <label>
-          Nuova password
+          {t("account.password.next")}
           <input
             type="password"
             name="new-password"
@@ -55,7 +57,7 @@ export function PasswordSection() {
           />
         </label>
         <label>
-          Conferma nuova password
+          {t("account.password.confirm")}
           <input
             type="password"
             name="confirm-password"
@@ -66,16 +68,13 @@ export function PasswordSection() {
             onChange={(event) => update("confirmation")(event.target.value)}
           />
         </label>
-        <p id={hintId}>
-          Almeno {MIN_PASSWORD_LENGTH} caratteri. Dopo il cambio verrai disconnesso dagli altri
-          dispositivi.
-        </p>
-        {isMismatch && <p role="alert">Le due password non coincidono.</p>}
+        <p id={hintId}>{t("account.password.hint", { min: MIN_PASSWORD_LENGTH })}</p>
+        {isMismatch && <p role="alert">{t("account.password.mismatch")}</p>}
         {error && <p role="alert">{error}</p>}
-        {isDone && <p role="status">Password aggiornata.</p>}
+        {isDone && <p role="status">{t("account.password.changed")}</p>}
         <button type="submit" disabled={isPending || isMismatch}>
           <KeyRound aria-hidden />
-          {isPending ? "Aggiornamento…" : "Cambia password"}
+          {isPending ? t("account.password.changing") : t("account.password.change")}
         </button>
       </form>
     </section>

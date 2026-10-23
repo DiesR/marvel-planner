@@ -39,6 +39,8 @@ src/                        # frontend
 │   └── account/            # profilo, cambio password, eliminazione account
 └── lib/                    # storage locale, client API
 
+shared/                     # tipi e dati condivisi tra frontend e backend (abbinamenti TMDB)
+
 worker/                     # backend
 ├── index.ts                # app Hono: monta /api/auth e /api/progress
 ├── auth.ts                 # configurazione Better Auth
@@ -58,6 +60,7 @@ migrations/                 # migrazioni SQL generate da drizzle-kit
 | `POST`   | `/api/progress`          | Segna come visti `{ "titleIds": [...] }` |
 | `DELETE` | `/api/progress/:titleId` | Rimuove un titolo dai visti              |
 | `DELETE` | `/api/progress`          | Azzera i progressi                       |
+| `GET`    | `/api/titles/:titleId`   | Dettagli di un titolo (`?lang=`)         |
 
 Gli endpoint `/api/progress` richiedono una sessione valida e operano solo sui dati dell'utente autenticato.
 Al login, i progressi salvati sul dispositivo vengono uniti a quelli dell'account.
@@ -72,6 +75,27 @@ Al login, i progressi salvati sul dispositivo vengono uniti a quelli dell'accoun
 - Cambio password con chiusura delle altre sessioni
 - Cancellazione dell'account (con password) a cascata su sessioni e progressi
 - Segreti in `.dev.vars` (locale, ignorato da git) e nei secret di Cloudflare (produzione)
+
+## Dettagli dei titoli
+
+Ogni titolo del catalogo ha un abbinamento in `shared/tmdbRefs.ts` (film, oppure serie con numero di stagione). Aprendo un titolo, il frontend chiama `GET /api/titles/:titleId?lang=it|fr|es|en|de`.
+
+Fonti, tutte interrogate dal Worker (il token TMDB non arriva mai al browser):
+
+- **TMDB**: titolo localizzato, data, locandina, sfondo, cast, regia, sinossi breve; per le serie anche i riassunti degli episodi della stagione.
+- **Wikidata + Wikipedia**: trama completa dei film nella lingua scelta (ripiego sull'inglese se la sezione manca o è troppo breve). Testo con licenza CC BY-SA 4.0: la pagina mostra sempre link all'articolo e alla licenza.
+
+**Cache.** Il risultato di ogni coppia titolo/lingua viene salvato in D1 (`title_details_cache`) e riusato senza altre chiamate esterne: per i titoli usciti da più di 30 giorni per sempre, per quelli recenti o non ancora usciti per 24 ore. Se il rinnovo fallisce si serve la copia salvata. Il browser tiene inoltre la risposta in cache per 24 ore.
+
+Aggiungere un titolo: inserirlo in `catalog.ts` e aggiungere la riga corrispondente in `shared/tmdbRefs.ts`.
+
+## Lingue
+
+Interfaccia e contenuti sono disponibili in italiano, francese, spagnolo, inglese e tedesco. La lingua iniziale segue il browser (ripiego: inglese) e la scelta viene ricordata sul dispositivo.
+
+- Testi dell'interfaccia: `src/i18n/locales/*.ts`. `it.ts` definisce la forma, gli altri file sono tipizzati su di essa: una chiave mancante in una lingua è un errore di compilazione.
+- Nelle traduzioni, `{nome}` è un segnaposto; `rich()` permette di inserire link dentro una frase.
+- Aggiungere una lingua: codice in `shared/languages.ts`, file in `locales/`, locale TMDB in `worker/services/tmdb.ts`, intestazioni della trama in `worker/services/wikipedia.ts`.
 
 ## Accesso riservato durante lo sviluppo
 

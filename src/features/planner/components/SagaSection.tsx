@@ -1,5 +1,6 @@
 import { useId } from "react";
-import type { Saga } from "../types";
+import { useI18n } from "../../../i18n/useI18n";
+import type { PhaseNumber, Saga } from "../types";
 import { computeProgress } from "../utils/progress";
 import { PhaseSection } from "./PhaseSection";
 
@@ -7,7 +8,7 @@ interface SagaSectionProps {
   saga: Saga;
   watched: ReadonlySet<string>;
   collapsed: ReadonlySet<number>;
-  onPhaseCollapsedChange: (phase: number, isCollapsed: boolean) => void;
+  onPhaseCollapsedChange: (phase: PhaseNumber, isCollapsed: boolean) => void;
   onToggleTitle: (id: string) => void;
 }
 
@@ -18,6 +19,7 @@ export function SagaSection({
   onPhaseCollapsedChange,
   onToggleTitle,
 }: SagaSectionProps) {
+  const { t } = useI18n();
   const headingId = useId();
   const progress = computeProgress(
     saga.phases.flatMap((phase) => phase.titles),
@@ -26,7 +28,7 @@ export function SagaSection({
 
   return (
     <section aria-labelledby={headingId}>
-      <h2 id={headingId}>{saga.name}</h2>
+      <h2 id={headingId}>{t(`catalog.sagas.${saga.id}`)}</h2>
       <p>
         {progress.done} / {progress.total}
       </p>

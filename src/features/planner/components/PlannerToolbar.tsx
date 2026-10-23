@@ -1,4 +1,5 @@
 import { ChevronsDownUp, ChevronsUpDown, RotateCcw } from "lucide-react";
+import { useI18n } from "../../../i18n/useI18n";
 import type { Filters } from "../types";
 import { FilterControls } from "./FilterControls";
 
@@ -17,20 +18,21 @@ export function PlannerToolbar({
   onToggleAll,
   onReset,
 }: PlannerToolbarProps) {
+  const { t } = useI18n();
   const ToggleIcon = areAllCollapsed ? ChevronsUpDown : ChevronsDownUp;
 
   return (
-    <section aria-label="Filtri e azioni">
+    <section aria-label={t("planner.toolbar.label")}>
       <FilterControls filters={filters} onChange={onFiltersChange} />
 
-      <div role="group" aria-label="Azioni">
+      <div role="group" aria-label={t("planner.toolbar.actions")}>
         <button type="button" onClick={onToggleAll}>
           <ToggleIcon aria-hidden />
-          {areAllCollapsed ? "Espandi tutto" : "Comprimi tutto"}
+          {areAllCollapsed ? t("planner.toolbar.expandAll") : t("planner.toolbar.collapseAll")}
         </button>
         <button type="button" onClick={onReset}>
           <RotateCcw aria-hidden />
-          Azzera
+          {t("planner.toolbar.reset")}
         </button>
       </div>
     </section>

@@ -16,3 +16,14 @@ export const watchedTitle = sqliteTable(
   },
   (table) => [primaryKey({ columns: [table.userId, table.titleId] })],
 );
+
+export const titleDetailsCache = sqliteTable(
+  "title_details_cache",
+  {
+    titleId: text("title_id").notNull(),
+    language: text("language").notNull(),
+    data: text("data").notNull(),
+    fetchedAt: integer("fetched_at", { mode: "timestamp_ms" }).notNull(),
+  },
+  (table) => [primaryKey({ columns: [table.titleId, table.language] })],
+);

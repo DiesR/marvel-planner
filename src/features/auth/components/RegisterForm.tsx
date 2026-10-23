@@ -1,12 +1,17 @@
 import { UserPlus } from "lucide-react";
 import { useId, useState, type FormEvent } from "react";
+import { useNavigate } from "react-router";
+import { PATHS } from "../../../app/paths";
+import { useI18n } from "../../../i18n/useI18n";
 import { MIN_PASSWORD_LENGTH } from "../constants";
 import { useAuth } from "../hooks/useAuth";
 import { useAuthAction } from "../hooks/useAuthAction";
 
 export function RegisterForm() {
+  const { t } = useI18n();
   const { register } = useAuth();
-  const { run, error, isPending } = useAuthAction(register);
+  const navigate = useNavigate();
+  const { run, error, isPending } = useAuthAction(register, () => navigate(PATHS.home));
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -20,7 +25,7 @@ export function RegisterForm() {
   return (
     <form onSubmit={handleSubmit}>
       <label>
-        Nome
+        {t("auth.name")}
         <input
           type="text"
           name="name"
@@ -32,7 +37,7 @@ export function RegisterForm() {
         />
       </label>
       <label>
-        Email
+        {t("auth.email")}
         <input
           type="email"
           name="email"
@@ -43,7 +48,7 @@ export function RegisterForm() {
         />
       </label>
       <label>
-        Password
+        {t("auth.password")}
         <input
           type="password"
           name="password"
@@ -55,11 +60,11 @@ export function RegisterForm() {
           onChange={(event) => setPassword(event.target.value)}
         />
       </label>
-      <p id={passwordHintId}>Almeno {MIN_PASSWORD_LENGTH} caratteri.</p>
+      <p id={passwordHintId}>{t("auth.passwordHint", { min: MIN_PASSWORD_LENGTH })}</p>
       {error && <p role="alert">{error}</p>}
       <button type="submit" disabled={isPending}>
         <UserPlus aria-hidden />
-        {isPending ? "Registrazione in corso…" : "Crea account"}
+        {isPending ? t("auth.register.pending") : t("auth.register.button")}
       </button>
     </form>
   );

@@ -1,30 +1,31 @@
 import { ProgressMeter } from "../../../components/ui/ProgressMeter";
+import { useI18n } from "../../../i18n/useI18n";
+import type { TranslationKey } from "../../../i18n/types";
 import type { Progress, ProgressStorage } from "../types";
 
-const STORAGE_NOTES: Record<ProgressStorage, string> = {
-  account: "I progressi vengono salvati sul tuo account.",
-  device: "I progressi vengono salvati su questo dispositivo. Accedi per averli ovunque.",
-  none: "Su questo dispositivo i progressi non vengono salvati tra una sessione e l'altra.",
+const STORAGE_NOTE_KEYS: Record<ProgressStorage, TranslationKey> = {
+  account: "planner.storage.account",
+  device: "planner.storage.device",
+  none: "planner.storage.none",
 };
 
 interface PlannerSummaryProps {
   progress: Progress;
   storage: ProgressStorage;
-  error: string | null;
+  error: TranslationKey | null;
 }
 
 export function PlannerSummary({ progress, storage, error }: PlannerSummaryProps) {
+  const { t } = useI18n();
+
   return (
     <section aria-labelledby="planner-title">
-      <p>Marvel Cinematic Universe</p>
-      <h1 id="planner-title">Planner di visione</h1>
-      <p>
-        Tutti i film e le serie del MCU, divisi per saga e fase, in ordine di uscita. Spunta ciò che
-        hai già visto.
-      </p>
-      <ProgressMeter label="Completati" value={progress.done} max={progress.total} />
-      <p>{STORAGE_NOTES[storage]}</p>
-      {error && <p role="alert">{error}</p>}
+      <p>{t("planner.eyebrow")}</p>
+      <h1 id="planner-title">{t("planner.title")}</h1>
+      <p>{t("planner.intro")}</p>
+      <ProgressMeter label={t("planner.completed")} value={progress.done} max={progress.total} />
+      <p>{t(STORAGE_NOTE_KEYS[storage])}</p>
+      {error && <p role="alert">{t(error)}</p>}
     </section>
   );
 }

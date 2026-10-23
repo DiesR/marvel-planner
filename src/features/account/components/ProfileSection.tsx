@@ -1,5 +1,6 @@
 import { Save } from "lucide-react";
 import { useId, useState, type FormEvent } from "react";
+import { useI18n } from "../../../i18n/useI18n";
 import { useAuth } from "../../auth/hooks/useAuth";
 import { useAuthAction } from "../../auth/hooks/useAuthAction";
 import type { User } from "../../auth/types";
@@ -9,6 +10,7 @@ interface ProfileSectionProps {
 }
 
 export function ProfileSection({ user }: ProfileSectionProps) {
+  const { t } = useI18n();
   const { updateName } = useAuth();
   const { run, error, isPending, isDone } = useAuthAction(updateName);
   const [name, setName] = useState(user.name);
@@ -24,14 +26,14 @@ export function ProfileSection({ user }: ProfileSectionProps) {
 
   return (
     <section aria-labelledby={headingId}>
-      <h2 id={headingId}>Profilo</h2>
+      <h2 id={headingId}>{t("account.profile.heading")}</h2>
       <dl>
-        <dt>Email</dt>
+        <dt>{t("account.profile.email")}</dt>
         <dd>{user.email}</dd>
       </dl>
       <form onSubmit={handleSubmit}>
         <label>
-          Nome
+          {t("auth.name")}
           <input
             type="text"
             name="name"
@@ -43,10 +45,10 @@ export function ProfileSection({ user }: ProfileSectionProps) {
           />
         </label>
         {error && <p role="alert">{error}</p>}
-        {isDone && !hasChanges && <p role="status">Nome aggiornato.</p>}
+        {isDone && !hasChanges && <p role="status">{t("account.profile.saved")}</p>}
         <button type="submit" disabled={isPending || !hasChanges || !trimmedName}>
           <Save aria-hidden />
-          {isPending ? "Salvataggio…" : "Salva"}
+          {isPending ? t("account.profile.saving") : t("account.profile.save")}
         </button>
       </form>
     </section>

@@ -2,6 +2,10 @@ export type MediaType = "film" | "serie" | "special";
 export type Continuity = "main" | "alternate";
 export type ReleaseStatus = "released" | "upcoming";
 
+export type NoteKey = "shorts" | "animated";
+export type PhaseNumber = 1 | 2 | 3 | 4 | 5 | 6;
+export type SagaId = "infinity" | "multiverse";
+
 export interface Title {
   id: string;
   name: string;
@@ -9,18 +13,17 @@ export interface Title {
   type: MediaType;
   continuity: Continuity;
   status: ReleaseStatus;
-  note?: string;
+  note?: NoteKey;
 }
 
 export interface Phase {
-  number: number;
-  name: string;
+  number: PhaseNumber;
   years: string;
   titles: Title[];
 }
 
 export interface Saga {
-  name: string;
+  id: SagaId;
   phases: Phase[];
 }
 

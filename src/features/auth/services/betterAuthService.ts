@@ -1,5 +1,5 @@
 import { createAuthClient } from "better-auth/client";
-import { MIN_PASSWORD_LENGTH } from "../constants";
+import type { TranslationKey } from "../../../i18n/types";
 import type { User } from "../types";
 import { AuthError, type AuthService } from "./authService";
 
@@ -8,22 +8,18 @@ const client = createAuthClient({
   basePath: "/api/auth",
 });
 
-const REAUTHENTICATE = "Per sicurezza, esci e accedi di nuovo prima di continuare.";
-
-const ERROR_MESSAGES: Record<string, string> = {
-  INVALID_EMAIL_OR_PASSWORD: "Email o password non corretti.",
-  INVALID_EMAIL: "L'indirizzo email non è valido.",
-  INVALID_PASSWORD: "La password non è corretta.",
-  INVALID_NAME: "Inserisci un nome valido.",
-  USER_ALREADY_EXISTS: "Esiste già un account con questa email.",
-  USER_ALREADY_EXISTS_USE_ANOTHER_EMAIL: "Esiste già un account con questa email.",
-  PASSWORD_TOO_SHORT: `La password deve avere almeno ${MIN_PASSWORD_LENGTH} caratteri.`,
-  PASSWORD_TOO_LONG: "La password è troppo lunga.",
-  SESSION_EXPIRED: REAUTHENTICATE,
-  SESSION_NOT_FRESH: REAUTHENTICATE,
+const ERROR_KEYS: Record<string, TranslationKey> = {
+  INVALID_EMAIL_OR_PASSWORD: "auth.errors.invalidCredentials",
+  INVALID_EMAIL: "auth.errors.invalidEmail",
+  INVALID_PASSWORD: "auth.errors.wrongPassword",
+  INVALID_NAME: "auth.errors.invalidName",
+  USER_ALREADY_EXISTS: "auth.errors.userExists",
+  USER_ALREADY_EXISTS_USE_ANOTHER_EMAIL: "auth.errors.userExists",
+  PASSWORD_TOO_SHORT: "auth.errors.passwordShort",
+  PASSWORD_TOO_LONG: "auth.errors.passwordLong",
+  SESSION_EXPIRED: "auth.errors.reauthenticate",
+  SESSION_NOT_FRESH: "auth.errors.reauthenticate",
 };
-const TOO_MANY_REQUESTS = "Troppi tentativi. Attendi qualche minuto e riprova.";
-const GENERIC_ERROR = "Operazione non riuscita. Riprova più tardi.";
 
 interface ClientError {
   code?: string;
@@ -31,8 +27,8 @@ interface ClientError {
 }
 
 function toAuthError({ code, status }: ClientError): AuthError {
-  if (status === 429) return new AuthError(TOO_MANY_REQUESTS);
-  return new AuthError((code && ERROR_MESSAGES[code]) || GENERIC_ERROR);
+  if (status === 429) return new AuthError("auth.errors.tooManyRequests");
+  return new AuthError((code && ERROR_KEYS[code]) || "auth.errors.generic");
 }
 
 function toUser({ id, email, name }: User): User {
@@ -41,7 +37,7 @@ function toUser({ id, email, name }: User): User {
 
 async function requireCurrentUser(): Promise<User> {
   const { data, error } = await client.getSession();
-  if (error || !data) throw new AuthError(REAUTHENTICATE);
+  if (error || !data) throw new AuthError("auth.errors.reauthenticate");
   return toUser(data.user);
 }
 

@@ -1,3 +1,4 @@
+import type { TranslationKey } from "../../../i18n/types";
 import type { Credentials, PasswordChange, Registration, User } from "../types";
 
 export interface AuthService {
@@ -11,8 +12,8 @@ export interface AuthService {
 }
 
 export class AuthError extends Error {
-  constructor(message: string) {
-    super(message);
+  constructor(readonly messageKey: TranslationKey) {
+    super(messageKey);
     this.name = "AuthError";
   }
 }

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useI18n } from "../../../i18n/useI18n";
 import { useCollapsedPhases } from "../hooks/useCollapsedPhases";
 import { useFilteredCatalog } from "../hooks/useFilteredCatalog";
 import { useWatched } from "../hooks/useWatched";
@@ -9,9 +10,8 @@ import { PlannerSummary } from "./PlannerSummary";
 import { PlannerToolbar } from "./PlannerToolbar";
 import { SagaSection } from "./SagaSection";
 
-const RESET_CONFIRMATION = "Azzerare tutti i progressi? Le spunte verranno rimosse.";
-
 export function Planner() {
+  const { t } = useI18n();
   const [filters, setFilters] = useState(DEFAULT_FILTERS);
   const sagas = useFilteredCatalog(filters);
   const { watched, isLoading, error, storage, toggle, reset } = useWatched();
@@ -21,7 +21,7 @@ export function Planner() {
   const overall = computeProgress(visibleTitles, watched);
 
   const handleReset = () => {
-    if (window.confirm(RESET_CONFIRMATION)) void reset();
+    if (window.confirm(t("planner.resetConfirm"))) void reset();
   };
 
   return (
@@ -39,7 +39,7 @@ export function Planner() {
       <div aria-busy={isLoading}>
         {sagas.map((saga) => (
           <SagaSection
-            key={saga.name}
+            key={saga.id}
             saga={saga}
             watched={watched}
             collapsed={collapsed}
