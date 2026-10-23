@@ -36,3 +36,5 @@ export interface Progress {
   done: number;
   total: number;
 }
+
+export type ProgressStorage = "account" | "device" | "none";

@@ -1,8 +1,9 @@
-import type { Credentials, User } from "../types";
+import type { Credentials, Registration, User } from "../types";
 
 export interface AuthService {
   getCurrentUser(): Promise<User | null>;
   login(credentials: Credentials): Promise<User>;
+  register(registration: Registration): Promise<User>;
   logout(): Promise<void>;
 }
 

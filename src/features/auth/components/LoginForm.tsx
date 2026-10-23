@@ -1,36 +1,21 @@
 import { LogIn } from "lucide-react";
 import { useState, type FormEvent } from "react";
-import { useNavigate } from "react-router";
-import { PATHS } from "../../../app/paths";
 import { useAuth } from "../hooks/useAuth";
-import { AuthError } from "../services/authService";
-
-const GENERIC_ERROR = "Accesso non riuscito. Riprova più tardi.";
+import { useAuthSubmit } from "../hooks/useAuthSubmit";
 
 export function LoginForm() {
   const { login } = useAuth();
-  const navigate = useNavigate();
+  const { submit, error, isSubmitting } = useAuthSubmit(login);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState<string | null>(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setError(null);
-    setIsSubmitting(true);
-    try {
-      await login({ email, password });
-      navigate(PATHS.home);
-    } catch (caught) {
-      setError(caught instanceof AuthError ? caught.message : GENERIC_ERROR);
-    } finally {
-      setIsSubmitting(false);
-    }
+    void submit({ email, password });
   };
 
   return (
-    <form onSubmit={handleSubmit} noValidate>
+    <form onSubmit={handleSubmit}>
       <label>
         Email
         <input

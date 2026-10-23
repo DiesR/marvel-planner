@@ -14,19 +14,19 @@ const RESET_CONFIRMATION = "Azzerare tutti i progressi? Le spunte verranno rimos
 export function Planner() {
   const [filters, setFilters] = useState(DEFAULT_FILTERS);
   const sagas = useFilteredCatalog(filters);
-  const { watched, isLoading, isPersistent, toggle, reset } = useWatched();
+  const { watched, isLoading, error, storage, toggle, reset } = useWatched();
   const { collapsed, areAllCollapsed, setPhaseCollapsed, toggleAll } = useCollapsedPhases();
 
   const visibleTitles = sagas.flatMap((saga) => saga.phases.flatMap((phase) => phase.titles));
   const overall = computeProgress(visibleTitles, watched);
 
   const handleReset = () => {
-    if (window.confirm(RESET_CONFIRMATION)) reset();
+    if (window.confirm(RESET_CONFIRMATION)) void reset();
   };
 
   return (
     <>
-      <PlannerSummary progress={overall} isPersistent={isPersistent} />
+      <PlannerSummary progress={overall} storage={storage} error={error} />
 
       <PlannerToolbar
         filters={filters}

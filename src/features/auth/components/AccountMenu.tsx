@@ -20,7 +20,7 @@ export function AccountMenu() {
     <div>
       <span>
         <CircleUserRound aria-hidden />
-        {user.displayName}
+        {user.name}
       </span>
       <button type="button" onClick={logout} aria-label="Esci" title="Esci">
         <LogOut aria-hidden />

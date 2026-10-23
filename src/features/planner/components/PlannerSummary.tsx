@@ -1,12 +1,19 @@
 import { ProgressMeter } from "../../../components/ui/ProgressMeter";
-import type { Progress } from "../types";
+import type { Progress, ProgressStorage } from "../types";
+
+const STORAGE_NOTES: Record<ProgressStorage, string> = {
+  account: "I progressi vengono salvati sul tuo account.",
+  device: "I progressi vengono salvati su questo dispositivo. Accedi per averli ovunque.",
+  none: "Su questo dispositivo i progressi non vengono salvati tra una sessione e l'altra.",
+};
 
 interface PlannerSummaryProps {
   progress: Progress;
-  isPersistent: boolean;
+  storage: ProgressStorage;
+  error: string | null;
 }
 
-export function PlannerSummary({ progress, isPersistent }: PlannerSummaryProps) {
+export function PlannerSummary({ progress, storage, error }: PlannerSummaryProps) {
   return (
     <section aria-labelledby="planner-title">
       <p>Marvel Cinematic Universe</p>
@@ -16,11 +23,8 @@ export function PlannerSummary({ progress, isPersistent }: PlannerSummaryProps) 
         hai già visto.
       </p>
       <ProgressMeter label="Completati" value={progress.done} max={progress.total} />
-      <p>
-        {isPersistent
-          ? "I progressi vengono salvati automaticamente su questo dispositivo."
-          : "Su questo dispositivo i progressi non vengono salvati tra una sessione e l'altra."}
-      </p>
+      <p>{STORAGE_NOTES[storage]}</p>
+      {error && <p role="alert">{error}</p>}
     </section>
   );
 }

@@ -1,4 +1,4 @@
-import { Navigate } from "react-router";
+import { Link, Navigate } from "react-router";
 import { PATHS } from "../app/paths";
 import { LoginForm } from "../features/auth/components/LoginForm";
 import { useAuth } from "../features/auth/hooks/useAuth";
@@ -13,6 +13,9 @@ export function LoginPage() {
       <h1 id="login-title">Accedi</h1>
       <p>Accedi per conservare i tuoi progressi su tutti i dispositivi.</p>
       <LoginForm />
+      <p>
+        Non hai un account? <Link to={PATHS.register}>Registrati</Link>
+      </p>
     </section>
   );
 }
