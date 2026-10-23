@@ -1,16 +1,13 @@
-import type { Credentials, PasswordChange, Registration, SocialProvider, User } from "../types";
+import type { Credentials, PasswordChange, Registration, User } from "../types";
 
 export interface AuthService {
   getCurrentUser(): Promise<User | null>;
-  getSocialProviders(): Promise<SocialProvider[]>;
   login(credentials: Credentials): Promise<User>;
-  loginWithProvider(provider: SocialProvider): Promise<void>;
   register(registration: Registration): Promise<User>;
   logout(): Promise<void>;
   updateName(name: string): Promise<User>;
   changePassword(change: PasswordChange): Promise<void>;
-  deleteAccount(password?: string): Promise<void>;
-  hasPassword(): Promise<boolean>;
+  deleteAccount(password: string): Promise<void>;
 }
 
 export class AuthError extends Error {

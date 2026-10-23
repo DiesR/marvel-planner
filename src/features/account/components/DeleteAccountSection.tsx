@@ -3,11 +3,7 @@ import { useId, useState, type FormEvent } from "react";
 import { useAuth } from "../../auth/hooks/useAuth";
 import { useAuthAction } from "../../auth/hooks/useAuthAction";
 
-interface DeleteAccountSectionProps {
-  requiresPassword: boolean;
-}
-
-export function DeleteAccountSection({ requiresPassword }: DeleteAccountSectionProps) {
+export function DeleteAccountSection() {
   const { deleteAccount } = useAuth();
   const { run, error, isPending } = useAuthAction(deleteAccount);
   const [password, setPassword] = useState("");
@@ -16,7 +12,7 @@ export function DeleteAccountSection({ requiresPassword }: DeleteAccountSectionP
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    void run(requiresPassword ? password : undefined);
+    void run(password);
   };
 
   return (
@@ -27,19 +23,17 @@ export function DeleteAccountSection({ requiresPassword }: DeleteAccountSectionP
         definitivo. L'operazione non può essere annullata.
       </p>
       <form onSubmit={handleSubmit}>
-        {requiresPassword && (
-          <label>
-            Password
-            <input
-              type="password"
-              name="password"
-              autoComplete="current-password"
-              required
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-            />
-          </label>
-        )}
+        <label>
+          Password
+          <input
+            type="password"
+            name="password"
+            autoComplete="current-password"
+            required
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+          />
+        </label>
         <label>
           <input
             type="checkbox"

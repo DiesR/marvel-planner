@@ -1,14 +1,7 @@
 import { useCallback, useEffect, useMemo, useState, type ReactNode } from "react";
 import type { AuthService } from "../services/authService";
 import { betterAuthService } from "../services/betterAuthService";
-import type {
-  AuthStatus,
-  Credentials,
-  PasswordChange,
-  Registration,
-  SocialProvider,
-  User,
-} from "../types";
+import type { AuthStatus, Credentials, PasswordChange, Registration, User } from "../types";
 import { AuthContext, type AuthContextValue } from "./AuthContext";
 
 interface AuthProviderProps {
@@ -41,13 +34,6 @@ export function AuthProvider({ children, service = betterAuthService }: AuthProv
     [service, applyUser],
   );
 
-  const loginWithProvider = useCallback(
-    (provider: SocialProvider) => service.loginWithProvider(provider),
-    [service],
-  );
-
-  const getSocialProviders = useCallback(() => service.getSocialProviders(), [service]);
-
   const register = useCallback(
     async (registration: Registration) => applyUser(await service.register(registration)),
     [service, applyUser],
@@ -69,42 +55,25 @@ export function AuthProvider({ children, service = betterAuthService }: AuthProv
   );
 
   const deleteAccount = useCallback(
-    async (password?: string) => {
+    async (password: string) => {
       await service.deleteAccount(password);
       applyUser(null);
     },
     [service, applyUser],
   );
 
-  const hasPassword = useCallback(() => service.hasPassword(), [service]);
-
   const value = useMemo<AuthContextValue>(
     () => ({
       user,
       status,
       login,
-      loginWithProvider,
-      getSocialProviders,
       register,
       logout,
       updateName,
       changePassword,
       deleteAccount,
-      hasPassword,
     }),
-    [
-      user,
-      status,
-      login,
-      loginWithProvider,
-      getSocialProviders,
-      register,
-      logout,
-      updateName,
-      changePassword,
-      deleteAccount,
-      hasPassword,
-    ],
+    [user, status, login, register, logout, updateName, changePassword, deleteAccount],
   );
 
   return <AuthContext value={value}>{children}</AuthContext>;

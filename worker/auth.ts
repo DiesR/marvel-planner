@@ -4,7 +4,6 @@ import { APIError } from "better-auth/api";
 import type { Database } from "./db/client";
 import * as schema from "./db/schema";
 import type { Env } from "./env";
-import { socialProviders } from "./socialProviders";
 
 const MIN_PASSWORD_LENGTH = 10;
 const MAX_NAME_LENGTH = 60;
@@ -27,7 +26,6 @@ export function createAuth(env: Env, db: Database) {
       enabled: true,
       minPasswordLength: MIN_PASSWORD_LENGTH,
     },
-    socialProviders: socialProviders(env),
     user: {
       deleteUser: { enabled: true },
     },

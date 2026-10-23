@@ -1,16 +1,12 @@
 import { createAuthClient } from "better-auth/client";
-import { apiRequest } from "../../../lib/apiClient";
 import { MIN_PASSWORD_LENGTH } from "../constants";
-import type { SocialProvider, User } from "../types";
+import type { User } from "../types";
 import { AuthError, type AuthService } from "./authService";
 
 const client = createAuthClient({
   baseURL: window.location.origin,
   basePath: "/api/auth",
 });
-
-const PROVIDER_CALLBACK_URL = "/";
-const PROVIDER_ERROR_URL = "/login";
 
 const REAUTHENTICATE = "Per sicurezza, esci e accedi di nuovo prima di continuare.";
 
@@ -55,24 +51,10 @@ export const betterAuthService: AuthService = {
     return data ? toUser(data.user) : null;
   },
 
-  async getSocialProviders() {
-    const { socialProviders } = await apiRequest<{ socialProviders: SocialProvider[] }>("/config");
-    return socialProviders;
-  },
-
   async login(credentials) {
     const { data, error } = await client.signIn.email(credentials);
     if (error) throw toAuthError(error);
     return toUser(data.user);
-  },
-
-  async loginWithProvider(provider) {
-    const { error } = await client.signIn.social({
-      provider,
-      callbackURL: PROVIDER_CALLBACK_URL,
-      errorCallbackURL: PROVIDER_ERROR_URL,
-    });
-    if (error) throw toAuthError(error);
   },
 
   async register(registration) {
@@ -97,13 +79,7 @@ export const betterAuthService: AuthService = {
   },
 
   async deleteAccount(password) {
-    const { error } = await client.deleteUser(password ? { password } : {});
+    const { error } = await client.deleteUser({ password });
     if (error) throw toAuthError(error);
-  },
-
-  async hasPassword() {
-    const { data, error } = await client.listAccounts();
-    if (error) throw toAuthError(error);
-    return data.some((account) => account.providerId === "credential");
   },
 };

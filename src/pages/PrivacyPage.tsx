@@ -22,13 +22,8 @@ export function PrivacyPage() {
         <h2 id="privacy-data">Quali dati trattiamo</h2>
         <ul>
           <li>
-            <strong>Dati dell'account</strong>: nome ed email. Se ti registri con email e password,
-            la password è conservata solo in forma cifrata (hash) e non è mai leggibile.
-          </li>
-          <li>
-            <strong>Accesso con Google</strong>: se scegli questa opzione, Google ci comunica nome,
-            email, immagine del profilo e un identificativo dell'account, oltre ai token tecnici
-            necessari a completare l'accesso. Non riceviamo la tua password Google.
+            <strong>Dati dell'account</strong>: nome, email e password. La password è conservata
+            solo in forma cifrata (hash) e non è mai leggibile.
           </li>
           <li>
             <strong>Progressi</strong>: i titoli che segni come visti e la data in cui li hai
@@ -75,11 +70,10 @@ export function PrivacyPage() {
         <h2 id="privacy-providers">Dove sono conservati e chi li tratta</h2>
         <p>
           Il sito e il database sono ospitati da Cloudflare, con database situato nell'Europa
-          occidentale. Cloudflare agisce come responsabile del trattamento. Se usi l'accesso con
-          Google, Google tratta i dati necessari all'autenticazione secondo la propria informativa.
-          Poiché entrambi i fornitori hanno sede negli Stati Uniti, alcuni dati potrebbero essere
-          trasferiti fuori dall'Unione europea, nel rispetto delle garanzie previste dal GDPR (EU-US
-          Data Privacy Framework e clausole contrattuali standard).
+          occidentale. Cloudflare agisce come responsabile del trattamento. Poiché Cloudflare ha
+          sede negli Stati Uniti, alcuni dati potrebbero essere trasferiti fuori dall'Unione
+          europea, nel rispetto delle garanzie previste dal GDPR (EU-US Data Privacy Framework e
+          clausole contrattuali standard).
         </p>
       </section>
 

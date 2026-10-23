@@ -18,6 +18,4 @@ export interface PasswordChange {
   newPassword: string;
 }
 
-export type SocialProvider = "google";
-
 export type AuthStatus = "loading" | "authenticated" | "anonymous";
