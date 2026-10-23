@@ -87,8 +87,16 @@ Il login con Google si attiva impostando le credenziali; il pulsante compare sol
 
 Un account social non viene mai collegato automaticamente a un account esistente con email non verificata.
 
+## Accesso riservato durante lo sviluppo
+
+Se il secret `SITE_PASSWORD` è impostato, il Worker chiede utente e password (HTTP Basic Auth) per ogni richiesta, pagine e API comprese. Utente: `marvel`.
+
+- Attivare o cambiare password: `npx wrangler secret put SITE_PASSWORD`
+- Rendere il sito pubblico: `npx wrangler secret delete SITE_PASSWORD`
+
 ## Pubblicazione
 
+Tutte le richieste passano dal Worker, che serve l'API su `/api/*` e i file del sito tramite il binding `ASSETS`.
 A ogni push su `main` Cloudflare esegue `npm run build` e `npx wrangler deploy`; gli altri branch generano un'anteprima.
 Quando cambia lo schema del database: `npm run db:generate`, poi `npm run db:migrate:remote` prima del push.
 
