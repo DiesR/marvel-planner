@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import type { AuthStatus, Credentials, Registration, User } from "../types";
+import type { AuthStatus, Credentials, PasswordChange, Registration, User } from "../types";
 
 export interface AuthContextValue {
   user: User | null;
@@ -7,6 +7,10 @@ export interface AuthContextValue {
   login(credentials: Credentials): Promise<void>;
   register(registration: Registration): Promise<void>;
   logout(): Promise<void>;
+  updateName(name: string): Promise<void>;
+  changePassword(change: PasswordChange): Promise<void>;
+  deleteAccount(password?: string): Promise<void>;
+  hasPassword(): Promise<boolean>;
 }
 
 export const AuthContext = createContext<AuthContextValue | null>(null);

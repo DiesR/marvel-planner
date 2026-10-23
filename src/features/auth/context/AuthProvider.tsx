@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState, type ReactNode } from "react";
 import type { AuthService } from "../services/authService";
 import { betterAuthService } from "../services/betterAuthService";
-import type { AuthStatus, Credentials, Registration, User } from "../types";
+import type { AuthStatus, Credentials, PasswordChange, Registration, User } from "../types";
 import { AuthContext, type AuthContextValue } from "./AuthContext";
 
 interface AuthProviderProps {
@@ -44,9 +44,39 @@ export function AuthProvider({ children, service = betterAuthService }: AuthProv
     applyUser(null);
   }, [service, applyUser]);
 
+  const updateName = useCallback(
+    async (name: string) => applyUser(await service.updateName(name)),
+    [service, applyUser],
+  );
+
+  const changePassword = useCallback(
+    (change: PasswordChange) => service.changePassword(change),
+    [service],
+  );
+
+  const deleteAccount = useCallback(
+    async (password?: string) => {
+      await service.deleteAccount(password);
+      applyUser(null);
+    },
+    [service, applyUser],
+  );
+
+  const hasPassword = useCallback(() => service.hasPassword(), [service]);
+
   const value = useMemo<AuthContextValue>(
-    () => ({ user, status, login, register, logout }),
-    [user, status, login, register, logout],
+    () => ({
+      user,
+      status,
+      login,
+      register,
+      logout,
+      updateName,
+      changePassword,
+      deleteAccount,
+      hasPassword,
+    }),
+    [user, status, login, register, logout, updateName, changePassword, deleteAccount, hasPassword],
   );
 
   return <AuthContext value={value}>{children}</AuthContext>;

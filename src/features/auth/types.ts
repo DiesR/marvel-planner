@@ -13,4 +13,9 @@ export interface Registration extends Credentials {
   name: string;
 }
 
+export interface PasswordChange {
+  currentPassword: string;
+  newPassword: string;
+}
+
 export type AuthStatus = "loading" | "authenticated" | "anonymous";

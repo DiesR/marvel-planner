@@ -1,17 +1,17 @@
 import { LogIn } from "lucide-react";
 import { useState, type FormEvent } from "react";
 import { useAuth } from "../hooks/useAuth";
-import { useAuthSubmit } from "../hooks/useAuthSubmit";
+import { useAuthAction } from "../hooks/useAuthAction";
 
 export function LoginForm() {
   const { login } = useAuth();
-  const { submit, error, isSubmitting } = useAuthSubmit(login);
+  const { run, error, isPending } = useAuthAction(login);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    void submit({ email, password });
+    void run({ email, password });
   };
 
   return (
@@ -39,9 +39,9 @@ export function LoginForm() {
         />
       </label>
       {error && <p role="alert">{error}</p>}
-      <button type="submit" disabled={isSubmitting}>
+      <button type="submit" disabled={isPending}>
         <LogIn aria-hidden />
-        {isSubmitting ? "Accesso in corso…" : "Accedi"}
+        {isPending ? "Accesso in corso…" : "Accedi"}
       </button>
     </form>
   );

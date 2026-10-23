@@ -2,11 +2,11 @@ import { UserPlus } from "lucide-react";
 import { useId, useState, type FormEvent } from "react";
 import { MIN_PASSWORD_LENGTH } from "../constants";
 import { useAuth } from "../hooks/useAuth";
-import { useAuthSubmit } from "../hooks/useAuthSubmit";
+import { useAuthAction } from "../hooks/useAuthAction";
 
 export function RegisterForm() {
   const { register } = useAuth();
-  const { submit, error, isSubmitting } = useAuthSubmit(register);
+  const { run, error, isPending } = useAuthAction(register);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -14,7 +14,7 @@ export function RegisterForm() {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    void submit({ name: name.trim(), email, password });
+    void run({ name: name.trim(), email, password });
   };
 
   return (
@@ -57,9 +57,9 @@ export function RegisterForm() {
       </label>
       <p id={passwordHintId}>Almeno {MIN_PASSWORD_LENGTH} caratteri.</p>
       {error && <p role="alert">{error}</p>}
-      <button type="submit" disabled={isSubmitting}>
+      <button type="submit" disabled={isPending}>
         <UserPlus aria-hidden />
-        {isSubmitting ? "Registrazione in corso…" : "Crea account"}
+        {isPending ? "Registrazione in corso…" : "Crea account"}
       </button>
     </form>
   );

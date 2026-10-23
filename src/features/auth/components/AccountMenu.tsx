@@ -18,10 +18,10 @@ export function AccountMenu() {
 
   return (
     <div>
-      <span>
+      <Link to={PATHS.account} title="Il tuo account">
         <CircleUserRound aria-hidden />
         {user.name}
-      </span>
+      </Link>
       <button type="button" onClick={logout} aria-label="Esci" title="Esci">
         <LogOut aria-hidden />
       </button>

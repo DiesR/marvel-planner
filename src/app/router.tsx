@@ -1,5 +1,6 @@
 import { createHashRouter } from "react-router";
 import { AppLayout } from "../components/layout/AppLayout";
+import { AccountPage } from "../pages/AccountPage";
 import { LoginPage } from "../pages/LoginPage";
 import { NotFoundPage } from "../pages/NotFoundPage";
 import { PlannerPage } from "../pages/PlannerPage";
@@ -13,6 +14,7 @@ export const router = createHashRouter([
       { path: PATHS.home, element: <PlannerPage /> },
       { path: PATHS.login, element: <LoginPage /> },
       { path: PATHS.register, element: <RegisterPage /> },
+      { path: PATHS.account, element: <AccountPage /> },
       { path: "*", element: <NotFoundPage /> },
     ],
   },

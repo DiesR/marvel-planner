@@ -35,7 +35,8 @@ src/                        # frontend
 │   └── ui/                 # componenti generici riutilizzabili
 ├── features/
 │   ├── planner/            # catalogo, filtri, progressi
-│   └── auth/               # sessione, login, registrazione
+│   ├── auth/               # sessione, login, registrazione
+│   └── account/            # profilo, cambio password, eliminazione account
 └── lib/                    # storage locale, client API
 
 worker/                     # backend
@@ -67,7 +68,9 @@ Al login, i progressi salvati sul dispositivo vengono uniti a quelli dell'accoun
 - Sessioni in cookie `httpOnly`, `secure`, `SameSite=Lax`; richieste da origini estranee rifiutate
 - Limite ai tentativi sugli endpoint di autenticazione, salvato su D1
 - Input delle API validati con Zod; query parametrizzate tramite Drizzle
-- Cancellazione dell'account a cascata su sessioni e progressi
+- Nome utente normalizzato e limitato a 60 caratteri lato server
+- Cambio password con chiusura delle altre sessioni
+- Cancellazione dell'account (con password) a cascata su sessioni e progressi
 - Segreti in `.dev.vars` (locale, ignorato da git) e nei secret di Cloudflare (produzione)
 
 ## Login social
