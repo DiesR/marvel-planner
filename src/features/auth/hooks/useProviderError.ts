@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router";
 
 const PROVIDER_ERRORS: Record<string, string> = {
   "account not linked":
@@ -9,14 +10,19 @@ const GENERIC_PROVIDER_ERROR = "Accesso non riuscito. Riprova.";
 const ERROR_PARAMS = ["error", "error_description"];
 
 export function useProviderError(): string | null {
-  const [code] = useState(() => new URLSearchParams(window.location.search).get("error"));
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [code] = useState(() => searchParams.get("error"));
 
   useEffect(() => {
     if (!code) return;
-    const url = new URL(window.location.href);
-    ERROR_PARAMS.forEach((param) => url.searchParams.delete(param));
-    window.history.replaceState(window.history.state, "", url);
-  }, [code]);
+    setSearchParams(
+      (current) => {
+        ERROR_PARAMS.forEach((param) => current.delete(param));
+        return current;
+      },
+      { replace: true },
+    );
+  }, [code, setSearchParams]);
 
   return code ? (PROVIDER_ERRORS[code] ?? GENERIC_PROVIDER_ERROR) : null;
 }

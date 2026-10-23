@@ -10,7 +10,7 @@ const client = createAuthClient({
 });
 
 const PROVIDER_CALLBACK_URL = "/";
-const PROVIDER_ERROR_URL = "/#/login";
+const PROVIDER_ERROR_URL = "/login";
 
 const REAUTHENTICATE = "Per sicurezza, esci e accedi di nuovo prima di continuare.";
 

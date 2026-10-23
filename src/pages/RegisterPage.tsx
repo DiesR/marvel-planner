@@ -16,6 +16,10 @@ export function RegisterPage() {
       <RegisterForm />
       <SocialLogin />
       <p>
+        Creando un account dichiari di aver letto l'
+        <Link to={PATHS.privacy}>informativa sulla privacy</Link>.
+      </p>
+      <p>
         Hai già un account? <Link to={PATHS.login}>Accedi</Link>
       </p>
     </section>
