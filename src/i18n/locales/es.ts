@@ -7,11 +7,14 @@ export const es: Messages = {
     login: "Iniciar sesión",
     logout: "Cerrar sesión",
     language: "Idioma",
+    skipToContent: "Saltar al contenido",
   },
   footer: {
     disclaimer: "Sitio no oficial, sin afiliación con Marvel Studios ni The Walt Disney Company.",
     legal: "Información legal",
     privacy: "Privacidad",
+    cookies: "Cookies",
+    privacySettings: "Preferencias de privacidad",
     coffee: "Si te he sido útil, invítame a un café",
   },
   catalog: {
@@ -46,7 +49,11 @@ export const es: Messages = {
     },
     loadError: "No se puede cargar tu progreso. Recarga la página.",
     saveError: "No se puede guardar el cambio. Comprueba la conexión e inténtalo de nuevo.",
-    resetConfirm: "¿Restablecer todo el progreso? Se quitarán las marcas.",
+    reset: {
+      title: "¿Restablecer todo el progreso?",
+      message: "Se quitarán las marcas. La acción no se puede deshacer.",
+      confirm: "Restablecer",
+    },
     markWatched: 'Marcar "{name}" como visto',
     toolbar: {
       label: "Filtros y acciones",
@@ -93,11 +100,26 @@ export const es: Messages = {
     },
   },
   details: {
+    keyScenes: {
+      heading: "Escenas a las que prestar atención",
+      editorial: "Consejos editoriales: elecciones nuestras, no proceden de una fuente externa.",
+      show: "Mostrar las escenas",
+      hide: "Ocultar las escenas",
+      warning: "Atención: contiene spoilers.",
+    },
+    easterEggs: {
+      heading: "Easter eggs y cameos",
+      stanLee: "Cameo de Stan Lee",
+      source: "Fuente",
+    },
+    open: "Ficha completa",
     loading: "Cargando detalles…",
     error: "Detalles no disponibles en este momento.",
     posterAlt: "Cartel de {name}",
     originalTitle: "Título original: {name}",
     release: "Estreno",
+    runtime: "Duración",
+    minutes: "{count} min",
     director: "Dirección",
     creator: "Creada por",
     cast: "Reparto",
@@ -117,8 +139,11 @@ export const es: Messages = {
   auth: {
     email: "Correo electrónico",
     password: "Contraseña",
-    name: "Nombre",
+    name: "Nombre de superhéroe",
+    nameHint: "Elige un nombre inventado: no hace falta tu nombre real.",
     passwordHint: "Al menos {min} caracteres.",
+    showPassword: "Mostrar la contraseña",
+    hidePassword: "Ocultar la contraseña",
     login: {
       title: "Iniciar sesión",
       intro: "Inicia sesión para conservar tu progreso en todos tus dispositivos.",
@@ -147,11 +172,20 @@ export const es: Messages = {
       passwordLong: "La contraseña es demasiado larga.",
       reauthenticate: "Por seguridad, cierra sesión e inicia sesión de nuevo antes de continuar.",
       tooManyRequests: "Demasiados intentos. Espera unos minutos e inténtalo de nuevo.",
+      required: "Rellena este campo.",
       generic: "La operación no se ha completado. Inténtalo más tarde.",
     },
   },
   account: {
     title: "Tu cuenta",
+    export: {
+      heading: "Tus datos",
+      description:
+        "Descarga una copia de los datos de tu cuenta (perfil, títulos vistos y sesiones) en formato JSON.",
+      button: "Descargar mis datos",
+      pending: "Preparando…",
+      error: "No se pueden descargar los datos. Inténtalo más tarde.",
+    },
     profile: {
       heading: "Perfil",
       email: "Correo electrónico",
@@ -179,6 +213,112 @@ export const es: Messages = {
       pending: "Eliminando…",
     },
   },
+  common: {
+    close: "Cerrar",
+    cancel: "Cancelar",
+    loading: "Cargando…",
+    retry: "Reintentar",
+  },
+  error: {
+    title: "Algo ha salido mal",
+    body: "Se ha producido un error inesperado. Prueba a recargar la página.",
+    home: "Volver al planificador",
+  },
+  prerequisites: {
+    heading: "Antes de verlo",
+    levels: {
+      essential: "Esencial",
+      recommended: "Recomendado",
+      optional: "Opcional",
+    },
+    watched: "Visto",
+    notWatched: "Aún por ver",
+    show: "Mostrar los motivos",
+    hide: "Ocultar los motivos",
+    warning: "Atención: los motivos pueden desvelar detalles de títulos anteriores.",
+    outside: "Fuera de este planificador",
+    provisional: "Lista provisional: puede cambiar cuando se estrene el título.",
+    status: {
+      standalone: "No hace falta haber visto nada más: puedes verlo ahora mismo.",
+      missingEssential: "Antes de verlo te conviene ver: {titles}.",
+      ready:
+        "Puedes verlo con tranquilidad: has visto todo lo esencial. Los títulos recomendados te darán algunas referencias más.",
+      wellPrepared:
+        "Puedes verlo con tranquilidad: has visto todo lo necesario para seguir la historia. Solo quedan detalles opcionales.",
+      complete: "Lo has visto todo: puedes verlo con tranquilidad y captarás cada referencia.",
+    },
+  },
+  postCredits: {
+    heading: "Escenas durante y después de los créditos",
+    none: "Ninguna escena: puedes parar cuando empiecen los créditos.",
+    noneBefore: "Ninguna escena en los créditos: la escena final llega antes de los créditos.",
+    tipEnd: "Quédate hasta el final de los créditos para verlas todas.",
+    tipMid: "No te vayas enseguida: la escena llega durante los créditos.",
+    positions: {
+      before: "Antes de los créditos",
+      mid: "A mitad de los créditos",
+      credits: "Durante los créditos",
+      end: "Al final de los créditos",
+    },
+    show: "Mostrar qué ocurre",
+    hide: "Ocultar qué ocurre",
+    warning: "Atención: las escenas contienen spoilers.",
+  },
+  cookiePage: {
+    intro: "Esta página enumera todo lo que el sitio guarda en tu dispositivo.",
+    noBannerHeading: "Nada que consentir",
+    noBannerBody:
+      "El sitio solo usa herramientas técnicas, necesarias para el servicio que solicitas (inicio de sesión, idioma, progreso, filtros). Para ellas la normativa no exige consentimiento ni banner. No usamos cookies de analítica, publicidad ni elaboración de perfiles y no cargamos recursos de terceros: si algún día cambia, te pediremos antes tu consentimiento.",
+    tableCaption: "Cookies y datos guardados en tu navegador",
+    columns: {
+      name: "Nombre",
+      kind: "Tipo",
+      purpose: "Finalidad",
+      duration: "Duración",
+    },
+    session: {
+      kind: "Cookie técnica de sesión (propia, HttpOnly, SameSite=Lax)",
+      purpose: "Te mantiene conectado después de iniciar sesión.",
+      duration: "7 días desde el último uso, o hasta que cierres sesión",
+    },
+    progress: {
+      kind: "Almacenamiento local (propio)",
+      purpose: "Recuerda los títulos que marcaste como vistos cuando no tienes cuenta.",
+      duration: "Hasta que los borres",
+    },
+    language: {
+      kind: "Almacenamiento local (propio)",
+      purpose: "Recuerda el idioma que elegiste.",
+      duration: "Hasta que los borres",
+    },
+    filters: {
+      kind: "Almacenamiento local (propio)",
+      purpose: "Recuerda los filtros que elegiste en el planificador.",
+      duration: "Hasta que los borres",
+    },
+    manageHeading: "Cómo gestionarlos",
+    manageBody:
+      "Puedes borrar los datos guardados en este dispositivo desde «Preferencias de privacidad» o desde los ajustes del navegador. La cookie de sesión se elimina al cerrar sesión.",
+  },
+  privacySettings: {
+    title: "Preferencias de privacidad",
+    intro:
+      "Este sitio no usa cookies de analítica, publicidad ni elaboración de perfiles y no carga recursos de terceros: no hay nada que aceptar o rechazar.",
+    clearHeading: "Datos en este dispositivo",
+    clearBody:
+      "Borra el progreso (si no tienes cuenta), el idioma y los filtros guardados en este navegador. No cierra tu sesión.",
+    clearButton: "Borrar los datos de este dispositivo",
+    clearQuestion: "¿Borrar de verdad los datos guardados en este dispositivo?",
+    clearConfirm: "Sí, borrar",
+  },
+  admin: {
+    heading: "Nuevos títulos en TMDB por revisar",
+    intro: "TMDB lista estos títulos de Marvel que no están en el catálogo. Añádelos o ignóralos.",
+    newTitle: "Nuevo título",
+    newSeason: "Nueva temporada",
+    dismiss: "Ignorar",
+    openOnTmdb: "Abrir en TMDB",
+  },
   notFound: {
     title: "Página no encontrada",
     back: "Volver al planificador",
@@ -194,15 +334,15 @@ export const es: Messages = {
       heading: "Qué datos tratamos",
       accountLabel: "Datos de la cuenta",
       accountText:
-        "nombre, correo electrónico y contraseña. La contraseña solo se conserva de forma cifrada (hash) y nunca se puede leer.",
+        "nombre de superhéroe (un apodo inventado: no pedimos tu nombre real), correo electrónico y contraseña. La contraseña solo se conserva de forma cifrada (hash) y nunca se puede leer.",
       progressLabel: "Progreso",
       progressText: "los títulos que marcas como vistos y la fecha en que los marcaste.",
       technicalLabel: "Datos técnicos",
       technicalText:
-        "dirección IP y tipo de navegador asociados a las sesiones de acceso, usados también para limitar los intentos de acceso repetidos.",
+        "dirección IP y tipo de navegador asociados a las sesiones de acceso, y contadores que sirven para limitar los intentos de acceso repetidos.",
       deviceLabel: "En tu dispositivo",
       deviceText:
-        "sin cuenta, tu progreso se guarda solo en tu navegador (localStorage) y no se nos envía. El idioma elegido se recuerda del mismo modo.",
+        "sin cuenta, tu progreso se guarda solo en tu navegador (localStorage) y no se nos envía. El idioma y los filtros elegidos se recuerdan del mismo modo. Puedes borrar estos datos en cualquier momento desde «Preferencias de privacidad».",
     },
     purposes: {
       heading: "Por qué los tratamos",
@@ -214,21 +354,26 @@ export const es: Messages = {
         "No usamos tus datos para publicidad ni elaboración de perfiles, no los vendemos y no los cedemos a terceros.",
     },
     cookies: {
-      heading: "Cookies",
-      body: "Solo usamos una cookie técnica de sesión, necesaria para mantenerte conectado. No usamos cookies de análisis ni de elaboración de perfiles.",
+      heading: "Cookies y almacenamiento local",
+      body: "Solo usamos cookies técnicas, necesarias para el funcionamiento: una cookie de sesión para mantenerte conectado. No usamos cookies de analítica, publicidad ni elaboración de perfiles, ni cookies de terceros, por lo que no se requiere tu consentimiento (art. 122 del Código de privacidad italiano, la Directiva ePrivacy y las directrices del Garante de 10 de junio de 2021). La lista completa está en la {link}.",
+      link: "ventana «Preferencias de privacidad»",
     },
     providers: {
       heading: "Dónde se conservan y quién los trata",
-      body: "El sitio y la base de datos están alojados en Cloudflare, con la base de datos situada en Europa occidental. Cloudflare actúa como encargado del tratamiento. La información sobre los títulos (sinopsis, argumentos, reparto, carteles e imágenes de fondo) procede de TMDB y de Wikipedia; las imágenes se cargan directamente desde los servidores de TMDB, que por tanto recibe la dirección IP de quien abre los detalles de un título. Cloudflare y TMDB tienen su sede en Estados Unidos: algunos datos podrían transferirse fuera de la Unión Europea, respetando las garantías previstas por el RGPD (EU-US Data Privacy Framework y cláusulas contractuales tipo).",
+      body: "El sitio y la base de datos están alojados en Cloudflare, con la base de datos situada en Europa occidental; Cloudflare actúa como encargado del tratamiento. La información sobre los títulos (sinopsis, argumentos, reparto, carteles e imágenes de fondo) la solicita nuestro servidor a TMDB, Wikipedia y Wikidata: tu navegador nunca contacta directamente con estos servicios y, por tanto, no les comunica tu dirección IP. Cloudflare tiene su sede en Estados Unidos: algunos datos podrían transferirse fuera de la Unión Europea, respetando las garantías previstas por el RGPD (EU-US Data Privacy Framework y cláusulas contractuales tipo).",
     },
     retention: {
       heading: "Durante cuánto tiempo",
-      body: "Conservamos los datos mientras exista tu cuenta. Las sesiones caducan tras 7 días de inactividad. Cuando eliminas la cuenta, el nombre, el correo, el progreso y las sesiones se borran de inmediato; las posibles copias de seguridad técnicas se sobrescriben en un plazo de 30 días.",
+      body: "Conservamos los datos de tu cuenta mientras exista. Las sesiones caducan a los 7 días y las caducadas se eliminan cada día; los contadores contra los accesos repetidos se eliminan al cabo de un día; la información sobre los títulos recibida de terceros permanece en caché como máximo 90 días. Cuando eliminas la cuenta, el nombre de superhéroe, el correo, el progreso y las sesiones se borran de inmediato; las posibles copias de seguridad técnicas se sobrescriben en un plazo de 30 días.",
     },
     rights: {
       heading: "Tus derechos",
-      body: "Puedes solicitar en cualquier momento el acceso, la rectificación, la supresión, la limitación o la portabilidad de tus datos, u oponerte al tratamiento, escribiendo a {email}. Puedes modificar tu nombre y eliminar la cuenta directamente desde la página {account}. También tienes derecho a presentar una reclamación ante la autoridad italiana de protección de datos, el Garante ({garante}).",
+      body: "Puedes solicitar en cualquier momento el acceso, la rectificación, la supresión, la limitación o la portabilidad de tus datos, u oponerte al tratamiento, escribiendo a {email}. Desde la página {account} puedes modificar tu nombre de superhéroe, descargar tus datos en formato JSON y eliminar tu cuenta. No tomamos decisiones basadas en tratamientos automatizados. También tienes derecho a presentar una reclamación ante la autoridad italiana de protección de datos, el Garante ({garante}).",
       accountLink: "Tu cuenta",
+    },
+    other: {
+      heading: "Otras jurisdicciones",
+      body: "No vendemos ni compartimos tus datos personales para publicidad dirigida ni con otros fines comerciales. Las mismas garantías se aplican a quienes usan el sitio desde fuera de la Unión Europea (por ejemplo, en California, el Reino Unido o Brasil): puedes ejercer los mismos derechos escribiendo a {email}.",
     },
     minors: {
       heading: "Menores",

@@ -74,7 +74,7 @@ export const CATALOG: Saga[] = [
         ["The Falcon and the Winter Soldier", "2021", "serie"],
         ["Loki — Stagione 1", "2021", "serie"],
         ["Black Widow", "2021", "film"],
-        ["What If…? — Stagione 1", "2021", "serie"],
+        ["What If…? — Stagione 1", "2021", "serie", { alternate: true }],
         ["Shang-Chi and the Legend of the Ten Rings", "2021", "film"],
         ["Eternals", "2021", "film"],
         ["Hawkeye", "2021", "serie"],
@@ -95,13 +95,13 @@ export const CATALOG: Saga[] = [
         ["Secret Invasion", "2023", "serie"],
         ["Loki — Stagione 2", "2023", "serie"],
         ["The Marvels", "2023", "film"],
-        ["What If…? — Stagione 2", "2023", "serie"],
+        ["What If…? — Stagione 2", "2023", "serie", { alternate: true }],
         ["I Am Groot — Stagione 2", "2023", "serie", { note: "shorts" }],
         ["Echo", "2024", "serie"],
         ["X-Men '97 — Stagione 1", "2024", "serie", { alternate: true }],
         ["Deadpool & Wolverine", "2024", "film"],
         ["Agatha All Along", "2024", "serie"],
-        ["What If…? — Stagione 3", "2024", "serie"],
+        ["What If…? — Stagione 3", "2024", "serie", { alternate: true }],
         [
           "Your Friendly Neighborhood Spider-Man — Stagione 1",
           "2025",
@@ -139,4 +139,10 @@ export const CATALOG: Saga[] = [
 
 export const ALL_PHASE_NUMBERS = CATALOG.flatMap((saga) =>
   saga.phases.map((phase) => phase.number),
+);
+
+export const TITLES_BY_ID: Record<string, Title> = Object.fromEntries(
+  CATALOG.flatMap((saga) =>
+    saga.phases.flatMap((phase) => phase.titles.map((title) => [title.id, title] as const)),
+  ),
 );

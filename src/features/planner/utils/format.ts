@@ -1,7 +1,7 @@
 import type { I18nContextValue } from "../../../i18n/I18nContext";
 
-const POSTER_BASE_URL = "https://image.tmdb.org/t/p/w342";
-const BACKDROP_BASE_URL = "https://image.tmdb.org/t/p/w780";
+const POSTER_BASE_URL = "/api/images/w342";
+const BACKDROP_BASE_URL = "/api/images/w780";
 
 const YEAR_MONTH = /^\d{4}-\d{2}$/;
 const FULL_DATE = /^\d{4}-\d{2}-\d{2}$/;

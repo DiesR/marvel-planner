@@ -7,12 +7,15 @@ export const de: Messages = {
     login: "Anmelden",
     logout: "Abmelden",
     language: "Sprache",
+    skipToContent: "Zum Inhalt springen",
   },
   footer: {
     disclaimer:
       "Inoffizielle Seite, nicht mit Marvel Studios oder The Walt Disney Company verbunden.",
     legal: "Rechtliche Hinweise",
     privacy: "Datenschutz",
+    cookies: "Cookies",
+    privacySettings: "Datenschutzeinstellungen",
     coffee: "Wenn ich dir weitergeholfen habe, spendier mir einen Kaffee",
   },
   catalog: {
@@ -48,7 +51,11 @@ export const de: Messages = {
     loadError: "Dein Fortschritt konnte nicht geladen werden. Lade die Seite neu.",
     saveError:
       "Die Änderung konnte nicht gespeichert werden. Prüfe deine Verbindung und versuche es erneut.",
-    resetConfirm: "Gesamten Fortschritt zurücksetzen? Die Häkchen werden entfernt.",
+    reset: {
+      title: "Gesamten Fortschritt zurücksetzen?",
+      message: "Die Häkchen werden entfernt. Das lässt sich nicht rückgängig machen.",
+      confirm: "Zurücksetzen",
+    },
     markWatched: "„{name}“ als gesehen markieren",
     toolbar: {
       label: "Filter und Aktionen",
@@ -95,11 +102,26 @@ export const de: Messages = {
     },
   },
   details: {
+    keyScenes: {
+      heading: "Szenen, auf die du achten solltest",
+      editorial: "Redaktionelle Tipps: unsere eigene Auswahl, nicht aus einer externen Quelle.",
+      show: "Szenen anzeigen",
+      hide: "Szenen ausblenden",
+      warning: "Achtung: enthält Spoiler.",
+    },
+    easterEggs: {
+      heading: "Easter Eggs und Cameos",
+      stanLee: "Cameo von Stan Lee",
+      source: "Quelle",
+    },
+    open: "Alle Details",
     loading: "Details werden geladen …",
     error: "Details sind im Moment nicht verfügbar.",
     posterAlt: "Poster von {name}",
     originalTitle: "Originaltitel: {name}",
     release: "Erscheinungsdatum",
+    runtime: "Laufzeit",
+    minutes: "{count} min",
     director: "Regie",
     creator: "Entwickelt von",
     cast: "Besetzung",
@@ -119,8 +141,11 @@ export const de: Messages = {
   auth: {
     email: "E-Mail",
     password: "Passwort",
-    name: "Name",
+    name: "Superheldenname",
+    nameHint: "Wähle einen ausgedachten Namen: Dein echter Name wird nicht gebraucht.",
     passwordHint: "Mindestens {min} Zeichen.",
+    showPassword: "Passwort anzeigen",
+    hidePassword: "Passwort verbergen",
     login: {
       title: "Anmelden",
       intro: "Melde dich an, um deinen Fortschritt auf allen Geräten zu behalten.",
@@ -149,11 +174,20 @@ export const de: Messages = {
       passwordLong: "Das Passwort ist zu lang.",
       reauthenticate: "Melde dich aus Sicherheitsgründen ab und erneut an, bevor du fortfährst.",
       tooManyRequests: "Zu viele Versuche. Warte einige Minuten und versuche es erneut.",
+      required: "Fülle dieses Feld aus.",
       generic: "Der Vorgang ist fehlgeschlagen. Versuche es später erneut.",
     },
   },
   account: {
     title: "Dein Konto",
+    export: {
+      heading: "Deine Daten",
+      description:
+        "Lade eine Kopie deiner Kontodaten (Profil, gesehene Titel und Sitzungen) als JSON herunter.",
+      button: "Meine Daten herunterladen",
+      pending: "Wird vorbereitet …",
+      error: "Die Daten konnten nicht heruntergeladen werden. Versuche es später erneut.",
+    },
     profile: {
       heading: "Profil",
       email: "E-Mail",
@@ -181,6 +215,113 @@ export const de: Messages = {
       pending: "Wird gelöscht …",
     },
   },
+  common: {
+    close: "Schließen",
+    cancel: "Abbrechen",
+    loading: "Wird geladen …",
+    retry: "Erneut versuchen",
+  },
+  error: {
+    title: "Etwas ist schiefgelaufen",
+    body: "Ein unerwarteter Fehler ist aufgetreten. Lade die Seite neu.",
+    home: "Zurück zum Planer",
+  },
+  prerequisites: {
+    heading: "Bevor du es ansiehst",
+    levels: {
+      essential: "Wesentlich",
+      recommended: "Empfohlen",
+      optional: "Optional",
+    },
+    watched: "Gesehen",
+    notWatched: "Noch nicht gesehen",
+    show: "Gründe anzeigen",
+    hide: "Gründe ausblenden",
+    warning: "Achtung: Die Gründe können frühere Titel spoilern.",
+    outside: "Außerhalb dieses Planers",
+    provisional: "Vorläufige Liste: Sie kann sich ändern, sobald der Titel erscheint.",
+    status: {
+      standalone: "Du musst nichts anderes gesehen haben: Du kannst sofort loslegen.",
+      missingEssential: "Bevor du es ansiehst, solltest du Folgendes sehen: {titles}.",
+      ready:
+        "Du kannst es in Ruhe ansehen: Du hast alles Wesentliche gesehen. Die empfohlenen Titel liefern dir ein paar zusätzliche Bezüge.",
+      wellPrepared:
+        "Du kannst es in Ruhe ansehen: Du hast alles gesehen, was du für die Handlung brauchst. Es bleiben nur optionale Details.",
+      complete: "Du hast alles gesehen: Du kannst es in Ruhe ansehen und erkennst jede Anspielung.",
+    },
+  },
+  postCredits: {
+    heading: "Szenen im Abspann",
+    none: "Keine Szenen: Du kannst aufhören, sobald der Abspann beginnt.",
+    noneBefore: "Keine Szenen im Abspann: Die Schlussszene kommt vor dem Abspann.",
+    tipEnd: "Bleib bis zum Ende des Abspanns, um alle zu sehen.",
+    tipMid: "Geh nicht sofort: Die Szene kommt im Laufe des Abspanns.",
+    positions: {
+      before: "Vor dem Abspann",
+      mid: "Mitten im Abspann",
+      credits: "Im Abspann",
+      end: "Am Ende des Abspanns",
+    },
+    show: "Anzeigen, was passiert",
+    hide: "Ausblenden, was passiert",
+    warning: "Achtung: Die Szenen enthalten Spoiler.",
+  },
+  cookiePage: {
+    intro: "Diese Seite listet alles auf, was die Seite auf deinem Gerät speichert.",
+    noBannerHeading: "Nichts, dem du zustimmen musst",
+    noBannerBody:
+      "Die Seite verwendet nur technische Mittel, die für den von dir gewünschten Dienst nötig sind (Anmeldung, Sprache, Fortschritt, Filter). Dafür verlangt das Recht weder eine Einwilligung noch ein Banner. Wir setzen keine Analyse-, Werbe- oder Profiling-Cookies ein und laden keine Ressourcen von Dritten: Sollte sich das ändern, fragen wir vorher nach deiner Einwilligung.",
+    tableCaption: "Cookies und im Browser gespeicherte Daten",
+    columns: {
+      name: "Name",
+      kind: "Art",
+      purpose: "Zweck",
+      duration: "Dauer",
+    },
+    session: {
+      kind: "Technisches Sitzungs-Cookie (eigenes, HttpOnly, SameSite=Lax)",
+      purpose: "Hält dich nach der Anmeldung angemeldet.",
+      duration: "7 Tage ab der letzten Nutzung oder bis zur Abmeldung",
+    },
+    progress: {
+      kind: "Lokaler Speicher (eigener)",
+      purpose: "Merkt sich die Titel, die du als gesehen markierst, wenn du kein Konto hast.",
+      duration: "Bis du sie löschst",
+    },
+    language: {
+      kind: "Lokaler Speicher (eigener)",
+      purpose: "Merkt sich die gewählte Sprache.",
+      duration: "Bis du sie löschst",
+    },
+    filters: {
+      kind: "Lokaler Speicher (eigener)",
+      purpose: "Merkt sich die im Planer gewählten Filter.",
+      duration: "Bis du sie löschst",
+    },
+    manageHeading: "So verwaltest du sie",
+    manageBody:
+      "Die auf diesem Gerät gespeicherten Daten kannst du unter „Datenschutzeinstellungen“ oder in den Browsereinstellungen löschen. Das Sitzungs-Cookie wird beim Abmelden entfernt.",
+  },
+  privacySettings: {
+    title: "Datenschutzeinstellungen",
+    intro:
+      "Diese Seite verwendet keine Analyse-, Werbe- oder Profiling-Cookies und lädt keine Ressourcen von Dritten: Es gibt nichts zu akzeptieren oder abzulehnen.",
+    clearHeading: "Daten auf diesem Gerät",
+    clearBody:
+      "Löscht den Fortschritt (wenn du kein Konto hast), die Sprache und die Filter, die in diesem Browser gespeichert sind. Du wirst dabei nicht abgemeldet.",
+    clearButton: "Daten dieses Geräts löschen",
+    clearQuestion: "Die auf diesem Gerät gespeicherten Daten wirklich löschen?",
+    clearConfirm: "Ja, löschen",
+  },
+  admin: {
+    heading: "Neue Titel auf TMDB zur Prüfung",
+    intro:
+      "TMDB führt diese Marvel-Titel, die nicht im Katalog stehen. Füge sie hinzu oder blende sie aus.",
+    newTitle: "Neuer Titel",
+    newSeason: "Neue Staffel",
+    dismiss: "Ausblenden",
+    openOnTmdb: "Auf TMDB öffnen",
+  },
   notFound: {
     title: "Seite nicht gefunden",
     back: "Zurück zum Planer",
@@ -196,15 +337,15 @@ export const de: Messages = {
       heading: "Welche Daten wir verarbeiten",
       accountLabel: "Kontodaten",
       accountText:
-        "Name, E-Mail und Passwort. Das Passwort wird nur verschlüsselt (Hash) gespeichert und ist nie lesbar.",
+        "Superheldenname (ein ausgedachter Spitzname: Deinen echten Namen verlangen wir nicht), E-Mail und Passwort. Das Passwort wird nur verschlüsselt (Hash) gespeichert und ist nie lesbar.",
       progressLabel: "Fortschritt",
       progressText: "die Titel, die du als gesehen markierst, und das Datum der Markierung.",
       technicalLabel: "Technische Daten",
       technicalText:
-        "IP-Adresse und Browsertyp, die den Anmeldesitzungen zugeordnet sind und auch dazu dienen, wiederholte Anmeldeversuche zu begrenzen.",
+        "IP-Adresse und Browsertyp, die den Anmeldesitzungen zugeordnet sind, sowie Zähler zur Begrenzung wiederholter Anmeldeversuche.",
       deviceLabel: "Auf deinem Gerät",
       deviceText:
-        "ohne Konto bleibt dein Fortschritt nur in deinem Browser (localStorage) gespeichert und wird nicht an uns übermittelt. Die gewählte Sprache wird auf dieselbe Weise gemerkt.",
+        "ohne Konto bleibt dein Fortschritt nur in deinem Browser (localStorage) gespeichert und wird nicht an uns übermittelt. Die gewählte Sprache und die Filter werden auf dieselbe Weise gemerkt. Du kannst diese Daten jederzeit unter „Datenschutzeinstellungen“ löschen.",
     },
     purposes: {
       heading: "Warum wir sie verarbeiten",
@@ -216,21 +357,26 @@ export const de: Messages = {
         "Wir verwenden deine Daten nicht für Werbung oder Profiling, wir verkaufen sie nicht und geben sie nicht an Dritte weiter.",
     },
     cookies: {
-      heading: "Cookies",
-      body: "Wir verwenden nur ein technisches Sitzungs-Cookie, das nötig ist, um dich angemeldet zu halten. Wir verwenden keine Analyse- oder Profiling-Cookies.",
+      heading: "Cookies und lokaler Speicher",
+      body: "Wir verwenden nur technische Cookies, die für den Betrieb nötig sind: ein Sitzungs-Cookie, das dich angemeldet hält. Wir setzen keine Analyse-, Werbe- oder Profiling-Cookies und keine Cookies von Dritten ein, daher ist keine Einwilligung erforderlich (Art. 122 des italienischen Datenschutzkodex, ePrivacy-Richtlinie und Leitlinien des Garante vom 10. Juni 2021). Die vollständige Liste findest du im {link}.",
+      link: "Fenster „Datenschutzeinstellungen“",
     },
     providers: {
       heading: "Wo sie gespeichert werden und wer sie verarbeitet",
-      body: "Die Seite und die Datenbank werden von Cloudflare gehostet, die Datenbank befindet sich in Westeuropa. Cloudflare handelt als Auftragsverarbeiter. Die Informationen zu den Titeln (Kurzbeschreibungen, Handlungen, Besetzung, Poster und Hintergrundbilder) stammen von TMDB und Wikipedia; Bilder werden direkt von den Servern von TMDB geladen, das somit die IP-Adresse derjenigen erhält, die die Details eines Titels öffnen. Cloudflare und TMDB haben ihren Sitz in den Vereinigten Staaten: Einige Daten können außerhalb der Europäischen Union übermittelt werden, unter Einhaltung der von der DSGVO vorgesehenen Garantien (EU-US Data Privacy Framework und Standardvertragsklauseln).",
+      body: "Die Seite und die Datenbank werden von Cloudflare gehostet, die Datenbank befindet sich in Westeuropa; Cloudflare handelt als Auftragsverarbeiter. Die Informationen zu den Titeln (Kurzbeschreibungen, Handlungen, Besetzung, Poster und Hintergrundbilder) fragt unser Server bei TMDB, Wikipedia und Wikidata ab: Dein Browser kontaktiert diese Dienste nie direkt und übermittelt ihnen daher deine IP-Adresse nicht. Cloudflare hat seinen Sitz in den Vereinigten Staaten: Einige Daten können außerhalb der Europäischen Union übermittelt werden, unter Einhaltung der von der DSGVO vorgesehenen Garantien (EU-US Data Privacy Framework und Standardvertragsklauseln).",
     },
     retention: {
       heading: "Wie lange wir sie speichern",
-      body: "Wir speichern deine Daten, solange dein Konto besteht. Sitzungen laufen nach 7 Tagen Inaktivität ab. Wenn du dein Konto löschst, werden Name, E-Mail, Fortschritt und Sitzungen sofort gelöscht; eventuelle technische Sicherungskopien werden innerhalb von 30 Tagen überschrieben.",
+      body: "Wir speichern deine Kontodaten, solange dein Konto besteht. Sitzungen laufen nach 7 Tagen ab, abgelaufene werden täglich gelöscht; die Zähler gegen wiederholte Anmeldeversuche werden nach einem Tag gelöscht; von Dritten erhaltene Titelinformationen bleiben höchstens 90 Tage im Cache. Wenn du dein Konto löschst, werden Superheldenname, E-Mail, Fortschritt und Sitzungen sofort gelöscht; eventuelle technische Sicherungskopien werden innerhalb von 30 Tagen überschrieben.",
     },
     rights: {
       heading: "Deine Rechte",
-      body: "Du kannst jederzeit Auskunft, Berichtigung, Löschung, Einschränkung oder Übertragbarkeit deiner Daten verlangen oder der Verarbeitung widersprechen, indem du an {email} schreibst. Deinen Namen kannst du ändern und dein Konto löschen direkt auf der Seite {account}. Außerdem hast du das Recht, bei der italienischen Datenschutzbehörde, dem Garante, Beschwerde einzulegen ({garante}).",
+      body: "Du kannst jederzeit Auskunft, Berichtigung, Löschung, Einschränkung oder Übertragbarkeit deiner Daten verlangen oder der Verarbeitung widersprechen, indem du an {email} schreibst. Auf der Seite {account} kannst du deinen Superheldennamen ändern, deine Daten als JSON herunterladen und dein Konto löschen. Wir treffen keine Entscheidungen auf Grundlage automatisierter Verarbeitung. Außerdem hast du das Recht, bei der italienischen Datenschutzbehörde, dem Garante, Beschwerde einzulegen ({garante}).",
       accountLink: "Dein Konto",
+    },
+    other: {
+      heading: "Andere Rechtsordnungen",
+      body: "Wir verkaufen oder teilen deine personenbezogenen Daten nicht für zielgerichtete Werbung oder andere kommerzielle Zwecke. Dieselben Schutzmaßnahmen gelten für Personen, die die Seite von außerhalb der Europäischen Union nutzen (zum Beispiel in Kalifornien, im Vereinigten Königreich oder in Brasilien): Du kannst dieselben Rechte ausüben, indem du an {email} schreibst.",
     },
     minors: {
       heading: "Minderjährige",

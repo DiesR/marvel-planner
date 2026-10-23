@@ -1,8 +1,10 @@
 import { Link } from "react-router";
 import { PATHS } from "../app/paths";
 import { useI18n } from "../i18n/useI18n";
+import { usePageTitle } from "../i18n/usePageTitle";
 
 export function NotFoundPage() {
+  usePageTitle("notFound.title");
   const { t } = useI18n();
 
   return (

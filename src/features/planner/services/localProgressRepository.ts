@@ -1,7 +1,8 @@
 import { readJson, writeJson } from "../../../lib/storage";
+import { STORAGE_KEYS } from "../../../lib/storageKeys";
 import type { ProgressRepository } from "./progressRepository";
 
-const STORAGE_KEY = "mcu-planner-v1";
+const STORAGE_KEY = STORAGE_KEYS.progress;
 
 const read = () => readJson<string[]>(STORAGE_KEY, []);
 const write = (titleIds: Iterable<string>) => writeJson(STORAGE_KEY, [...titleIds]);

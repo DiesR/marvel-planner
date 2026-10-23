@@ -1,6 +1,8 @@
 import { Trash2 } from "lucide-react";
 import { useId, useState, type FormEvent } from "react";
+import { PasswordField } from "../../../components/ui/Field";
 import { useI18n } from "../../../i18n/useI18n";
+import { focusFirstInvalidField } from "../../../lib/validation";
 import { useAuth } from "../../auth/hooks/useAuth";
 import { useAuthAction } from "../../auth/hooks/useAuthAction";
 
@@ -10,33 +12,34 @@ export function DeleteAccountSection() {
   const { run, error, isPending } = useAuthAction(deleteAccount);
   const [password, setPassword] = useState("");
   const [isConfirmed, setIsConfirmed] = useState(false);
+  const [isPasswordMissing, setIsPasswordMissing] = useState(false);
   const headingId = useId();
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const isMissing = !password;
+    setIsPasswordMissing(isMissing);
+    if (isMissing) return focusFirstInvalidField(event.currentTarget, { password: true });
     void run(password);
   };
 
   return (
     <section aria-labelledby={headingId}>
-      <h2 id={headingId}>{t("account.delete.heading")}</h2>
+      <h3 id={headingId}>{t("account.delete.heading")}</h3>
       <p>{t("account.delete.warning")}</p>
-      <form onSubmit={handleSubmit}>
-        <label>
-          {t("auth.password")}
-          <input
-            type="password"
-            name="password"
-            autoComplete="current-password"
-            required
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        </label>
+      <form onSubmit={handleSubmit} noValidate>
+        <PasswordField
+          label={t("auth.password")}
+          name="password"
+          autoComplete="current-password"
+          required
+          value={password}
+          onChange={setPassword}
+          error={isPasswordMissing && !password ? t("auth.errors.required") : null}
+        />
         <label>
           <input
             type="checkbox"
-            required
             checked={isConfirmed}
             onChange={(event) => setIsConfirmed(event.target.checked)}
           />

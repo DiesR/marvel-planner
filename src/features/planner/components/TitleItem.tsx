@@ -1,20 +1,25 @@
+import { Info } from "lucide-react";
 import { useState } from "react";
 import { useI18n } from "../../../i18n/useI18n";
 import { MEDIA_TYPE_KEYS, NOTE_KEYS } from "../data/labels";
 import type { Title } from "../types";
 import { formatRelease } from "../utils/format";
-import { TitleDetailsPanel } from "./TitleDetailsPanel";
+import { BeforeYouWatch } from "./BeforeYouWatch";
+import { TitleDetailsDialog } from "./TitleDetailsDialog";
+import { TitleSummaryPanel } from "./TitleSummaryPanel";
 
 interface TitleItemProps {
   title: Title;
   isWatched: boolean;
+  watched: ReadonlySet<string>;
   onToggle: (id: string) => void;
 }
 
-export function TitleItem({ title, isWatched, onToggle }: TitleItemProps) {
+export function TitleItem({ title, isWatched, watched, onToggle }: TitleItemProps) {
   const i18n = useI18n();
   const { t } = i18n;
   const [hasBeenOpened, setHasBeenOpened] = useState(false);
+  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
 
   const tags = [
     t(MEDIA_TYPE_KEYS[title.type]),
@@ -33,11 +38,26 @@ export function TitleItem({ title, isWatched, onToggle }: TitleItemProps) {
       />
       <details onToggle={(event) => event.currentTarget.open && setHasBeenOpened(true)}>
         <summary>
-          {isWatched ? <s>{title.name}</s> : title.name}
+          <span lang="en">{isWatched ? <s>{title.name}</s> : title.name}</span>
           <span>{[formatRelease(title.release, i18n), ...tags].join(" · ")}</span>
         </summary>
-        {hasBeenOpened && <TitleDetailsPanel titleId={title.id} />}
+        {hasBeenOpened && (
+          <>
+            <TitleSummaryPanel titleId={title.id} />
+            <BeforeYouWatch title={title} watched={watched} />
+            <button type="button" aria-haspopup="dialog" onClick={() => setIsDetailsOpen(true)}>
+              <Info aria-hidden />
+              {t("details.open")}
+            </button>
+          </>
+        )}
       </details>
+      <TitleDetailsDialog
+        isOpen={isDetailsOpen}
+        titleId={title.id}
+        titleName={title.name}
+        onClose={() => setIsDetailsOpen(false)}
+      />
     </li>
   );
 }

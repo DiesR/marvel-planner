@@ -47,6 +47,7 @@ export function PhaseSection({
               key={title.id}
               title={title}
               isWatched={watched.has(title.id)}
+              watched={watched}
               onToggle={onToggleTitle}
             />
           ))}

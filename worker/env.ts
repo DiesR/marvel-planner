@@ -3,6 +3,7 @@ export interface Env {
   ASSETS: Fetcher;
   SITE_PASSWORD?: string;
   TMDB_TOKEN?: string;
+  ADMIN_USER_ID?: string;
   BETTER_AUTH_URL: string;
   BETTER_AUTH_SECRET: string;
 }

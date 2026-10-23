@@ -1,5 +1,14 @@
+import { CandidatesNotice } from "../features/admin/components/CandidatesNotice";
 import { Planner } from "../features/planner/components/Planner";
+import { usePageTitle } from "../i18n/usePageTitle";
 
 export function PlannerPage() {
-  return <Planner />;
+  usePageTitle("planner.title");
+
+  return (
+    <>
+      <CandidatesNotice />
+      <Planner />
+    </>
+  );
 }

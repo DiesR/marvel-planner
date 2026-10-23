@@ -27,3 +27,20 @@ export const titleDetailsCache = sqliteTable(
   },
   (table) => [primaryKey({ columns: [table.titleId, table.language] })],
 );
+
+export const titleRelease = sqliteTable("title_release", {
+  titleId: text("title_id").primaryKey(),
+  releaseDate: text("release_date"),
+  checkedAt: integer("checked_at", { mode: "timestamp_ms" }).notNull(),
+});
+
+export const catalogCandidate = sqliteTable("catalog_candidate", {
+  key: text("key").primaryKey(),
+  kind: text("kind").notNull(),
+  tmdbId: integer("tmdb_id").notNull(),
+  season: integer("season"),
+  title: text("title").notNull(),
+  releaseDate: text("release_date"),
+  foundAt: integer("found_at", { mode: "timestamp_ms" }).notNull(),
+  isDismissed: integer("is_dismissed", { mode: "boolean" }).notNull().default(false),
+});

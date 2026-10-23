@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import type { TitleDetails } from "../../../../shared/titleDetails";
 import { useI18n } from "../../../i18n/useI18n";
 import { getTitleDetails } from "../services/titleDetailsService";
@@ -6,9 +6,10 @@ import { getTitleDetails } from "../services/titleDetailsService";
 type Outcome = { status: "error" } | { status: "ready"; details: TitleDetails };
 type State = { status: "loading" } | Outcome;
 
-export function useTitleDetails(titleId: string): State {
+export function useTitleDetails(titleId: string): State & { retry: () => void } {
   const { language } = useI18n();
-  const requestKey = `${language}:${titleId}`;
+  const [attempt, setAttempt] = useState(0);
+  const requestKey = `${language}:${titleId}:${attempt}`;
   const [result, setResult] = useState<{ requestKey: string; outcome: Outcome } | null>(null);
 
   useEffect(() => {
@@ -22,5 +23,7 @@ export function useTitleDetails(titleId: string): State {
     };
   }, [titleId, language, requestKey]);
 
-  return result?.requestKey === requestKey ? result.outcome : { status: "loading" };
+  const retry = useCallback(() => setAttempt((current) => current + 1), []);
+  const state: State = result?.requestKey === requestKey ? result.outcome : { status: "loading" };
+  return { ...state, retry };
 }

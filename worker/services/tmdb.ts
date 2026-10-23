@@ -27,6 +27,7 @@ interface TmdbMovie {
   title: string;
   original_title: string;
   release_date?: string;
+  runtime?: number | null;
   poster_path?: string | null;
   backdrop_path?: string | null;
   overview?: string;
@@ -123,6 +124,7 @@ async function movieDetails(token: string, id: number, language: Language): Prom
     name: movie.title,
     originalName: movie.original_title,
     releaseDate: movie.release_date || null,
+    runtime: movie.runtime || null,
     posterPath: movie.poster_path ?? null,
     backdropPath: movie.backdrop_path ?? null,
     synopsis: await overviewOrFallback(token, `/movie/${id}`, language, movie.overview),
@@ -156,6 +158,7 @@ async function tvDetails(
     name: show.name,
     originalName: show.original_name,
     releaseDate: seasonData?.air_date || show.first_air_date || null,
+    runtime: null,
     posterPath: seasonData?.poster_path ?? show.poster_path ?? null,
     backdropPath: show.backdrop_path ?? null,
     synopsis: await overviewOrFallback(token, `/tv/${id}`, language, synopsis),

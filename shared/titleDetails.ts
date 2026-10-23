@@ -21,6 +21,7 @@ export interface TitleDetails {
   name: string;
   originalName: string;
   releaseDate: string | null;
+  runtime: number | null;
   posterPath: string | null;
   backdropPath: string | null;
   synopsis: string;

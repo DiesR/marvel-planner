@@ -1,8 +1,9 @@
-import { Link } from "react-router";
-import { PATHS } from "../app/paths";
 import { SITE } from "../app/site";
+import { useAuthDialog } from "../features/auth/hooks/useAuthDialog";
+import { usePrivacySettings } from "../features/privacy/hooks/usePrivacySettings";
 import type { TranslationKey } from "../i18n/types";
 import { useI18n } from "../i18n/useI18n";
+import { usePageTitle } from "../i18n/usePageTitle";
 
 const GARANTE_URL = "https://www.garanteprivacy.it";
 
@@ -15,14 +16,22 @@ const DATA_ITEMS: { label: TranslationKey; text: TranslationKey }[] = [
 
 const PURPOSE_KEYS: TranslationKey[] = ["privacy.purposes.service", "privacy.purposes.security"];
 
-const SIMPLE_SECTIONS: { heading: TranslationKey; body: TranslationKey }[] = [
-  { heading: "privacy.cookies.heading", body: "privacy.cookies.body" },
+const PLAIN_SECTIONS: { heading: TranslationKey; body: TranslationKey }[] = [
   { heading: "privacy.providers.heading", body: "privacy.providers.body" },
   { heading: "privacy.retention.heading", body: "privacy.retention.body" },
 ];
 
+const CLOSING_SECTIONS: { heading: TranslationKey; body: TranslationKey }[] = [
+  { heading: "privacy.other.heading", body: "privacy.other.body" },
+  { heading: "privacy.minors.heading", body: "privacy.minors.body" },
+  { heading: "privacy.changes.heading", body: "privacy.changes.body" },
+];
+
 export function PrivacyPage() {
+  usePageTitle("privacy.title");
   const { t, rich, formatDate } = useI18n();
+  const { open } = useAuthDialog();
+  const { open: openPrivacySettings } = usePrivacySettings();
   const email = <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>;
 
   return (
@@ -56,7 +65,20 @@ export function PrivacyPage() {
         <p>{t("privacy.purposes.noProfiling")}</p>
       </section>
 
-      {SIMPLE_SECTIONS.map((section) => (
+      <section aria-labelledby="privacy-cookies">
+        <h2 id="privacy-cookies">{t("privacy.cookies.heading")}</h2>
+        <p>
+          {rich("privacy.cookies.body", {
+            link: (
+              <button type="button" onClick={openPrivacySettings}>
+                {t("privacy.cookies.link")}
+              </button>
+            ),
+          })}
+        </p>
+      </section>
+
+      {PLAIN_SECTIONS.map((section) => (
         <section key={section.heading} aria-label={t(section.heading)}>
           <h2>{t(section.heading)}</h2>
           <p>{t(section.body)}</p>
@@ -68,7 +90,11 @@ export function PrivacyPage() {
         <p>
           {rich("privacy.rights.body", {
             email,
-            account: <Link to={PATHS.account}>{t("privacy.rights.accountLink")}</Link>,
+            account: (
+              <button type="button" onClick={() => open("account")}>
+                {t("privacy.rights.accountLink")}
+              </button>
+            ),
             garante: (
               <a href={GARANTE_URL} rel="noreferrer">
                 garanteprivacy.it
@@ -78,15 +104,12 @@ export function PrivacyPage() {
         </p>
       </section>
 
-      <section aria-labelledby="privacy-minors">
-        <h2 id="privacy-minors">{t("privacy.minors.heading")}</h2>
-        <p>{t("privacy.minors.body")}</p>
-      </section>
-
-      <section aria-labelledby="privacy-changes">
-        <h2 id="privacy-changes">{t("privacy.changes.heading")}</h2>
-        <p>{t("privacy.changes.body")}</p>
-      </section>
+      {CLOSING_SECTIONS.map((section) => (
+        <section key={section.heading} aria-label={t(section.heading)}>
+          <h2>{t(section.heading)}</h2>
+          <p>{rich(section.body, { email })}</p>
+        </section>
+      ))}
     </article>
   );
 }

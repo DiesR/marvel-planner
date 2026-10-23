@@ -1,11 +1,12 @@
 import { Fragment, useCallback, useEffect, useMemo, useState, type ReactNode } from "react";
 import { DEFAULT_LANGUAGE, isLanguage, type Language } from "../../shared/languages";
 import { readJson, writeJson } from "../lib/storage";
+import { STORAGE_KEYS } from "../lib/storageKeys";
 import { I18nContext, type I18nContextValue } from "./I18nContext";
 import { interpolate, lookup, splitTokens } from "./translate";
 import type { DateStyle, TranslationKey, TranslationParams } from "./types";
 
-const LANGUAGE_STORAGE_KEY = "mcu-planner-language";
+const LANGUAGE_STORAGE_KEY = STORAGE_KEYS.language;
 
 const DATE_OPTIONS: Record<DateStyle, Intl.DateTimeFormatOptions> = {
   long: { dateStyle: "long", timeZone: "UTC" },

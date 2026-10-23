@@ -1,3 +1,5 @@
+import { STORAGE_KEYS } from "./storageKeys";
+
 const PROBE_KEY = "__storage_probe__";
 
 export const isStorageAvailable = (() => {
@@ -32,4 +34,9 @@ export function writeJson(key: string, value: unknown): void {
 export function removeKey(key: string): void {
   if (!isStorageAvailable) return;
   localStorage.removeItem(key);
+}
+
+export function clearDeviceData(): void {
+  if (!isStorageAvailable) return;
+  Object.values(STORAGE_KEYS).forEach((key) => localStorage.removeItem(key));
 }

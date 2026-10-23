@@ -6,11 +6,12 @@ import * as schema from "./db/schema";
 import type { Env } from "./env";
 
 const MIN_PASSWORD_LENGTH = 10;
-const MAX_NAME_LENGTH = 60;
+const MIN_NAME_LENGTH = 2;
+const MAX_NAME_LENGTH = 30;
 
 function normalizeName(name: unknown): string {
   const normalized = typeof name === "string" ? name.trim().replace(/\s+/g, " ") : "";
-  if (!normalized) {
+  if (normalized.length < MIN_NAME_LENGTH) {
     throw new APIError("BAD_REQUEST", { code: "INVALID_NAME", message: "Invalid name" });
   }
   return normalized.slice(0, MAX_NAME_LENGTH);

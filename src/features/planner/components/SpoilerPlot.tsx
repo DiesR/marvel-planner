@@ -1,5 +1,5 @@
-import { Eye, EyeOff, TriangleAlert } from "lucide-react";
 import { useId, useState, type ReactNode } from "react";
+import { SpoilerToggle } from "../../../components/ui/SpoilerToggle";
 import { useI18n } from "../../../i18n/useI18n";
 
 interface SpoilerPlotProps {
@@ -10,24 +10,17 @@ export function SpoilerPlot({ children }: SpoilerPlotProps) {
   const { t } = useI18n();
   const [isRevealed, setIsRevealed] = useState(false);
   const plotId = useId();
-  const Icon = isRevealed ? EyeOff : Eye;
 
   return (
     <div>
-      <button
-        type="button"
-        aria-expanded={isRevealed}
-        aria-controls={plotId}
-        onClick={() => setIsRevealed(!isRevealed)}
-      >
-        <Icon aria-hidden />
-        {isRevealed ? t("details.plot.hide") : t("details.plot.show")}
-      </button>
-      {!isRevealed && (
-        <p>
-          <TriangleAlert aria-hidden /> {t("details.plot.warning")}
-        </p>
-      )}
+      <SpoilerToggle
+        isRevealed={isRevealed}
+        onToggle={() => setIsRevealed(!isRevealed)}
+        controls={plotId}
+        showLabel={t("details.plot.show")}
+        hideLabel={t("details.plot.hide")}
+        warning={t("details.plot.warning")}
+      />
       <div id={plotId} hidden={!isRevealed}>
         {children}
       </div>

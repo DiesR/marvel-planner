@@ -9,12 +9,14 @@ import { fetchPlot } from "./wikipedia";
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 const SETTLED_AFTER_RELEASE_MS = 30 * DAY_MS;
+const SETTLED_TTL_MS = 90 * DAY_MS;
 const UNSETTLED_TTL_MS = DAY_MS;
 
 function isFresh(details: TitleDetails, fetchedAt: Date, now: number): boolean {
+  if (!("runtime" in details)) return false;
   const release = details.releaseDate ? Date.parse(details.releaseDate) : Number.NaN;
   const isSettled = !Number.isNaN(release) && now - release > SETTLED_AFTER_RELEASE_MS;
-  return isSettled || now - fetchedAt.getTime() < UNSETTLED_TTL_MS;
+  return now - fetchedAt.getTime() < (isSettled ? SETTLED_TTL_MS : UNSETTLED_TTL_MS);
 }
 
 async function readCache(db: Database, titleId: string, language: Language) {

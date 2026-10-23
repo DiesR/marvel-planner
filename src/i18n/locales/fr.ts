@@ -7,11 +7,14 @@ export const fr: Messages = {
     login: "Se connecter",
     logout: "Se déconnecter",
     language: "Langue",
+    skipToContent: "Aller au contenu",
   },
   footer: {
     disclaimer: "Site non officiel, non affilié à Marvel Studios ni à The Walt Disney Company.",
     legal: "Informations légales",
     privacy: "Confidentialité",
+    cookies: "Cookies",
+    privacySettings: "Préférences de confidentialité",
     coffee: "Si je vous ai été utile, offrez-moi un café",
   },
   catalog: {
@@ -46,7 +49,11 @@ export const fr: Messages = {
     },
     loadError: "Impossible de charger votre progression. Rechargez la page.",
     saveError: "Impossible d'enregistrer la modification. Vérifiez votre connexion et réessayez.",
-    resetConfirm: "Réinitialiser toute la progression ? Les cases cochées seront supprimées.",
+    reset: {
+      title: "Réinitialiser toute la progression ?",
+      message: "Les cases cochées seront supprimées. Cette action est irréversible.",
+      confirm: "Réinitialiser",
+    },
     markWatched: "Marquer « {name} » comme vu",
     toolbar: {
       label: "Filtres et actions",
@@ -93,11 +100,26 @@ export const fr: Messages = {
     },
   },
   details: {
+    keyScenes: {
+      heading: "Scènes à suivre de près",
+      editorial: "Conseils de la rédaction : nos choix, pas issus d'une source externe.",
+      show: "Afficher les scènes",
+      hide: "Masquer les scènes",
+      warning: "Attention : contient des spoilers.",
+    },
+    easterEggs: {
+      heading: "Easter eggs et caméos",
+      stanLee: "Caméo de Stan Lee",
+      source: "Source",
+    },
+    open: "Fiche complète",
     loading: "Chargement des détails…",
     error: "Détails indisponibles pour le moment.",
     posterAlt: "Affiche de {name}",
     originalTitle: "Titre original : {name}",
     release: "Sortie",
+    runtime: "Durée",
+    minutes: "{count} min",
     director: "Réalisation",
     creator: "Créé par",
     cast: "Distribution",
@@ -117,8 +139,11 @@ export const fr: Messages = {
   auth: {
     email: "E-mail",
     password: "Mot de passe",
-    name: "Nom",
+    name: "Nom de super-héros",
+    nameHint: "Choisissez un nom de fantaisie : inutile d'utiliser votre vrai nom.",
     passwordHint: "Au moins {min} caractères.",
+    showPassword: "Afficher le mot de passe",
+    hidePassword: "Masquer le mot de passe",
     login: {
       title: "Se connecter",
       intro: "Connectez-vous pour conserver votre progression sur tous vos appareils.",
@@ -147,11 +172,20 @@ export const fr: Messages = {
       passwordLong: "Le mot de passe est trop long.",
       reauthenticate: "Par sécurité, déconnectez-vous puis reconnectez-vous avant de continuer.",
       tooManyRequests: "Trop de tentatives. Patientez quelques minutes puis réessayez.",
+      required: "Remplissez ce champ.",
       generic: "L'opération a échoué. Réessayez plus tard.",
     },
   },
   account: {
     title: "Votre compte",
+    export: {
+      heading: "Vos données",
+      description:
+        "Téléchargez une copie des données de votre compte (profil, titres vus et sessions) au format JSON.",
+      button: "Télécharger mes données",
+      pending: "Préparation…",
+      error: "Impossible de télécharger les données. Réessayez plus tard.",
+    },
     profile: {
       heading: "Profil",
       email: "E-mail",
@@ -179,6 +213,113 @@ export const fr: Messages = {
       pending: "Suppression…",
     },
   },
+  common: {
+    close: "Fermer",
+    cancel: "Annuler",
+    loading: "Chargement…",
+    retry: "Réessayer",
+  },
+  error: {
+    title: "Un problème est survenu",
+    body: "Une erreur inattendue s'est produite. Essayez de recharger la page.",
+    home: "Retour au planificateur",
+  },
+  prerequisites: {
+    heading: "Avant de le regarder",
+    levels: {
+      essential: "Essentiel",
+      recommended: "Recommandé",
+      optional: "Facultatif",
+    },
+    watched: "Vu",
+    notWatched: "Pas encore vu",
+    show: "Afficher les raisons",
+    hide: "Masquer les raisons",
+    warning: "Attention : les raisons peuvent révéler des éléments des titres précédents.",
+    outside: "En dehors de ce planificateur",
+    provisional: "Liste provisoire : elle pourrait changer à la sortie du titre.",
+    status: {
+      standalone: "Inutile d'avoir vu autre chose : vous pouvez le regarder tout de suite.",
+      missingEssential: "Avant de le regarder, il vaut mieux voir : {titles}.",
+      ready:
+        "Vous pouvez le regarder l'esprit tranquille : vous avez vu tout l'essentiel. Les titres recommandés vous donneront quelques références en plus.",
+      wellPrepared:
+        "Vous pouvez le regarder l'esprit tranquille : vous avez vu tout ce qu'il faut pour suivre l'histoire. Il ne reste que des détails facultatifs.",
+      complete:
+        "Vous avez tout vu : vous pouvez le regarder l'esprit tranquille et saisir chaque référence.",
+    },
+  },
+  postCredits: {
+    heading: "Scènes pendant et après le générique",
+    none: "Aucune scène : vous pouvez arrêter quand le générique commence.",
+    noneBefore: "Aucune scène dans le générique : la scène finale arrive avant le générique.",
+    tipEnd: "Restez jusqu'à la toute fin du générique pour toutes les voir.",
+    tipMid: "Ne partez pas tout de suite : la scène arrive pendant le générique.",
+    positions: {
+      before: "Avant le générique",
+      mid: "En milieu de générique",
+      credits: "Pendant le générique",
+      end: "À la fin du générique",
+    },
+    show: "Afficher ce qui se passe",
+    hide: "Masquer ce qui se passe",
+    warning: "Attention : les scènes contiennent des spoilers.",
+  },
+  cookiePage: {
+    intro: "Cette page recense tout ce que le site enregistre sur votre appareil.",
+    noBannerHeading: "Aucun consentement à donner",
+    noBannerBody:
+      "Le site n'utilise que des outils techniques, nécessaires au service que vous demandez (connexion, langue, progression, filtres). Pour ceux-ci, la réglementation n'exige ni consentement ni bandeau. Nous n'utilisons aucun cookie d'analyse, de publicité ou de profilage et ne chargeons aucune ressource tierce : si cela change un jour, nous vous demanderons d'abord votre consentement.",
+    tableCaption: "Cookies et données enregistrés dans votre navigateur",
+    columns: {
+      name: "Nom",
+      kind: "Type",
+      purpose: "Finalité",
+      duration: "Durée",
+    },
+    session: {
+      kind: "Cookie technique de session (propre, HttpOnly, SameSite=Lax)",
+      purpose: "Vous maintient connecté après la connexion.",
+      duration: "7 jours après la dernière utilisation, ou jusqu'à la déconnexion",
+    },
+    progress: {
+      kind: "Stockage local (propre)",
+      purpose: "Mémorise les titres marqués comme vus lorsque vous n'avez pas de compte.",
+      duration: "Jusqu'à ce que vous les supprimiez",
+    },
+    language: {
+      kind: "Stockage local (propre)",
+      purpose: "Mémorise la langue choisie.",
+      duration: "Jusqu'à ce que vous les supprimiez",
+    },
+    filters: {
+      kind: "Stockage local (propre)",
+      purpose: "Mémorise les filtres choisis dans le planificateur.",
+      duration: "Jusqu'à ce que vous les supprimiez",
+    },
+    manageHeading: "Comment les gérer",
+    manageBody:
+      "Vous pouvez supprimer les données enregistrées sur cet appareil depuis « Préférences de confidentialité » ou depuis les réglages du navigateur. Le cookie de session est supprimé lorsque vous vous déconnectez.",
+  },
+  privacySettings: {
+    title: "Préférences de confidentialité",
+    intro:
+      "Ce site n'utilise aucun cookie d'analyse, de publicité ou de profilage et ne charge aucune ressource tierce : il n'y a rien à accepter ni à refuser.",
+    clearHeading: "Données sur cet appareil",
+    clearBody:
+      "Supprime la progression (si vous n'avez pas de compte), la langue et les filtres enregistrés dans ce navigateur. Cela ne vous déconnecte pas.",
+    clearButton: "Supprimer les données de cet appareil",
+    clearQuestion: "Supprimer vraiment les données enregistrées sur cet appareil ?",
+    clearConfirm: "Oui, supprimer",
+  },
+  admin: {
+    heading: "Nouveaux titres sur TMDB à examiner",
+    intro: "TMDB répertorie ces titres Marvel absents du catalogue. Ajoutez-les ou ignorez-les.",
+    newTitle: "Nouveau titre",
+    newSeason: "Nouvelle saison",
+    dismiss: "Ignorer",
+    openOnTmdb: "Ouvrir sur TMDB",
+  },
   notFound: {
     title: "Page introuvable",
     back: "Retour au planificateur",
@@ -194,16 +335,16 @@ export const fr: Messages = {
       heading: "Quelles données nous traitons",
       accountLabel: "Données du compte",
       accountText:
-        "nom, e-mail et mot de passe. Le mot de passe n'est conservé que sous forme chiffrée (hash) et n'est jamais lisible.",
+        "nom de super-héros (un pseudo de fantaisie : nous ne demandons pas votre vrai nom), e-mail et mot de passe. Le mot de passe n'est conservé que sous forme chiffrée (hash) et n'est jamais lisible.",
       progressLabel: "Progression",
       progressText:
         "les titres que vous marquez comme vus et la date à laquelle vous les avez marqués.",
       technicalLabel: "Données techniques",
       technicalText:
-        "adresse IP et type de navigateur associés aux sessions de connexion, également utilisés pour limiter les tentatives de connexion répétées.",
+        "adresse IP et type de navigateur associés aux sessions de connexion, et compteurs servant à limiter les tentatives de connexion répétées.",
       deviceLabel: "Sur votre appareil",
       deviceText:
-        "sans compte, votre progression reste enregistrée uniquement dans votre navigateur (localStorage) et ne nous est pas transmise. La langue choisie est mémorisée de la même façon.",
+        "sans compte, votre progression reste enregistrée uniquement dans votre navigateur (localStorage) et ne nous est pas transmise. La langue et les filtres choisis sont mémorisés de la même façon. Vous pouvez supprimer ces données à tout moment depuis « Préférences de confidentialité ».",
     },
     purposes: {
       heading: "Pourquoi nous les traitons",
@@ -215,21 +356,26 @@ export const fr: Messages = {
         "Nous n'utilisons pas vos données à des fins publicitaires ou de profilage, nous ne les vendons pas et ne les cédons pas à des tiers.",
     },
     cookies: {
-      heading: "Cookies",
-      body: "Nous utilisons uniquement un cookie technique de session, nécessaire pour vous maintenir connecté. Nous n'utilisons pas de cookies d'analyse ou de profilage.",
+      heading: "Cookies et stockage local",
+      body: "Nous n'utilisons que des cookies techniques, nécessaires au fonctionnement : un cookie de session pour vous maintenir connecté. Nous n'utilisons aucun cookie d'analyse, de publicité ou de profilage, ni cookie tiers ; votre consentement n'est donc pas requis (art. 122 du Code italien de la vie privée, directive ePrivacy et lignes directrices du Garante du 10 juin 2021). La liste complète figure dans la {link}.",
+      link: "fenêtre « Préférences de confidentialité »",
     },
     providers: {
       heading: "Où elles sont conservées et qui les traite",
-      body: "Le site et la base de données sont hébergés par Cloudflare, la base de données étant située en Europe occidentale. Cloudflare agit en tant que sous-traitant. Les informations sur les titres (synopsis, intrigues, distribution, affiches et images de fond) proviennent de TMDB et de Wikipédia ; les images sont chargées directement depuis les serveurs de TMDB, qui reçoit donc l'adresse IP de toute personne ouvrant les détails d'un titre. Cloudflare et TMDB sont établis aux États-Unis : certaines données peuvent être transférées hors de l'Union européenne, dans le respect des garanties prévues par le RGPD (EU-US Data Privacy Framework et clauses contractuelles types).",
+      body: "Le site et la base de données sont hébergés par Cloudflare, la base de données étant située en Europe occidentale ; Cloudflare agit en tant que sous-traitant. Les informations sur les titres (synopsis, intrigues, distribution, affiches et images de fond) sont demandées par notre serveur à TMDB, Wikipédia et Wikidata : votre navigateur ne contacte jamais directement ces services et ne leur communique donc pas votre adresse IP. Cloudflare est établi aux États-Unis : certaines données peuvent être transférées hors de l'Union européenne, dans le respect des garanties prévues par le RGPD (EU-US Data Privacy Framework et clauses contractuelles types).",
     },
     retention: {
       heading: "Pendant combien de temps",
-      body: "Nous conservons vos données tant que votre compte existe. Les sessions expirent après 7 jours d'inactivité. Lorsque vous supprimez votre compte, le nom, l'e-mail, la progression et les sessions sont supprimés immédiatement ; les éventuelles copies de sauvegarde techniques sont écrasées sous 30 jours.",
+      body: "Nous conservons les données de votre compte tant qu'il existe. Les sessions expirent après 7 jours et les sessions expirées sont supprimées chaque jour ; les compteurs limitant les connexions répétées sont supprimés après un jour ; les informations sur les titres reçues de tiers restent en cache 90 jours au maximum. Lorsque vous supprimez votre compte, le nom de super-héros, l'e-mail, la progression et les sessions sont supprimés immédiatement ; les éventuelles copies de sauvegarde techniques sont écrasées sous 30 jours.",
     },
     rights: {
       heading: "Vos droits",
-      body: "Vous pouvez demander à tout moment l'accès, la rectification, l'effacement, la limitation ou la portabilité de vos données, ou vous opposer au traitement, en écrivant à {email}. Vous pouvez modifier votre nom et supprimer votre compte directement depuis la page {account}. Vous avez également le droit d'introduire une réclamation auprès de l'autorité italienne de protection des données, le Garante ({garante}).",
+      body: "Vous pouvez demander à tout moment l'accès, la rectification, l'effacement, la limitation ou la portabilité de vos données, ou vous opposer au traitement, en écrivant à {email}. Depuis la page {account}, vous pouvez modifier votre nom de super-héros, télécharger vos données au format JSON et supprimer votre compte. Nous ne prenons aucune décision fondée sur un traitement automatisé. Vous avez également le droit d'introduire une réclamation auprès de l'autorité italienne de protection des données, le Garante ({garante}).",
       accountLink: "Votre compte",
+    },
+    other: {
+      heading: "Autres juridictions",
+      body: "Nous ne vendons ni ne partageons vos données personnelles à des fins de publicité ciblée ou à d'autres fins commerciales. Les mêmes protections s'appliquent aux personnes qui utilisent le site depuis l'extérieur de l'Union européenne (par exemple en Californie, au Royaume-Uni ou au Brésil) : vous pouvez exercer les mêmes droits en écrivant à {email}.",
     },
     minors: {
       heading: "Mineurs",

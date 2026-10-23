@@ -1,29 +1,40 @@
 import { CircleUserRound, LogOut } from "lucide-react";
-import { Link } from "react-router";
-import { PATHS } from "../../../app/paths";
 import { useI18n } from "../../../i18n/useI18n";
 import { useAuth } from "../hooks/useAuth";
+import { useAuthDialog } from "../hooks/useAuthDialog";
 
 export function AccountMenu() {
   const { t } = useI18n();
   const { user, status, logout } = useAuth();
+  const { open } = useAuthDialog();
 
   if (status === "loading") return null;
 
   if (!user) {
     return (
-      <Link to={PATHS.login} aria-label={t("nav.login")} title={t("nav.login")}>
+      <button
+        type="button"
+        aria-haspopup="dialog"
+        aria-label={t("nav.login")}
+        title={t("nav.login")}
+        onClick={() => open("login")}
+      >
         <CircleUserRound aria-hidden />
-      </Link>
+      </button>
     );
   }
 
   return (
     <div>
-      <Link to={PATHS.account} title={t("nav.account")}>
+      <button
+        type="button"
+        aria-haspopup="dialog"
+        title={t("nav.account")}
+        onClick={() => open("account")}
+      >
         <CircleUserRound aria-hidden />
         {user.name}
-      </Link>
+      </button>
       <button type="button" onClick={logout} aria-label={t("nav.logout")} title={t("nav.logout")}>
         <LogOut aria-hidden />
       </button>

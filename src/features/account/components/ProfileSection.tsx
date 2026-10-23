@@ -1,5 +1,6 @@
 import { Save } from "lucide-react";
 import { useId, useState, type FormEvent } from "react";
+import { TextField } from "../../../components/ui/Field";
 import { useI18n } from "../../../i18n/useI18n";
 import { useAuth } from "../../auth/hooks/useAuth";
 import { useAuthAction } from "../../auth/hooks/useAuthAction";
@@ -21,29 +22,27 @@ export function ProfileSection({ user }: ProfileSectionProps) {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    void run(trimmedName);
+    if (hasChanges && trimmedName) void run(trimmedName);
   };
 
   return (
     <section aria-labelledby={headingId}>
-      <h2 id={headingId}>{t("account.profile.heading")}</h2>
+      <h3 id={headingId}>{t("account.profile.heading")}</h3>
       <dl>
         <dt>{t("account.profile.email")}</dt>
         <dd>{user.email}</dd>
       </dl>
-      <form onSubmit={handleSubmit}>
-        <label>
-          {t("auth.name")}
-          <input
-            type="text"
-            name="name"
-            autoComplete="nickname"
-            required
-            maxLength={60}
-            value={name}
-            onChange={(event) => setName(event.target.value)}
-          />
-        </label>
+      <form onSubmit={handleSubmit} noValidate>
+        <TextField
+          label={t("auth.name")}
+          name="name"
+          autoComplete="nickname"
+          required
+          maxLength={30}
+          value={name}
+          onChange={setName}
+          hint={t("auth.nameHint")}
+        />
         {error && <p role="alert">{error}</p>}
         {isDone && !hasChanges && <p role="status">{t("account.profile.saved")}</p>}
         <button type="submit" disabled={isPending || !hasChanges || !trimmedName}>
