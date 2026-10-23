@@ -1,16 +1,20 @@
-import { useState } from "react";
+import { useMemo, useRef, useState } from "react";
+import { FOOTER_ID } from "../../../app/dom";
 import { ConfirmDialog } from "../../../components/ui/ConfirmDialog";
 import { useI18n } from "../../../i18n/useI18n";
 import { STORAGE_KEYS } from "../../../lib/storageKeys";
 import { usePersistentState } from "../../../lib/usePersistentState";
 import { useCollapsedPhases } from "../hooks/useCollapsedPhases";
-import { useFilteredCatalog } from "../hooks/useFilteredCatalog";
+import { useFloatingProgressVisibility } from "../hooks/useFloatingProgressVisibility";
+import { useResolvedCatalog } from "../hooks/useResolvedCatalog";
 import { useWatched } from "../hooks/useWatched";
-import { DEFAULT_FILTERS, isFilters } from "../utils/filters";
+import { DEFAULT_FILTERS, filterCatalog, flattenTitles, isFilters } from "../utils/filters";
 import { computeProgress } from "../utils/progress";
+import { FloatingProgress } from "./FloatingProgress";
+import { PlannerActions } from "./PlannerActions";
+import { PlannerFilters } from "./PlannerFilters";
 import { PlannerGuide } from "./PlannerGuide";
 import { PlannerSummary } from "./PlannerSummary";
-import { PlannerToolbar } from "./PlannerToolbar";
 import { SagaSection } from "./SagaSection";
 
 export function Planner() {
@@ -21,12 +25,17 @@ export function Planner() {
     isFilters,
   );
   const [isResetDialogOpen, setIsResetDialogOpen] = useState(false);
-  const sagas = useFilteredCatalog(filters);
+  const progressRef = useRef<HTMLDivElement>(null);
+
+  const catalog = useResolvedCatalog();
+  const sagas = useMemo(() => filterCatalog(catalog, filters), [catalog, filters]);
   const { watched, isLoading, error, storage, toggle, reset } = useWatched();
   const { collapsed, areAllCollapsed, setPhaseCollapsed, toggleAll } = useCollapsedPhases();
+  const isFloatingProgressVisible = useFloatingProgressVisibility(progressRef, FOOTER_ID);
 
-  const visibleTitles = sagas.flatMap((saga) => saga.phases.flatMap((phase) => phase.titles));
-  const overall = computeProgress(visibleTitles, watched);
+  const allTitles = flattenTitles(catalog);
+  const overall = computeProgress(allTitles, watched);
+  const shownCount = flattenTitles(sagas).length;
 
   const confirmReset = () => {
     setIsResetDialogOpen(false);
@@ -34,12 +43,22 @@ export function Planner() {
   };
 
   return (
-    <>
-      <PlannerSummary progress={overall} storage={storage} error={error} />
+    <div className="planner">
+      <PlannerSummary
+        progress={overall}
+        storage={storage}
+        error={error}
+        progressRef={progressRef}
+      />
 
-      <PlannerToolbar
+      <PlannerFilters
         filters={filters}
-        onFiltersChange={setFilters}
+        onChange={setFilters}
+        shown={shownCount}
+        total={allTitles.length}
+      />
+
+      <PlannerActions
         areAllCollapsed={areAllCollapsed}
         onToggleAll={toggleAll}
         onReset={() => setIsResetDialogOpen(true)}
@@ -60,6 +79,8 @@ export function Planner() {
 
       <PlannerGuide />
 
+      <FloatingProgress progress={overall} isVisible={isFloatingProgressVisible} />
+
       <ConfirmDialog
         isOpen={isResetDialogOpen}
         title={t("planner.reset.title")}
@@ -69,6 +90,6 @@ export function Planner() {
         onConfirm={confirmReset}
         onCancel={() => setIsResetDialogOpen(false)}
       />
-    </>
+    </div>
   );
 }

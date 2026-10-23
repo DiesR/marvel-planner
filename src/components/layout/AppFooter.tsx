@@ -1,5 +1,6 @@
 import { ShieldCheck } from "lucide-react";
 import { Link } from "react-router";
+import { FOOTER_ID } from "../../app/dom";
 import { PATHS } from "../../app/paths";
 import { usePrivacySettings } from "../../features/privacy/hooks/usePrivacySettings";
 import { useI18n } from "../../i18n/useI18n";
@@ -10,7 +11,7 @@ export function AppFooter() {
   const { open } = usePrivacySettings();
 
   return (
-    <footer>
+    <footer id={FOOTER_ID}>
       <CoffeeLink />
       <p>{t("footer.disclaimer")}</p>
       <p>

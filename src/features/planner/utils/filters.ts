@@ -1,26 +1,49 @@
-import type { Filters, Title, TypeFilter } from "../types";
+import type { Filters, MediaType, Saga, Title } from "../types";
 
 export const DEFAULT_FILTERS: Filters = {
-  type: "all",
-  hideAlternate: false,
-  hideUpcoming: false,
+  types: ["film", "serie", "special"],
+  showAlternate: true,
+  showUpcoming: true,
 };
 
 export function matchesFilters(title: Title, filters: Filters): boolean {
-  if (filters.type !== "all" && title.type !== filters.type) return false;
-  if (filters.hideAlternate && title.continuity === "alternate") return false;
-  if (filters.hideUpcoming && title.status === "upcoming") return false;
+  if (!filters.types.includes(title.type)) return false;
+  if (!filters.showAlternate && title.continuity === "alternate") return false;
+  if (!filters.showUpcoming && title.status === "upcoming") return false;
   return true;
 }
 
-const TYPE_FILTERS: TypeFilter[] = ["all", "film", "serie", "special"];
+export function areDefaultFilters(filters: Filters): boolean {
+  return (
+    DEFAULT_FILTERS.types.every((type) => filters.types.includes(type)) &&
+    filters.showAlternate === DEFAULT_FILTERS.showAlternate &&
+    filters.showUpcoming === DEFAULT_FILTERS.showUpcoming
+  );
+}
+
+export function filterCatalog(catalog: Saga[], filters: Filters): Saga[] {
+  return catalog.map((saga) => ({
+    ...saga,
+    phases: saga.phases.map((phase) => ({
+      ...phase,
+      titles: phase.titles.filter((title) => matchesFilters(title, filters)),
+    })),
+  }));
+}
+
+export function flattenTitles(catalog: Saga[]): Title[] {
+  return catalog.flatMap((saga) => saga.phases.flatMap((phase) => phase.titles));
+}
+
+const MEDIA_TYPES: MediaType[] = ["film", "serie", "special"];
 
 export function isFilters(value: unknown): value is Filters {
   if (typeof value !== "object" || value === null) return false;
   const candidate = value as Record<string, unknown>;
   return (
-    TYPE_FILTERS.includes(candidate.type as TypeFilter) &&
-    typeof candidate.hideAlternate === "boolean" &&
-    typeof candidate.hideUpcoming === "boolean"
+    Array.isArray(candidate.types) &&
+    candidate.types.every((type) => MEDIA_TYPES.includes(type as MediaType)) &&
+    typeof candidate.showAlternate === "boolean" &&
+    typeof candidate.showUpcoming === "boolean"
   );
 }

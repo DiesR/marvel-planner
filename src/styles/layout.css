@@ -1,0 +1,40 @@
+:root {
+  --floating-progress-height: 3rem;
+  --floating-progress-gap: 0.75rem;
+  --floating-progress-clearance: calc(
+    var(--floating-progress-height) + var(--floating-progress-gap) * 2 +
+      env(safe-area-inset-bottom, 0px)
+  );
+}
+
+html {
+  scroll-padding-bottom: var(--floating-progress-clearance);
+}
+
+.planner {
+  padding-bottom: var(--floating-progress-clearance);
+}
+
+.floating-progress {
+  position: fixed;
+  bottom: calc(var(--floating-progress-gap) + env(safe-area-inset-bottom, 0px));
+  left: 50%;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  box-sizing: border-box;
+  min-height: var(--floating-progress-height);
+  max-width: calc(100vw - 2rem);
+  padding: 0 1rem;
+  transform: translateX(-50%);
+  border: 1px solid CanvasText;
+  border-radius: 999px;
+  background: Canvas;
+  color: CanvasText;
+  pointer-events: none;
+}
+
+.floating-progress[hidden] {
+  display: none;
+}

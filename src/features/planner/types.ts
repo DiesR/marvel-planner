@@ -27,12 +27,10 @@ export interface Saga {
   phases: Phase[];
 }
 
-export type TypeFilter = "all" | MediaType;
-
 export interface Filters {
-  type: TypeFilter;
-  hideAlternate: boolean;
-  hideUpcoming: boolean;
+  types: MediaType[];
+  showAlternate: boolean;
+  showUpcoming: boolean;
 }
 
 export interface Progress {
