@@ -53,6 +53,7 @@ migrations/                 # migrazioni SQL generate da drizzle-kit
 
 | Metodo   | Percorso                 | Descrizione                              |
 | -------- | ------------------------ | ---------------------------------------- |
+| `GET`    | `/api/config`            | Provider di login social disponibili     |
 | `*`      | `/api/auth/*`            | Registrazione, login, logout, sessione   |
 | `GET`    | `/api/progress`          | Titoli visti dall'utente                 |
 | `POST`   | `/api/progress`          | Segna come visti `{ "titleIds": [...] }` |
@@ -75,7 +76,16 @@ Al login, i progressi salvati sul dispositivo vengono uniti a quelli dell'accoun
 
 ## Login social
 
-Google e Discord si attivano impostando i secret `GOOGLE_CLIENT_ID`/`GOOGLE_CLIENT_SECRET` e `DISCORD_CLIENT_ID`/`DISCORD_CLIENT_SECRET` con `npx wrangler secret put <NOME>`.
+Il login con Google si attiva impostando le credenziali; il pulsante compare solo se il provider è configurato (`GET /api/config`).
+
+| Provider | URL di callback                      |
+| -------- | ------------------------------------ |
+| Google   | `<origine>/api/auth/callback/google` |
+
+- Produzione: `npx wrangler secret put GOOGLE_CLIENT_ID` e `npx wrangler secret put GOOGLE_CLIENT_SECRET`
+- Locale: stesse variabili in `.dev.vars`
+
+Un account social non viene mai collegato automaticamente a un account esistente con email non verificata.
 
 ## Pubblicazione
 

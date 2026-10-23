@@ -1,10 +1,19 @@
 import { createContext } from "react";
-import type { AuthStatus, Credentials, PasswordChange, Registration, User } from "../types";
+import type {
+  AuthStatus,
+  Credentials,
+  PasswordChange,
+  Registration,
+  SocialProvider,
+  User,
+} from "../types";
 
 export interface AuthContextValue {
   user: User | null;
   status: AuthStatus;
   login(credentials: Credentials): Promise<void>;
+  loginWithProvider(provider: SocialProvider): Promise<void>;
+  getSocialProviders(): Promise<SocialProvider[]>;
   register(registration: Registration): Promise<void>;
   logout(): Promise<void>;
   updateName(name: string): Promise<void>;

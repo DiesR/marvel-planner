@@ -1,9 +1,10 @@
-import { betterAuth, type BetterAuthOptions } from "better-auth";
+import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { APIError } from "better-auth/api";
 import type { Database } from "./db/client";
 import * as schema from "./db/schema";
 import type { Env } from "./env";
+import { socialProviders } from "./socialProviders";
 
 const MIN_PASSWORD_LENGTH = 10;
 const MAX_NAME_LENGTH = 60;
@@ -14,19 +15,6 @@ function normalizeName(name: unknown): string {
     throw new APIError("BAD_REQUEST", { code: "INVALID_NAME", message: "Invalid name" });
   }
   return normalized.slice(0, MAX_NAME_LENGTH);
-}
-
-function socialProviders(env: Env): BetterAuthOptions["socialProviders"] {
-  return {
-    ...(env.GOOGLE_CLIENT_ID &&
-      env.GOOGLE_CLIENT_SECRET && {
-        google: { clientId: env.GOOGLE_CLIENT_ID, clientSecret: env.GOOGLE_CLIENT_SECRET },
-      }),
-    ...(env.DISCORD_CLIENT_ID &&
-      env.DISCORD_CLIENT_SECRET && {
-        discord: { clientId: env.DISCORD_CLIENT_ID, clientSecret: env.DISCORD_CLIENT_SECRET },
-      }),
-  };
 }
 
 export function createAuth(env: Env, db: Database) {
