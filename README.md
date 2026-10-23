@@ -1,4 +1,4 @@
-# MCU · Planner di visione
+# Marvel Planner
 
 Planner per tenere traccia di film e serie del Marvel Cinematic Universe.
 Frontend React + TypeScript (Vite), backend TypeScript su Cloudflare Workers con database D1.
