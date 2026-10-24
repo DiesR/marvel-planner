@@ -1,4 +1,4 @@
-import { ListFilter, Share2 } from "lucide-react";
+import { ListFilter } from "lucide-react";
 import { Button } from "../../../../components/ui/Button";
 import { useI18n } from "../../../../i18n/useI18n";
 import { CollapseToggle } from "../CollapseToggle";
@@ -10,7 +10,6 @@ interface MobileToolbarProps {
   canCollapse: boolean;
   areAllCollapsed: boolean;
   onOpenFilters: () => void;
-  onShare: () => void;
   onToggleAll: () => void;
 }
 
@@ -21,23 +20,25 @@ export function MobileToolbar({
   canCollapse,
   areAllCollapsed,
   onOpenFilters,
-  onShare,
   onToggleAll,
 }: MobileToolbarProps) {
   const { t } = useI18n();
 
   return (
     <div className="mobile-toolbar">
-      <div className="mobile-toolbar__buttons">
-        <Button
-          variant="soft"
-          size="lg"
-          className="mobile-toolbar__filters"
-          icon={<ListFilter aria-hidden />}
-          aria-haspopup="dialog"
-          onClick={onOpenFilters}
-        >
-          <span>{t("planner.filters.heading")}</span>
+      <p className="visually-hidden" role="status">
+        {t("planner.filters.results", { shown, total })}
+      </p>
+      <Button
+        variant="surface"
+        size="lg"
+        className="mobile-toolbar__filters"
+        aria-haspopup="dialog"
+        onClick={onOpenFilters}
+      >
+        <span className="mobile-toolbar__label">
+          <ListFilter aria-hidden />
+          {t("planner.filters.heading")}
           {activeFilters > 0 && (
             <span className="badge">
               {activeFilters}
@@ -47,23 +48,16 @@ export function MobileToolbar({
               </span>
             </span>
           )}
-        </Button>
-        <Button variant="accent" size="lg" icon={<Share2 aria-hidden />} onClick={onShare}>
-          {t("share.open")}
-        </Button>
-      </div>
-      <div className="mobile-toolbar__status">
-        <p className="muted" role="status">
-          {t("planner.filters.results", { shown, total })}
-        </p>
-        {canCollapse && (
-          <CollapseToggle
-            areAllCollapsed={areAllCollapsed}
-            onToggleAll={onToggleAll}
-            variant="text"
-          />
-        )}
-      </div>
+        </span>
+        <span className="mobile-toolbar__count muted" aria-hidden="true">
+          {t("planner.filters.resultsShort", { shown, total })}
+        </span>
+      </Button>
+      {canCollapse && (
+        <div className="mobile-toolbar__collapse">
+          <CollapseToggle size="sm" areAllCollapsed={areAllCollapsed} onToggleAll={onToggleAll} />
+        </div>
+      )}
     </div>
   );
 }

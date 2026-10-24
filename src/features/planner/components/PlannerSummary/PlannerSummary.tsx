@@ -1,4 +1,4 @@
-import { RotateCcw, Share2 } from "lucide-react";
+import { ArrowRight, RotateCcw, Share2 } from "lucide-react";
 import { useId, useState, type Ref } from "react";
 import { Button } from "../../../../components/ui/Button";
 import { Chevron } from "../../../../components/ui/Chevron";
@@ -58,6 +58,16 @@ export function PlannerSummary({
           value={progress.done}
           max={Math.max(progress.total, 1)}
         />
+
+        {!isDesktop && (
+          <button type="button" className="progress-card__share" onClick={onShare}>
+            <span className="progress-card__share-label">
+              <Share2 aria-hidden />
+              {t("planner.sharePoster.title")}
+            </span>
+            <ArrowRight aria-hidden />
+          </button>
+        )}
 
         {!isDesktop && (
           <>

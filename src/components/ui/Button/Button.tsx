@@ -3,7 +3,7 @@ import { buttonClass, type ButtonVariant } from "./buttonClass";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
-  size?: "md" | "lg";
+  size?: "sm" | "md" | "lg";
   icon?: ReactNode;
   children?: ReactNode;
 }

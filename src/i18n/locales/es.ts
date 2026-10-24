@@ -49,6 +49,11 @@ export const es: Messages = {
     dark: "Oscuro",
     current: "Tema: {name}. Cambiar tema.",
   },
+  poster: {
+    loading: "Cargando el póster",
+    missing: "Póster no disponible",
+    none: "Sin póster",
+  },
   planner: {
     title: "Planificador de visionado",
     progressHeading: "Tu progreso",
@@ -108,6 +113,7 @@ export const es: Messages = {
       heading: "Filtros",
       show: "Mostrar {count} títulos",
       activeCount: "{count} filtros activos",
+      resultsShort: "{shown} de {total} títulos",
       results: "Mostrando {shown} de {total}",
       remove: "Quitar",
       clear: "Quitar filtros",
@@ -365,7 +371,8 @@ export const es: Messages = {
     },
     watched: "Visto",
     notWatched: "Aún por ver",
-    why: "¿Por qué? (spoilers)",
+    why: "¿Por qué?",
+    warning: "Los motivos revelan detalles de la historia.",
     outside: "Fuera de este planificador",
     provisional: "Lista provisional: puede cambiar cuando se estrene el título.",
     status: {

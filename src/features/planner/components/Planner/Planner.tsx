@@ -140,7 +140,7 @@ export function Planner({ shareCode }: PlannerProps) {
               />
               {canCollapse && (
                 <CollapseToggle
-                  variant="surface"
+                  size="lg"
                   areAllCollapsed={areAllCollapsed}
                   onToggleAll={toggleAll}
                 />
@@ -156,7 +156,6 @@ export function Planner({ shareCode }: PlannerProps) {
               canCollapse={canCollapse}
               areAllCollapsed={areAllCollapsed}
               onOpenFilters={() => setIsFiltersOpen(true)}
-              onShare={openShare}
               onToggleAll={toggleAll}
             />
             <FiltersSheet

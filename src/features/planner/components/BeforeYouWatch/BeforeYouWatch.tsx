@@ -1,4 +1,4 @@
-import { Check, Circle, Eye, EyeOff } from "lucide-react";
+import { Check, Circle, Eye, TriangleAlert } from "lucide-react";
 import { useId, useState } from "react";
 import type { TranslationKey } from "../../../../i18n/types";
 import { useI18n } from "../../../../i18n/useI18n";
@@ -56,11 +56,18 @@ export function BeforeYouWatch({ title, watched }: BeforeYouWatchProps) {
             aria-controls={reasonIds}
             onClick={() => setAreReasonsRevealed(!areReasonsRevealed)}
           >
-            {areReasonsRevealed ? <EyeOff aria-hidden /> : <Eye aria-hidden />}
+            <Eye aria-hidden />
             {t("prerequisites.why")}
           </button>
         )}
       </div>
+
+      {guide.prerequisites.length > 0 && !areReasonsRevealed && (
+        <p className="before-you-watch__warning muted">
+          <TriangleAlert aria-hidden />
+          {t("prerequisites.warning")}
+        </p>
+      )}
 
       <p className="before-you-watch__status muted" role="status">
         {t(STATUS_KEYS[readiness.kind], { titles })}

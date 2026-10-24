@@ -1,26 +1,27 @@
+import { PosterImage } from "../../../../components/ui/PosterImage";
 import { useI18n } from "../../../../i18n/useI18n";
 import { useTitleDetails } from "../../hooks/useTitleDetails";
 import { posterUrl } from "../../utils/format";
 
 interface PosterThumbProps {
   titleId: string;
+  isLarge: boolean;
 }
 
-export function PosterThumb({ titleId }: PosterThumbProps) {
+export function PosterThumb({ titleId, isLarge }: PosterThumbProps) {
   const { t } = useI18n();
   const state = useTitleDetails(titleId);
+  const posterPath = state.status === "ready" ? state.details.posterPath : null;
+  const name = state.status === "ready" ? state.details.name : "";
 
   return (
     <div className="poster-thumb">
-      {state.status === "loading" && (
-        <span className="poster-thumb__loading">{t("common.loading")}</span>
-      )}
-      {state.status === "ready" && state.details.posterPath && (
-        <img
-          src={posterUrl(state.details.posterPath)}
-          alt={t("details.posterAlt", { name: state.details.name })}
-        />
-      )}
+      <PosterImage
+        src={posterPath ? posterUrl(posterPath) : null}
+        alt={t("details.posterAlt", { name })}
+        isFetching={state.status === "loading"}
+        showText={isLarge}
+      />
     </div>
   );
 }

@@ -6,22 +6,26 @@
   gap: 8px;
 }
 
-.mobile-toolbar__buttons {
-  display: flex;
-  gap: 8px;
-}
-
 .mobile-toolbar__filters {
-  flex: 1;
   justify-content: space-between;
+  min-height: 56px;
+  padding: 0 20px;
 }
 
-.mobile-toolbar__status {
-  display: flex;
+.mobile-toolbar__label {
+  display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  font-size: 0.875rem;
+  gap: 10px;
+}
+
+.mobile-toolbar__count {
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.mobile-toolbar__collapse {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .badge {

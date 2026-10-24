@@ -50,6 +50,11 @@ export const de: Messages = {
     dark: "Dunkel",
     current: "Design: {name}. Design wechseln.",
   },
+  poster: {
+    loading: "Poster wird geladen",
+    missing: "Poster nicht verfügbar",
+    none: "Kein Poster",
+  },
   planner: {
     title: "Watch-Planer",
     progressHeading: "Dein Fortschritt",
@@ -110,6 +115,7 @@ export const de: Messages = {
       heading: "Filter",
       show: "{count} Titel anzeigen",
       activeCount: "{count} aktive Filter",
+      resultsShort: "{shown} von {total} Titeln",
       results: "{shown} von {total} angezeigt",
       remove: "Entfernen",
       clear: "Filter zurücksetzen",
@@ -367,7 +373,8 @@ export const de: Messages = {
     },
     watched: "Gesehen",
     notWatched: "Noch nicht gesehen",
-    why: "Warum? (Spoiler)",
+    why: "Warum?",
+    warning: "Die Gründe verraten Handlungsdetails.",
     outside: "Außerhalb dieses Planers",
     provisional: "Vorläufige Liste: Sie kann sich ändern, sobald der Titel erscheint.",
     status: {

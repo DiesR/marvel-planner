@@ -14,6 +14,19 @@
   gap: 4px 12px;
 }
 
+.before-you-watch__warning {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.875rem;
+
+  svg {
+    flex: none;
+    width: 16px;
+    height: 16px;
+  }
+}
+
 .before-you-watch__status {
   font-size: 0.875rem;
 }
@@ -69,7 +82,9 @@
 
 .prereq__reason {
   grid-column: 1 / -1;
-  font-size: 0.875rem;
+  max-width: 62ch;
+  font-size: 0.9375rem;
+  color: var(--ink);
 }
 
 .before-you-watch__outside {

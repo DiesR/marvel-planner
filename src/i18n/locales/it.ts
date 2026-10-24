@@ -47,6 +47,11 @@ export const it = {
     dark: "Scuro",
     current: "Tema: {name}. Cambia tema.",
   },
+  poster: {
+    loading: "Caricamento della locandina",
+    missing: "Locandina non disponibile",
+    none: "Nessuna locandina",
+  },
   planner: {
     title: "Planner di visione",
     progressHeading: "I tuoi progressi",
@@ -105,6 +110,7 @@ export const it = {
       heading: "Filtri",
       show: "Mostra {count} titoli",
       activeCount: "{count} filtri attivi",
+      resultsShort: "{shown} di {total} titoli",
       results: "Mostrati {shown} di {total}",
       remove: "Rimuovi",
       clear: "Rimuovi filtri",
@@ -362,7 +368,8 @@ export const it = {
     },
     watched: "Visto",
     notWatched: "Da vedere",
-    why: "Perché? (spoiler)",
+    why: "Perché?",
+    warning: "I motivi rivelano dettagli della trama.",
     outside: "Fuori dal planner",
     provisional: "Elenco provvisorio: potrebbe cambiare quando il titolo uscirà.",
     status: {

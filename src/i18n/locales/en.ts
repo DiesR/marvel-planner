@@ -49,6 +49,11 @@ export const en: Messages = {
     dark: "Dark",
     current: "Theme: {name}. Change theme.",
   },
+  poster: {
+    loading: "Loading poster",
+    missing: "No poster available",
+    none: "No poster",
+  },
   planner: {
     title: "Watch planner",
     progressHeading: "Your progress",
@@ -107,6 +112,7 @@ export const en: Messages = {
       heading: "Filters",
       show: "Show {count} titles",
       activeCount: "{count} active filters",
+      resultsShort: "{shown} of {total} titles",
       results: "Showing {shown} of {total}",
       remove: "Remove",
       clear: "Clear filters",
@@ -364,7 +370,8 @@ export const en: Messages = {
     },
     watched: "Watched",
     notWatched: "Not watched yet",
-    why: "Why? (spoilers)",
+    why: "Why?",
+    warning: "The reasons reveal story details.",
     outside: "Outside this planner",
     provisional: "Provisional list: it may change when the title is released.",
     status: {

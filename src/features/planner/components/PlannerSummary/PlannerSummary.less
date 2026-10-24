@@ -33,6 +33,35 @@
   font-weight: 600;
 }
 
+.progress-card__share {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 60px;
+  padding: 0 24px;
+  .pill();
+  background: var(--gold);
+  color: var(--on-gold);
+  font-size: 1.125rem;
+  font-weight: 800;
+
+  svg {
+    flex: none;
+  }
+}
+
+.progress-card__share-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
 .progress-card__toggle {
   display: flex;
   align-items: center;

@@ -49,6 +49,11 @@ export const fr: Messages = {
     dark: "Sombre",
     current: "Thème : {name}. Changer de thème.",
   },
+  poster: {
+    loading: "Chargement de l'affiche",
+    missing: "Affiche indisponible",
+    none: "Pas d'affiche",
+  },
   planner: {
     title: "Planificateur de visionnage",
     progressHeading: "Votre progression",
@@ -108,6 +113,7 @@ export const fr: Messages = {
       heading: "Filtres",
       show: "Afficher {count} titres",
       activeCount: "{count} filtres actifs",
+      resultsShort: "{shown} sur {total} titres",
       results: "{shown} affichés sur {total}",
       remove: "Retirer",
       clear: "Réinitialiser les filtres",
@@ -365,7 +371,8 @@ export const fr: Messages = {
     },
     watched: "Vu",
     notWatched: "Pas encore vu",
-    why: "Pourquoi ? (spoilers)",
+    why: "Pourquoi ?",
+    warning: "Les raisons révèlent des détails de l'histoire.",
     outside: "En dehors de ce planificateur",
     provisional: "Liste provisoire : elle pourrait changer à la sortie du titre.",
     status: {
