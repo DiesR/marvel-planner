@@ -1,4 +1,4 @@
-import { ArrowRight, RotateCcw, Share2 } from "lucide-react";
+import { RotateCcw, Share2 } from "lucide-react";
 import { useId, useState, type Ref } from "react";
 import { Button } from "../../../../components/ui/Button";
 import { Chevron } from "../../../../components/ui/Chevron";
@@ -65,7 +65,6 @@ export function PlannerSummary({
               <Share2 aria-hidden />
               {t("planner.sharePoster.title")}
             </span>
-            <ArrowRight aria-hidden />
           </button>
         )}
 
