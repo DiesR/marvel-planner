@@ -44,3 +44,15 @@
   font-weight: 600;
   text-align: center;
 }
+
+@keyframes poster-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .poster-image__state--loading svg {
+    animation: poster-spin 0.9s linear infinite;
+  }
+}

@@ -33,7 +33,11 @@ export function PosterImage({ src, alt, isFetching, showText = false }: PosterIm
         />
       )}
       {isLoading && (
-        <span className="poster-image__state" role="img" aria-label={t("poster.loading")}>
+        <span
+          className="poster-image__state poster-image__state--loading"
+          role="img"
+          aria-label={t("poster.loading")}
+        >
           <LoaderCircle aria-hidden />
         </span>
       )}
