@@ -1,6 +1,6 @@
 import { Check, Eye, EyeOff } from "lucide-react";
 import { useId, useState } from "react";
-import { InfoTip } from "../../../../components/ui/InfoTip";
+import { Tooltip } from "../../../../components/ui/Tooltip";
 import { useI18n } from "../../../../i18n/useI18n";
 import { TITLES_BY_ID } from "../../data/catalog";
 import { getGuide } from "../../data/guides";
@@ -33,27 +33,29 @@ export function BeforeYouWatch({ title, watched }: BeforeYouWatchProps) {
   return (
     <section className="before-you-watch" aria-labelledby={headingId}>
       <div className="before-you-watch__header">
-        <div className="before-you-watch__title">
-          <h5 id={headingId} className="section-title">
-            {t("prerequisites.heading")}
-          </h5>
-          {guide.prerequisites.length > 0 && (
-            <InfoTip tone="warning" label={t("prerequisites.infoLabel")}>
-              {t("prerequisites.warning")}
-            </InfoTip>
-          )}
-        </div>
+        <h5 id={headingId} className="section-title">
+          {t("prerequisites.heading")}
+        </h5>
         {guide.prerequisites.length > 0 && (
-          <button
-            type="button"
-            className="why-toggle"
-            aria-expanded={areReasonsRevealed}
-            aria-controls={reasonIds}
-            onClick={() => setAreReasonsRevealed(!areReasonsRevealed)}
-          >
-            {areReasonsRevealed ? <EyeOff aria-hidden /> : <Eye aria-hidden />}
-            {t("prerequisites.why")}
-          </button>
+          <Tooltip tone="warning" content={t("prerequisites.warning")}>
+            {(describedBy) => (
+              <button
+                type="button"
+                className="why-toggle"
+                aria-expanded={areReasonsRevealed}
+                aria-controls={reasonIds}
+                aria-describedby={describedBy}
+                onClick={() => setAreReasonsRevealed(!areReasonsRevealed)}
+              >
+                {areReasonsRevealed ? (
+                  <EyeOff data-tooltip-anchor aria-hidden />
+                ) : (
+                  <Eye data-tooltip-anchor aria-hidden />
+                )}
+                {t("prerequisites.why")}
+              </button>
+            )}
+          </Tooltip>
         )}
       </div>
 

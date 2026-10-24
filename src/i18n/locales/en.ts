@@ -373,7 +373,6 @@ export const en: Messages = {
     watched: "Watched",
     notWatched: "Not watched yet",
     why: "Why?",
-    infoLabel: "Spoiler alert",
     warning: "Heads up, story secrets ahead",
     outside: "Outside this planner",
     provisional: "Provisional list: it may change when the title is released.",

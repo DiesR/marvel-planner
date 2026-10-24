@@ -1,0 +1,42 @@
+@import (reference) "mixins";
+
+.mark-watched {
+  align-self: flex-start;
+  margin: -4px 0;
+}
+
+.mark-watched__button {
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  border-radius: 22px;
+
+  &:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 0;
+  }
+}
+
+.mark-watched__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 34px;
+  padding: 0 14px;
+  border-radius: 17px;
+  background: var(--panel-2);
+  color: var(--panel-ink);
+  font-size: 0.875rem;
+  font-weight: 700;
+
+  svg {
+    flex: none;
+    width: 16px;
+    height: 16px;
+    stroke-width: 3;
+  }
+}
+
+.mark-watched__button--watched svg {
+  color: var(--gold);
+}

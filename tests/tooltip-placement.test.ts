@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { computePlacement, type Rect } from "../src/components/ui/InfoTip/placement";
+import { computePlacement, type Rect } from "../src/components/ui/Tooltip/placement";
 
 const viewport = { width: 1000, height: 800 };
 const box = { width: 200, height: 40 };

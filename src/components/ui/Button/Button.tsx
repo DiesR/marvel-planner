@@ -5,6 +5,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
   size?: "sm" | "md" | "lg";
   icon?: ReactNode;
+  iconEnd?: ReactNode;
   children?: ReactNode;
 }
 
@@ -12,6 +13,7 @@ export function Button({
   variant = "soft",
   size = "md",
   icon,
+  iconEnd,
   children,
   className,
   type = "button",
@@ -25,6 +27,7 @@ export function Button({
     <button type={type} className={classes} {...rest}>
       {icon}
       {children}
+      {iconEnd}
     </button>
   );
 }

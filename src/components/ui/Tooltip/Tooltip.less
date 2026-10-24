@@ -1,0 +1,71 @@
+@import (reference) "mixins";
+
+.tooltip {
+  --tip-bg: var(--ink);
+  --tip-fg: var(--bg);
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+.on-panel .tooltip {
+  --tip-bg: var(--panel-ink);
+  --tip-fg: var(--panel);
+}
+
+.tooltip--warning,
+.on-panel .tooltip--warning {
+  --tip-bg: var(--gold);
+  --tip-fg: var(--on-gold);
+}
+
+.tooltip__bubble {
+  position: fixed;
+  inset: auto;
+  margin: 0;
+  width: max-content;
+  max-width: 240px;
+  padding: 10px 14px;
+  border: 0;
+  border-radius: 14px;
+  background: var(--tip-bg);
+  color: var(--tip-fg);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.35;
+  text-align: left;
+  overflow: visible;
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    background: inherit;
+    transform: rotate(45deg);
+  }
+
+  &[data-placement="top"]::after {
+    bottom: -4px;
+    left: var(--tip-arrow, 16px);
+  }
+
+  &[data-placement="bottom"]::after {
+    top: -4px;
+    left: var(--tip-arrow, 16px);
+  }
+
+  &[data-placement="left"]::after {
+    right: -4px;
+    top: var(--tip-arrow, 16px);
+  }
+
+  &[data-placement="right"]::after {
+    left: -4px;
+    top: var(--tip-arrow, 16px);
+  }
+}
+
+.tooltip--warning .tooltip__bubble {
+  max-width: 320px;
+}

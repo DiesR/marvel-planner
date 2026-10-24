@@ -374,7 +374,6 @@ export const es: Messages = {
     watched: "Visto",
     notWatched: "Aún por ver",
     why: "¿Por qué?",
-    infoLabel: "Alerta de spoiler",
     warning: "Ojo, se vienen secretos de la historia",
     outside: "Fuera de este planificador",
     provisional: "Lista provisional: puede cambiar cuando se estrene el título.",

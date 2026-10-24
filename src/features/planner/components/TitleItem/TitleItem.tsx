@@ -1,4 +1,4 @@
-import { Check } from "lucide-react";
+import { Check, Maximize2 } from "lucide-react";
 import { useState } from "react";
 import { Button } from "../../../../components/ui/Button";
 import { Chevron } from "../../../../components/ui/Chevron";
@@ -7,6 +7,7 @@ import { MEDIA_TYPE_KEYS, NOTE_KEYS } from "../../data/labels";
 import type { Title } from "../../types";
 import { formatRelease } from "../../utils/format";
 import { BeforeYouWatch } from "../BeforeYouWatch";
+import { MarkWatchedButton } from "../MarkWatchedButton";
 import { PosterThumb } from "../PosterThumb";
 import { TitleDetailsDialog } from "../TitleDetailsDialog";
 import { TitleSummaryPanel } from "../TitleSummaryPanel";
@@ -71,19 +72,13 @@ export function TitleItem({ title, isWatched, watched, onToggle }: TitleItemProp
 
         {hasBeenOpened && (
           <div className="title-row__content">
+            <MarkWatchedButton isWatched={isWatched} onToggle={() => onToggle(title.id)} />
             <TitleSummaryPanel titleId={title.id} />
             <BeforeYouWatch title={title} watched={watched} />
             <div className="title-row__actions">
               <Button
-                variant="panel"
-                icon={<Check aria-hidden />}
-                aria-pressed={isWatched}
-                onClick={() => onToggle(title.id)}
-              >
-                {isWatched ? t("prerequisites.watched") : t("planner.next.markWatched")}
-              </Button>
-              <Button
                 variant="primary"
+                iconEnd={<Maximize2 aria-hidden />}
                 aria-haspopup="dialog"
                 onClick={() => setIsDetailsOpen(true)}
               >
