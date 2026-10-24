@@ -109,7 +109,7 @@ export function HeaderMenu() {
               </div>
               <ThemeChoice />
               <div className="menu-panel__language">
-                <LanguageSwitcher />
+                <LanguageSwitcher layout="inline" />
               </div>
               <MenuAccount onNavigate={close} />
             </div>

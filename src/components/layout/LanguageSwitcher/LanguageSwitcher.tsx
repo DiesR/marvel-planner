@@ -1,24 +1,30 @@
 import { Languages } from "lucide-react";
 import { LANGUAGES, LANGUAGE_NAMES, isLanguage } from "../../../../shared/languages";
 import { useI18n } from "../../../i18n/useI18n";
+import { SelectField, type SelectOption } from "../../ui/SelectField";
 
-export function LanguageSwitcher() {
+const OPTIONS: SelectOption[] = LANGUAGES.map((code) => ({
+  value: code,
+  label: LANGUAGE_NAMES[code],
+  lang: code,
+}));
+
+interface LanguageSwitcherProps {
+  layout?: "popover" | "inline";
+}
+
+export function LanguageSwitcher({ layout = "popover" }: LanguageSwitcherProps) {
   const { language, setLanguage, t } = useI18n();
 
   return (
-    <label className="language-select">
-      <Languages aria-hidden />
-      <span className="visually-hidden">{t("nav.language")}</span>
-      <select
-        value={language}
-        onChange={(event) => isLanguage(event.target.value) && setLanguage(event.target.value)}
-      >
-        {LANGUAGES.map((code) => (
-          <option key={code} value={code} lang={code}>
-            {LANGUAGE_NAMES[code]}
-          </option>
-        ))}
-      </select>
-    </label>
+    <SelectField
+      layout={layout}
+      label={t("nav.language")}
+      showLabel={layout === "inline"}
+      value={language}
+      options={OPTIONS}
+      icon={layout === "popover" ? <Languages aria-hidden /> : undefined}
+      onChange={(value) => isLanguage(value) && setLanguage(value)}
+    />
   );
 }
