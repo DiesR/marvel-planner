@@ -24,6 +24,15 @@ function Backdrop({ titleId }: { titleId: string }) {
   );
 }
 
+const MEDIUM_TITLE_LENGTH = 18;
+const LONG_TITLE_LENGTH = 30;
+
+function titleSizeClass(name: string): string {
+  if (name.length > LONG_TITLE_LENGTH) return " next-card__title--small";
+  if (name.length > MEDIUM_TITLE_LENGTH) return " next-card__title--medium";
+  return "";
+}
+
 export function NextToWatch({ title, phase, isHiddenByFilters, onMarkWatched }: NextToWatchProps) {
   const i18n = useI18n();
   const { t } = i18n;
@@ -39,7 +48,7 @@ export function NextToWatch({ title, phase, isHiddenByFilters, onMarkWatched }: 
       {title ? (
         <>
           <div>
-            <p className="next-card__title" lang="en">
+            <p className={`next-card__title${titleSizeClass(title.name)}`} lang="en">
               {title.name}
             </p>
             <p className="next-card__meta">
