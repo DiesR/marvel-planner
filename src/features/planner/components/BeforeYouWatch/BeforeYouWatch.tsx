@@ -38,7 +38,9 @@ export function BeforeYouWatch({ title, watched }: BeforeYouWatchProps) {
             {t("prerequisites.heading")}
           </h5>
           {guide.prerequisites.length > 0 && (
-            <InfoTip label={t("prerequisites.infoLabel")}>{t("prerequisites.warning")}</InfoTip>
+            <InfoTip tone="warning" label={t("prerequisites.infoLabel")}>
+              {t("prerequisites.warning")}
+            </InfoTip>
           )}
         </div>
         {guide.prerequisites.length > 0 && (

@@ -1,4 +1,4 @@
-import { Info } from "lucide-react";
+import { Info, TriangleAlert } from "lucide-react";
 import { useCallback, useEffect, useId, useRef, useState, type ReactNode } from "react";
 import { computePlacement, type Placement } from "./placement";
 
@@ -9,9 +9,10 @@ interface InfoTipProps {
   label: string;
   children: ReactNode;
   placement?: Placement;
+  tone?: "info" | "warning";
 }
 
-export function InfoTip({ label, children, placement = "top" }: InfoTipProps) {
+export function InfoTip({ label, children, placement = "top", tone = "info" }: InfoTipProps) {
   const bubbleId = useId();
   const wrapperRef = useRef<HTMLSpanElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
@@ -85,7 +86,7 @@ export function InfoTip({ label, children, placement = "top" }: InfoTipProps) {
   return (
     <span
       ref={wrapperRef}
-      className="info-tip"
+      className={`info-tip info-tip--${tone}`}
       onPointerEnter={(event) => {
         if (event.pointerType === "mouse") schedule(true, HOVER_OPEN_DELAY_MS);
       }}
@@ -118,7 +119,7 @@ export function InfoTip({ label, children, placement = "top" }: InfoTipProps) {
           if (pointerTypeRef.current !== "mouse") setIsOpen((current) => !current);
         }}
       >
-        <Info aria-hidden />
+        {tone === "warning" ? <TriangleAlert aria-hidden /> : <Info aria-hidden />}
       </button>
       <div
         ref={bubbleRef}

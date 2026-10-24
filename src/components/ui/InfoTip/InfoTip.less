@@ -12,6 +12,24 @@
   --tip-fg: var(--panel);
 }
 
+.info-tip--warning {
+  --tip-bg: var(--gold);
+  --tip-fg: var(--on-gold);
+
+  .info-tip__trigger {
+    color: var(--gold);
+  }
+
+  .info-tip__bubble {
+    max-width: 320px;
+  }
+}
+
+.on-panel .info-tip--warning {
+  --tip-bg: var(--gold);
+  --tip-fg: var(--on-gold);
+}
+
 .info-tip__trigger {
   display: inline-flex;
   align-items: center;
@@ -78,4 +96,8 @@
     left: -4px;
     top: var(--tip-arrow, 16px);
   }
+}
+
+.on-panel .info-tip--warning .info-tip__trigger {
+  color: var(--gold);
 }
