@@ -80,7 +80,7 @@ export function TitleItem({ title, isWatched, watched, onToggle }: TitleItemProp
                 aria-pressed={isWatched}
                 onClick={() => onToggle(title.id)}
               >
-                {t("planner.next.markWatched")}
+                {isWatched ? t("prerequisites.watched") : t("planner.next.markWatched")}
               </Button>
               <Button
                 variant="primary"
