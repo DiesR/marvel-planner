@@ -1,6 +1,7 @@
 export const PATHS = {
   home: "/",
   privacy: "/privacy",
+  admin: "/admin",
   shared: "/s/:code",
 } as const;
 

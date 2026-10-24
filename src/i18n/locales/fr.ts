@@ -8,6 +8,7 @@ export const fr: Messages = {
     logout: "Se déconnecter",
     language: "Langue",
     skipToContent: "Aller au contenu",
+    admin: "Administration",
   },
   footer: {
     disclaimer: "Site non officiel, non affilié à Marvel Studios ni à The Walt Disney Company.",
@@ -274,6 +275,14 @@ export const fr: Messages = {
   },
   account: {
     title: "Votre compte",
+    stats: {
+      heading: "Votre progression",
+      overall: "Titres vus : {done} / {total}",
+      byPhase: "Par phase",
+      byType: "Par type",
+      byYear: "Par année",
+      error: "Je ne peux pas charger votre progression.",
+    },
     export: {
       heading: "Vos données",
       description:
@@ -420,6 +429,49 @@ export const fr: Messages = {
     newSeason: "Nouvelle saison",
     dismiss: "Ignorer",
     openOnTmdb: "Ouvrir sur TMDB",
+    title: "Administration",
+    error: "Je ne peux pas charger les données d'administration.",
+    actionError: "L'opération a échoué. Réessayez.",
+    notice: "Il y a {count} nouveaux titres à évaluer.",
+    openDashboard: "Ouvrir le tableau de bord",
+    maintenance: {
+      heading: "Maintenance",
+      description:
+        "Quand la maintenance est active, les utilisateurs ne voient qu'une page d'information. L'administrateur continue d'utiliser le site.",
+      on: "Maintenance active",
+      off: "Site en ligne",
+      enable: "Activer la maintenance",
+      disable: "Désactiver la maintenance",
+      confirmTitle: "Activer la maintenance ?",
+      confirmMessage:
+        "Les autres utilisateurs ne pourront plus utiliser le site tant que vous ne la désactivez pas.",
+    },
+    automation: {
+      heading: "Tâches automatiques",
+      daily: "Nettoyage et mise à jour des dates (chaque jour)",
+      weekly: "Recherche de nouveaux titres (chaque lundi)",
+      tmdb: "Jeton TMDB",
+      configured: "configuré",
+      missing: "manquant",
+      lastRun: "Dernière exécution : {date}",
+      never: "Pas encore exécutée",
+    },
+    candidates: {
+      empty: "Aucun nouveau titre à évaluer.",
+      generate: "Générer le code",
+      hideCode: "Masquer le code",
+      codeIntro: "Collez ces lignes dans le projet :",
+      catalogLabel: "Catalogue (src/features/planner/data/catalog.ts, dans la bonne phase)",
+      refLabel: "Référence TMDB (shared/tmdbRefs.ts)",
+      afterNote:
+        "Vérifiez le type, la phase et la continuité. Si besoin, ajoutez ensuite le guide, les scènes post-générique et les easter eggs.",
+      copy: "Copier le code",
+      copied: "Code copié",
+    },
+  },
+  maintenance: {
+    title: "Site en maintenance",
+    body: "Nous travaillons sur le site. Revenez dans un instant.",
   },
   notFound: {
     title: "Page introuvable",

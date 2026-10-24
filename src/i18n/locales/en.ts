@@ -8,6 +8,7 @@ export const en: Messages = {
     logout: "Sign out",
     language: "Language",
     skipToContent: "Skip to content",
+    admin: "Administration",
   },
   footer: {
     disclaimer: "Unofficial site, not affiliated with Marvel Studios or The Walt Disney Company.",
@@ -273,6 +274,14 @@ export const en: Messages = {
   },
   account: {
     title: "Your account",
+    stats: {
+      heading: "Your progress",
+      overall: "Titles watched: {done} / {total}",
+      byPhase: "By phase",
+      byType: "By type",
+      byYear: "By year",
+      error: "I can't load your progress.",
+    },
     export: {
       heading: "Your data",
       description:
@@ -419,6 +428,48 @@ export const en: Messages = {
     newSeason: "New season",
     dismiss: "Dismiss",
     openOnTmdb: "Open on TMDB",
+    title: "Administration",
+    error: "I can't load the administration data.",
+    actionError: "The operation failed. Please try again.",
+    notice: "There are {count} new titles to review.",
+    openDashboard: "Open the dashboard",
+    maintenance: {
+      heading: "Maintenance",
+      description:
+        "With maintenance on, users only see a notice page. The administrator can keep using the site.",
+      on: "Maintenance on",
+      off: "Site online",
+      enable: "Turn maintenance on",
+      disable: "Turn maintenance off",
+      confirmTitle: "Turn maintenance on?",
+      confirmMessage: "Other users will not be able to use the site until you turn it off.",
+    },
+    automation: {
+      heading: "Automatic tasks",
+      daily: "Cleanup and date refresh (every day)",
+      weekly: "Search for new titles (every Monday)",
+      tmdb: "TMDB token",
+      configured: "configured",
+      missing: "missing",
+      lastRun: "Last run: {date}",
+      never: "Not run yet",
+    },
+    candidates: {
+      empty: "No new titles to review.",
+      generate: "Generate code",
+      hideCode: "Hide code",
+      codeIntro: "Paste these lines into the project:",
+      catalogLabel: "Catalog (src/features/planner/data/catalog.ts, in the right phase)",
+      refLabel: "TMDB reference (shared/tmdbRefs.ts)",
+      afterNote:
+        "Check type, phase and continuity. If needed, then add the guide, post-credits scenes and easter eggs.",
+      copy: "Copy the code",
+      copied: "Code copied",
+    },
+  },
+  maintenance: {
+    title: "Site under maintenance",
+    body: "We are working on the site. Please come back shortly.",
   },
   notFound: {
     title: "Page not found",

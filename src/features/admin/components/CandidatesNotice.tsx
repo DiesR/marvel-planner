@@ -1,38 +1,26 @@
 import { TriangleAlert } from "lucide-react";
-import { useId } from "react";
+import { Link } from "react-router";
+import { PATHS } from "../../../app/paths";
 import { useI18n } from "../../../i18n/useI18n";
-import { tmdbUrl } from "../services/candidatesService";
-import { useCandidates } from "../hooks/useCandidates";
+import { useSiteStatus } from "../../site/hooks/useSiteStatus";
+import { useAdminOverview } from "../hooks/useAdminOverview";
 
-export function CandidatesNotice() {
-  const { t, formatDate } = useI18n();
-  const { candidates, dismiss } = useCandidates();
-  const headingId = useId();
+function PendingCandidates() {
+  const { t } = useI18n();
+  const { state } = useAdminOverview();
 
-  if (candidates.length === 0) return null;
+  if (state.status !== "ready" || state.overview.candidates.length === 0) return null;
 
   return (
-    <section aria-labelledby={headingId} role="status">
-      <h2 id={headingId}>
-        <TriangleAlert aria-hidden />
-        {t("admin.heading")}
-      </h2>
-      <p>{t("admin.intro")}</p>
-      <ul>
-        {candidates.map((candidate) => (
-          <li key={candidate.key}>
-            <strong>{candidate.title}</strong> ·{" "}
-            {t(candidate.kind === "season" ? "admin.newSeason" : "admin.newTitle")}
-            {candidate.releaseDate && ` · ${formatDate(candidate.releaseDate)}`}{" "}
-            <a href={tmdbUrl(candidate)} rel="noreferrer">
-              {t("admin.openOnTmdb")}
-            </a>{" "}
-            <button type="button" onClick={() => void dismiss(candidate.key)}>
-              {t("admin.dismiss")}
-            </button>
-          </li>
-        ))}
-      </ul>
-    </section>
+    <p role="status">
+      <TriangleAlert aria-hidden />
+      {t("admin.notice", { count: state.overview.candidates.length })}{" "}
+      <Link to={PATHS.admin}>{t("admin.openDashboard")}</Link>
+    </p>
   );
+}
+
+export function CandidatesNotice() {
+  const { isAdmin } = useSiteStatus();
+  return isAdmin ? <PendingCandidates /> : null;
 }

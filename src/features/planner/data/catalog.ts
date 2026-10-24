@@ -1,3 +1,4 @@
+import { toSlug } from "../../../../shared/slug";
 import type { MediaType, NoteKey, Phase, PhaseNumber, Saga, Title } from "../types";
 
 interface TitleOptions {
@@ -7,13 +8,6 @@ interface TitleOptions {
 }
 
 type TitleEntry = [name: string, release: string, type: MediaType, options?: TitleOptions];
-
-function toSlug(value: string): string {
-  return value
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "");
-}
 
 function createTitle([name, release, type, options = {}]: TitleEntry): Title {
   return {

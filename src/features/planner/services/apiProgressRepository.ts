@@ -1,3 +1,4 @@
+import { TMDB_REFS } from "../../../../shared/tmdbRefs";
 import { apiRequest } from "../../../lib/apiClient";
 import type { ProgressRepository } from "./progressRepository";
 
@@ -6,8 +7,11 @@ export const apiProgressRepository: ProgressRepository = {
     const { titleIds } = await apiRequest<{ titleIds: string[] }>("/progress");
     return titleIds;
   },
-  add: (titleIds) =>
-    apiRequest("/progress", { method: "POST", body: JSON.stringify({ titleIds }) }),
+  add: async (titleIds) => {
+    const known = titleIds.filter((id) => Object.hasOwn(TMDB_REFS, id));
+    if (known.length === 0) return;
+    await apiRequest("/progress", { method: "POST", body: JSON.stringify({ titleIds: known }) });
+  },
   remove: (titleId) => apiRequest(`/progress/${encodeURIComponent(titleId)}`, { method: "DELETE" }),
   clear: () => apiRequest("/progress", { method: "DELETE" }),
 };

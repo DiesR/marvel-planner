@@ -49,6 +49,12 @@ export const titleRelease = sqliteTable("title_release", {
   checkedAt: integer("checked_at", { mode: "timestamp_ms" }).notNull(),
 });
 
+export const siteSetting = sqliteTable("site_setting", {
+  key: text("key").primaryKey(),
+  value: text("value").notNull(),
+  updatedAt: integer("updated_at", { mode: "timestamp_ms" }).notNull(),
+});
+
 export const catalogCandidate = sqliteTable("catalog_candidate", {
   key: text("key").primaryKey(),
   kind: text("kind").notNull(),

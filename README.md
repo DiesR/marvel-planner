@@ -86,13 +86,17 @@ Solo gli utenti registrati possono creare un link (`/s/<codice>`). Il codice è 
 ## Sicurezza
 
 - Password salvate solo come hash (scrypt), minimo 10 caratteri
-- Sessioni in cookie `httpOnly`, `secure`, `SameSite=Lax`; richieste da origini estranee rifiutate
+- Sessioni in cookie `httpOnly`, `secure`, `SameSite=Lax`; ogni scrittura sulle API con `Origin` o `Sec-Fetch-Site` estranei viene rifiutata (403)
 - Limite ai tentativi sugli endpoint di autenticazione, salvato su D1
 - Input delle API validati con Zod; query parametrizzate tramite Drizzle
-- Nome utente normalizzato e limitato a 60 caratteri lato server
+- Nome utente normalizzato e limitato a 30 caratteri lato server
 - Cambio password con chiusura delle altre sessioni
 - Cancellazione dell'account (con password) a cascata su sessioni e progressi
-- Segreti in `.dev.vars` (locale, ignorato da git) e nei secret di Cloudflare (produzione)
+- Segreti in `.dev.vars` (locale, ignorato da git) e nei secret di Cloudflare (produzione); nessun segreto nella cronologia git
+- Intestazioni di sicurezza su ogni risposta (CSP senza `unsafe-inline`/`unsafe-eval`, HSTS, `nosniff`, `frame-ancestors 'none'`, Referrer-Policy, Permissions-Policy); l'unico frame ammesso è il player YouTube, caricato solo dopo un clic
+- Progressi accettati solo per titoli presenti nel catalogo
+- Link di condivisione con codice casuale, scadenza e limite ai tentativi falliti
+- Dipendenze controllate con `npm audit` (restano solo avvisi sugli strumenti di sviluppo) e aggiornate da Dependabot
 
 ## Dettagli dei titoli
 
@@ -161,9 +165,13 @@ Lo stato "in arrivo" e le date non sono scritti a mano: il Worker legge da TMDB 
 - Le **scene chiave** (`data/keyScenes/`) sono consigli redazionali, dichiarati come tali nell'interfaccia: non hanno una fonte esterna. Si scrivono solo per i titoli di cui si hanno trame o riassunti affidabili; gli altri non mostrano la sezione.
 - I **cameo di Stan Lee** (`data/easterEggs.ts`) hanno un link alla fonte. Altri easter egg vanno aggiunti solo con una fonte solida.
 
-## Nuovi titoli su TMDB (avviso per l'amministratore)
+## Amministrazione
 
-Una Cron Trigger settimanale (lunedì, `wrangler.jsonc`) cerca su TMDB film e serie Marvel Studios con la parola chiave MCU che non sono nel catalogo (esclusi making-of, podcast e simili) e le nuove stagioni di serie già presenti. I risultati finiscono in D1 (`catalog_candidate`) e compaiono come avviso in cima al planner **solo all'amministratore**, identificato dal secret `ADMIN_USER_ID` (il suo ID utente, che si legge nell'esportazione dei dati dell'account). L'avviso si spegne da solo quando il titolo entra nel catalogo; "Ignora" lo nasconde.
+La pagina `/admin` è accessibile solo all'utente il cui ID è nel secret `ADMIN_USER_ID` (le API rispondono 403 a chiunque altro). L'ID si legge dall'esportazione dei dati dell'account ("Scarica i miei dati", campo `account.id`) e si imposta con `npx wrangler secret put ADMIN_USER_ID` oppure dal pannello Cloudflare (Workers → marvel-planner → Settings → Variables and secrets); in locale va in `.dev.vars`.
+
+- **Manutenzione**: un interruttore salvato in D1 (`site_setting`). Se attivo, le API rispondono 503 a tutti tranne all'amministratore; restano aperti solo `/api/auth/*` (per poter accedere) e `/api/status`. Il sito mostra una pagina di avviso; l'amministratore, una volta entrato dall'icona di accesso, usa il sito normalmente.
+- **Attività automatiche**: data e ora dell'ultima esecuzione dei due cron (giornaliero e settimanale) e presenza del token TMDB.
+- **Nuovi titoli**: ogni lunedì un cron cerca su TMDB film e serie Marvel Studios con la parola chiave MCU assenti dal catalogo (esclusi making-of, podcast e simili) e le nuove stagioni di serie già presenti; finiscono in D1 (`catalog_candidate`). Per ognuno la dashboard può generare le righe da incollare in `catalog.ts` e `tmdbRefs.ts`; "Ignora" lo nasconde. L'avviso in cima al planner compare solo all'amministratore.
 
 ## Accessibilità e UX
 

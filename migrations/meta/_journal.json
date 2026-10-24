@@ -43,6 +43,13 @@
       "when": 1792839008824,
       "tag": "0005_share_link",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "6",
+      "when": 1792841168488,
+      "tag": "0006_site_setting",
+      "breakpoints": true
     }
   ]
 }

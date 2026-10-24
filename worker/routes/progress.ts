@@ -1,6 +1,7 @@
 import { and, eq } from "drizzle-orm";
 import { Hono } from "hono";
 import { z } from "zod";
+import { TMDB_REFS } from "../../shared/tmdbRefs";
 import { watchedTitle } from "../db/schema";
 import { requireUser } from "../middleware/requireUser";
 import type { AppEnv } from "../types";
@@ -14,7 +15,7 @@ function chunk<T>(items: T[], size: number): T[][] {
   );
 }
 
-const titleIdSchema = z.string().regex(/^i-[a-z0-9-]{1,120}$/);
+const titleIdSchema = z.string().refine((id) => Object.hasOwn(TMDB_REFS, id));
 const addTitlesSchema = z.object({
   titleIds: z.array(titleIdSchema).min(1).max(MAX_TITLES_PER_REQUEST),
 });

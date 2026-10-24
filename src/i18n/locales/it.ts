@@ -6,6 +6,7 @@ export const it = {
     logout: "Esci",
     language: "Lingua",
     skipToContent: "Vai al contenuto",
+    admin: "Amministrazione",
   },
   footer: {
     disclaimer: "Sito non ufficiale, non affiliato a Marvel Studios o The Walt Disney Company.",
@@ -271,6 +272,14 @@ export const it = {
   },
   account: {
     title: "Il tuo account",
+    stats: {
+      heading: "I tuoi progressi",
+      overall: "Titoli visti: {done} / {total}",
+      byPhase: "Per fase",
+      byType: "Per tipo",
+      byYear: "Per anno",
+      error: "Non riesco a caricare i tuoi progressi.",
+    },
     export: {
       heading: "I tuoi dati",
       description:
@@ -417,6 +426,48 @@ export const it = {
     newSeason: "Nuova stagione",
     dismiss: "Ignora",
     openOnTmdb: "Apri su TMDB",
+    title: "Amministrazione",
+    error: "Non riesco a caricare i dati dell'amministrazione.",
+    actionError: "L'operazione non è riuscita. Riprova.",
+    notice: "Ci sono {count} nuovi titoli da valutare.",
+    openDashboard: "Apri la dashboard",
+    maintenance: {
+      heading: "Manutenzione",
+      description:
+        "Con la manutenzione attiva gli utenti vedono solo una pagina di avviso. L'amministratore continua a usare il sito.",
+      on: "Manutenzione attiva",
+      off: "Sito online",
+      enable: "Attiva manutenzione",
+      disable: "Disattiva manutenzione",
+      confirmTitle: "Attivare la manutenzione?",
+      confirmMessage: "Gli altri utenti non potranno più usare il sito finché non la disattivi.",
+    },
+    automation: {
+      heading: "Attività automatiche",
+      daily: "Pulizia e aggiornamento delle date (ogni giorno)",
+      weekly: "Ricerca di nuovi titoli (ogni lunedì)",
+      tmdb: "Token TMDB",
+      configured: "configurato",
+      missing: "mancante",
+      lastRun: "Ultima esecuzione: {date}",
+      never: "Non ancora eseguita",
+    },
+    candidates: {
+      empty: "Nessun nuovo titolo da valutare.",
+      generate: "Genera codice",
+      hideCode: "Nascondi codice",
+      codeIntro: "Incolla queste righe nel progetto:",
+      catalogLabel: "Catalogo (src/features/planner/data/catalog.ts, nella fase giusta)",
+      refLabel: "Riferimento TMDB (shared/tmdbRefs.ts)",
+      afterNote:
+        "Controlla tipo, fase e continuità. Se serve, aggiungi poi guida, scene dopo i titoli di coda ed easter egg.",
+      copy: "Copia il codice",
+      copied: "Codice copiato",
+    },
+  },
+  maintenance: {
+    title: "Sito in manutenzione",
+    body: "Stiamo lavorando al sito. Torna a trovarci tra poco.",
   },
   notFound: {
     title: "Pagina non trovata",

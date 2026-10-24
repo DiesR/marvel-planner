@@ -1,4 +1,5 @@
 import { inArray } from "drizzle-orm";
+import type { CatalogCandidate } from "../../shared/catalogCandidate";
 import { TMDB_REFS, type TmdbRef } from "../../shared/tmdbRefs";
 import type { Database } from "../db/client";
 import { catalogCandidate } from "../db/schema";
@@ -8,15 +9,6 @@ const MARVEL_STUDIOS_COMPANY = 420;
 const MCU_KEYWORD = 180547;
 const MIN_FEATURE_MINUTES = 60;
 const NOT_A_TITLE = /assembled|making of|legends|podcast|countdown|newsfront|untitled/i;
-
-export interface Candidate {
-  key: string;
-  kind: "movie" | "tv" | "season";
-  tmdbId: number;
-  season: number | null;
-  title: string;
-  releaseDate: string | null;
-}
 
 interface DiscoverResult {
   id: number;
@@ -51,7 +43,7 @@ function knownKeys(refs: Record<string, TmdbRef>): Set<string> {
 async function discoverNewTitles(
   token: string,
   refs: Record<string, TmdbRef>,
-): Promise<Candidate[]> {
+): Promise<CatalogCandidate[]> {
   const known = knownKeys(refs);
   const filters = `with_companies=${MARVEL_STUDIOS_COMPANY}&with_keywords=${MCU_KEYWORD}&language=en-US`;
   const [movies, shows] = await Promise.all([
@@ -67,7 +59,7 @@ async function discoverNewTitles(
 
   const toCandidate =
     (kind: "movie" | "tv") =>
-    (result: DiscoverResult): Candidate[] => {
+    (result: DiscoverResult): CatalogCandidate[] => {
       const title = result.title ?? result.name ?? "";
       const releaseDate = result.release_date || result.first_air_date || null;
       if (!releaseDate || NOT_A_TITLE.test(title) || known.has(`${kind}:${result.id}`)) return [];
@@ -85,7 +77,7 @@ async function discoverNewTitles(
 async function discoverNewSeasons(
   token: string,
   refs: Record<string, TmdbRef>,
-): Promise<Candidate[]> {
+): Promise<CatalogCandidate[]> {
   const known = knownKeys(refs);
   const trackedSeasons = new Map<number, number>();
   for (const ref of Object.values(refs)) {
@@ -94,7 +86,7 @@ async function discoverNewSeasons(
     }
   }
 
-  const candidates: Candidate[] = [];
+  const candidates: CatalogCandidate[] = [];
   for (const [showId, lastTracked] of trackedSeasons) {
     const show = await request<TmdbShow>(token, `/tv/${showId}`);
     for (const season of show.seasons ?? []) {
@@ -116,7 +108,7 @@ async function discoverNewSeasons(
 export async function findCatalogCandidates(
   token: string,
   refs: Record<string, TmdbRef> = TMDB_REFS,
-): Promise<Candidate[]> {
+): Promise<CatalogCandidate[]> {
   const [titles, seasons] = await Promise.all([
     discoverNewTitles(token, refs),
     discoverNewSeasons(token, refs),

@@ -8,6 +8,7 @@ export const de: Messages = {
     logout: "Abmelden",
     language: "Sprache",
     skipToContent: "Zum Inhalt springen",
+    admin: "Verwaltung",
   },
   footer: {
     disclaimer:
@@ -276,6 +277,14 @@ export const de: Messages = {
   },
   account: {
     title: "Dein Konto",
+    stats: {
+      heading: "Dein Fortschritt",
+      overall: "Gesehene Titel: {done} / {total}",
+      byPhase: "Nach Phase",
+      byType: "Nach Typ",
+      byYear: "Nach Jahr",
+      error: "Ich kann deinen Fortschritt nicht laden.",
+    },
     export: {
       heading: "Deine Daten",
       description:
@@ -422,6 +431,49 @@ export const de: Messages = {
     newSeason: "Neue Staffel",
     dismiss: "Ausblenden",
     openOnTmdb: "Auf TMDB öffnen",
+    title: "Verwaltung",
+    error: "Ich kann die Verwaltungsdaten nicht laden.",
+    actionError: "Der Vorgang ist fehlgeschlagen. Versuche es erneut.",
+    notice: "Es gibt {count} neue Titel zu prüfen.",
+    openDashboard: "Dashboard öffnen",
+    maintenance: {
+      heading: "Wartung",
+      description:
+        "Bei aktiver Wartung sehen Nutzer nur eine Hinweisseite. Der Administrator kann die Seite weiter nutzen.",
+      on: "Wartung aktiv",
+      off: "Seite online",
+      enable: "Wartung aktivieren",
+      disable: "Wartung deaktivieren",
+      confirmTitle: "Wartung aktivieren?",
+      confirmMessage:
+        "Andere Nutzer können die Seite nicht mehr verwenden, bis du die Wartung deaktivierst.",
+    },
+    automation: {
+      heading: "Automatische Aufgaben",
+      daily: "Bereinigung und Datumsaktualisierung (täglich)",
+      weekly: "Suche nach neuen Titeln (jeden Montag)",
+      tmdb: "TMDB-Token",
+      configured: "eingerichtet",
+      missing: "fehlt",
+      lastRun: "Letzte Ausführung: {date}",
+      never: "Noch nicht ausgeführt",
+    },
+    candidates: {
+      empty: "Keine neuen Titel zu prüfen.",
+      generate: "Code erzeugen",
+      hideCode: "Code ausblenden",
+      codeIntro: "Füge diese Zeilen in das Projekt ein:",
+      catalogLabel: "Katalog (src/features/planner/data/catalog.ts, in der richtigen Phase)",
+      refLabel: "TMDB-Verweis (shared/tmdbRefs.ts)",
+      afterNote:
+        "Prüfe Typ, Phase und Kontinuität. Bei Bedarf ergänze danach Leitfaden, Abspannszenen und Easter Eggs.",
+      copy: "Code kopieren",
+      copied: "Code kopiert",
+    },
+  },
+  maintenance: {
+    title: "Seite in Wartung",
+    body: "Wir arbeiten an der Seite. Schau bald wieder vorbei.",
   },
   notFound: {
     title: "Seite nicht gefunden",
