@@ -52,6 +52,12 @@ export const it = {
       confirm: "Azzera",
     },
     markWatched: 'Segna "{name}" come visto',
+    next: {
+      heading: "Prossimo da guardare",
+      hiddenByFilters: "Questo titolo è nascosto dai filtri attuali.",
+      markWatched: "Segna come visto",
+      allDone: "Hai guardato tutto ciò che è uscito nella continuità principale.",
+    },
     toolbar: {
       actions: "Azioni",
       collapseAll: "Comprimi tutto",
@@ -96,6 +102,58 @@ export const it = {
       alternateText:
         "X-Men '97, Your Friendly Neighborhood Spider-Man e Marvel Zombies escono in questo periodo ma sono ambientati in linee temporali separate dalla Sacred Timeline: guardabili in qualsiasi momento, non obbligatori per la trama principale.",
     },
+  },
+  share: {
+    open: "Condividi",
+    title: "Condividi il tuo planner",
+    intro:
+      "Chi ha il link vede il tuo nome da supereroe e i titoli che hai visto. Nessun altro dato del tuo account.",
+    loginRequired: "Accedi al tuo account per condividere il tuo planner.",
+    loginButton: "Accedi",
+    loading: "Caricamento…",
+    error: "Non riesco a gestire il link in questo momento. Riprova.",
+    duration: "Validità del link",
+    days7: "7 giorni",
+    days30: "30 giorni",
+    never: "Nessuna scadenza",
+    create: "Crea link",
+    regenerate: "Rigenera link",
+    regenerateHint: "Il link precedente smette di funzionare.",
+    disable: "Disattiva link",
+    linkLabel: "Link da condividere",
+    copy: "Copia link",
+    copied: "Link copiato",
+    expires: "Scade il {date}.",
+    noExpiry: "Il link non scade finché non lo disattivi.",
+    qrAlt: "Codice QR del link di condivisione",
+    imageHeading: "Immagine per le storie",
+    downloadImage: "Scarica immagine",
+    shareImage: "Condividi immagine",
+    imageError: "Non riesco a creare l'immagine.",
+    shareTitle: "Il mio Marvel Planner",
+    image: {
+      heading: "Il planner di {name}",
+      scan: "Scansiona per vedere il planner",
+    },
+  },
+  import: {
+    title: "Planner condiviso",
+    loading: "Caricamento del planner condiviso…",
+    notFound: "Questo link non è valido, è scaduto o è stato disattivato.",
+    error: "Non riesco a caricare il planner condiviso. Riprova.",
+    summary: "Titoli visti da {name}: {done} / {total} ({percent}%).",
+    current: "Nel tuo planner ora i titoli visti sono {count}.",
+    currentEmpty: "Il tuo planner è ancora vuoto.",
+    empty: "{name} non ha ancora segnato nessun titolo come visto.",
+    anonymousNote:
+      "Non hai un account: il planner importato resta salvato solo su questo dispositivo.",
+    merge: "Unisci ai miei titoli",
+    mergeHint: "Titoli che verrebbero aggiunti: {count}. Non perdi nulla.",
+    replace: "Sostituisci il mio planner",
+    replaceHint: "Il tuo planner diventerà uguale a quello di {name}.",
+    replaceWarning: "Attenzione: i titoli visti che perderesti sono {count}.",
+    replaceConfirm: "Sì, sostituisci",
+    close: "Non importare",
   },
   details: {
     keyScenes: {
@@ -364,6 +422,9 @@ export const it = {
       deviceLabel: "Sul tuo dispositivo",
       deviceText:
         "senza account i progressi restano salvati solo nel tuo browser (localStorage) e non vengono inviati a noi. Nello stesso modo vengono ricordati la lingua e i filtri scelti. Puoi cancellare questi dati in qualsiasi momento da «Preferenze privacy».",
+      shareLabel: "Condivisione",
+      shareText:
+        "se attivi la condivisione, il tuo nome da supereroe e i titoli che hai visto sono visibili a chiunque abbia il link, fino alla scadenza che scegli o finché non lo disattivi. Il link contiene un codice casuale, non il tuo identificativo.",
     },
     purposes: {
       heading: "Perché li trattiamo",
@@ -385,7 +446,7 @@ export const it = {
     },
     retention: {
       heading: "Per quanto tempo",
-      body: "Conserviamo i dati dell'account finché esiste. Le sessioni scadono dopo 7 giorni e quelle scadute vengono eliminate ogni giorno; i contatori contro gli accessi ripetuti vengono eliminati dopo un giorno; le informazioni sui titoli ricevute da terzi restano in cache al massimo 90 giorni. Quando elimini l'account, nome da supereroe, email, progressi e sessioni vengono cancellati subito; eventuali copie di backup tecniche vengono sovrascritte entro 30 giorni.",
+      body: "Conserviamo i dati dell'account finché esiste. Le sessioni scadono dopo 7 giorni e quelle scadute vengono eliminate ogni giorno; i contatori contro gli accessi ripetuti vengono eliminati dopo un giorno; le informazioni sui titoli ricevute da terzi restano in cache al massimo 90 giorni. Quando elimini l'account, nome da supereroe, email, progressi e sessioni vengono cancellati subito; eventuali copie di backup tecniche vengono sovrascritte entro 30 giorni. I link di condivisione scaduti vengono eliminati ogni giorno.",
     },
     rights: {
       heading: "I tuoi diritti",

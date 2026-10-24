@@ -17,6 +17,15 @@ export const watchedTitle = sqliteTable(
   (table) => [primaryKey({ columns: [table.userId, table.titleId] })],
 );
 
+export const shareLink = sqliteTable("share_link", {
+  userId: text("user_id")
+    .primaryKey()
+    .references(() => user.id, { onDelete: "cascade" }),
+  code: text("code").notNull().unique(),
+  createdAt: integer("created_at", { mode: "timestamp_ms" }).notNull(),
+  expiresAt: integer("expires_at", { mode: "timestamp_ms" }),
+});
+
 export const titleDetailsCache = sqliteTable(
   "title_details_cache",
   {

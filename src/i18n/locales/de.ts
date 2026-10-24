@@ -57,6 +57,12 @@ export const de: Messages = {
       confirm: "Zurücksetzen",
     },
     markWatched: "„{name}“ als gesehen markieren",
+    next: {
+      heading: "Als Nächstes ansehen",
+      hiddenByFilters: "Dieser Titel ist durch deine aktuellen Filter ausgeblendet.",
+      markWatched: "Als gesehen markieren",
+      allDone: "Du hast alles gesehen, was in der Hauptkontinuität erschienen ist.",
+    },
     toolbar: {
       actions: "Aktionen",
       collapseAll: "Alle einklappen",
@@ -101,6 +107,58 @@ export const de: Messages = {
       alternateText:
         "X-Men '97, Your Friendly Neighborhood Spider-Man und Marvel Zombies erscheinen in diesem Zeitraum, spielen aber in Zeitlinien, die von der Sacred Timeline getrennt sind: Sie lassen sich jederzeit ansehen und sind für die Haupthandlung nicht erforderlich.",
     },
+  },
+  share: {
+    open: "Teilen",
+    title: "Teile deinen Planer",
+    intro:
+      "Wer den Link hat, sieht deinen Superheldennamen und die Titel, die du gesehen hast. Keine anderen Daten deines Kontos.",
+    loginRequired: "Melde dich an, um deinen Planer zu teilen.",
+    loginButton: "Anmelden",
+    loading: "Wird geladen…",
+    error: "Ich kann den Link gerade nicht verwalten. Versuche es erneut.",
+    duration: "Gültigkeit des Links",
+    days7: "7 Tage",
+    days30: "30 Tage",
+    never: "Ohne Ablauf",
+    create: "Link erstellen",
+    regenerate: "Link neu erstellen",
+    regenerateHint: "Der vorherige Link funktioniert nicht mehr.",
+    disable: "Link deaktivieren",
+    linkLabel: "Link zum Teilen",
+    copy: "Link kopieren",
+    copied: "Link kopiert",
+    expires: "Läuft am {date} ab.",
+    noExpiry: "Der Link läuft nicht ab, bis du ihn deaktivierst.",
+    qrAlt: "QR-Code des Freigabelinks",
+    imageHeading: "Bild für Stories",
+    downloadImage: "Bild herunterladen",
+    shareImage: "Bild teilen",
+    imageError: "Ich kann das Bild nicht erstellen.",
+    shareTitle: "Mein Marvel Planner",
+    image: {
+      heading: "Der Planer von {name}",
+      scan: "Scannen, um den Planer zu sehen",
+    },
+  },
+  import: {
+    title: "Geteilter Planer",
+    loading: "Der geteilte Planer wird geladen…",
+    notFound: "Dieser Link ist ungültig, abgelaufen oder wurde deaktiviert.",
+    error: "Ich kann den geteilten Planer nicht laden. Versuche es erneut.",
+    summary: "Von {name} gesehene Titel: {done} / {total} ({percent} %).",
+    current: "Aktuell gesehene Titel in deinem Planer: {count}.",
+    currentEmpty: "Dein Planer ist noch leer.",
+    empty: "{name} hat noch keinen Titel als gesehen markiert.",
+    anonymousNote:
+      "Du hast kein Konto: Der importierte Planer bleibt nur auf diesem Gerät gespeichert.",
+    merge: "Mit meinen Titeln zusammenführen",
+    mergeHint: "Titel, die hinzugefügt würden: {count}. Du verlierst nichts.",
+    replace: "Meinen Planer ersetzen",
+    replaceHint: "Dein Planer wird so wie der von {name}.",
+    replaceWarning: "Achtung: gesehene Titel, die du verlieren würdest: {count}.",
+    replaceConfirm: "Ja, ersetzen",
+    close: "Nicht importieren",
   },
   details: {
     keyScenes: {
@@ -369,6 +427,9 @@ export const de: Messages = {
       deviceLabel: "Auf deinem Gerät",
       deviceText:
         "ohne Konto bleibt dein Fortschritt nur in deinem Browser (localStorage) gespeichert und wird nicht an uns übermittelt. Die gewählte Sprache und die Filter werden auf dieselbe Weise gemerkt. Du kannst diese Daten jederzeit unter „Datenschutzeinstellungen“ löschen.",
+      shareLabel: "Teilen",
+      shareText:
+        "wenn du das Teilen aktivierst, sind dein Superheldenname und die Titel, die du gesehen hast, für alle mit dem Link sichtbar – bis zum gewählten Ablauf oder bis du ihn deaktivierst. Der Link enthält einen zufälligen Code, nicht deine Kennung.",
     },
     purposes: {
       heading: "Warum wir sie verarbeiten",
@@ -390,7 +451,7 @@ export const de: Messages = {
     },
     retention: {
       heading: "Wie lange wir sie speichern",
-      body: "Wir speichern deine Kontodaten, solange dein Konto besteht. Sitzungen laufen nach 7 Tagen ab, abgelaufene werden täglich gelöscht; die Zähler gegen wiederholte Anmeldeversuche werden nach einem Tag gelöscht; von Dritten erhaltene Titelinformationen bleiben höchstens 90 Tage im Cache. Wenn du dein Konto löschst, werden Superheldenname, E-Mail, Fortschritt und Sitzungen sofort gelöscht; eventuelle technische Sicherungskopien werden innerhalb von 30 Tagen überschrieben.",
+      body: "Wir speichern deine Kontodaten, solange dein Konto besteht. Sitzungen laufen nach 7 Tagen ab, abgelaufene werden täglich gelöscht; die Zähler gegen wiederholte Anmeldeversuche werden nach einem Tag gelöscht; von Dritten erhaltene Titelinformationen bleiben höchstens 90 Tage im Cache. Wenn du dein Konto löschst, werden Superheldenname, E-Mail, Fortschritt und Sitzungen sofort gelöscht; eventuelle technische Sicherungskopien werden innerhalb von 30 Tagen überschrieben. Abgelaufene Freigabelinks werden täglich gelöscht.",
     },
     rights: {
       heading: "Deine Rechte",

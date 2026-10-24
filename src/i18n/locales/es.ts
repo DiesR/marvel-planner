@@ -55,6 +55,12 @@ export const es: Messages = {
       confirm: "Restablecer",
     },
     markWatched: 'Marcar "{name}" como visto',
+    next: {
+      heading: "Lo siguiente que ver",
+      hiddenByFilters: "Este título está oculto por tus filtros actuales.",
+      markWatched: "Marcar como visto",
+      allDone: "Has visto todo lo estrenado en la continuidad principal.",
+    },
     toolbar: {
       actions: "Acciones",
       collapseAll: "Contraer todo",
@@ -99,6 +105,58 @@ export const es: Messages = {
       alternateText:
         "X-Men '97, Your Friendly Neighborhood Spider-Man y Marvel Zombies se estrenan en este periodo, pero transcurren en líneas temporales separadas de la Sacred Timeline: se pueden ver en cualquier momento y no son obligatorias para la trama principal.",
     },
+  },
+  share: {
+    open: "Compartir",
+    title: "Comparte tu planificador",
+    intro:
+      "Quien tenga el enlace ve tu nombre de superhéroe y los títulos que has visto. Ningún otro dato de tu cuenta.",
+    loginRequired: "Inicia sesión en tu cuenta para compartir tu planificador.",
+    loginButton: "Iniciar sesión",
+    loading: "Cargando…",
+    error: "No puedo gestionar el enlace ahora mismo. Inténtalo de nuevo.",
+    duration: "Validez del enlace",
+    days7: "7 días",
+    days30: "30 días",
+    never: "Sin caducidad",
+    create: "Crear enlace",
+    regenerate: "Regenerar enlace",
+    regenerateHint: "El enlace anterior deja de funcionar.",
+    disable: "Desactivar enlace",
+    linkLabel: "Enlace para compartir",
+    copy: "Copiar enlace",
+    copied: "Enlace copiado",
+    expires: "Caduca el {date}.",
+    noExpiry: "El enlace no caduca hasta que lo desactives.",
+    qrAlt: "Código QR del enlace para compartir",
+    imageHeading: "Imagen para stories",
+    downloadImage: "Descargar imagen",
+    shareImage: "Compartir imagen",
+    imageError: "No puedo crear la imagen.",
+    shareTitle: "Mi Marvel Planner",
+    image: {
+      heading: "El planificador de {name}",
+      scan: "Escanea para ver el planificador",
+    },
+  },
+  import: {
+    title: "Planificador compartido",
+    loading: "Cargando el planificador compartido…",
+    notFound: "Este enlace no es válido, ha caducado o se ha desactivado.",
+    error: "No puedo cargar el planificador compartido. Inténtalo de nuevo.",
+    summary: "Títulos vistos por {name}: {done} / {total} ({percent} %).",
+    current: "Títulos vistos ahora en tu planificador: {count}.",
+    currentEmpty: "Tu planificador aún está vacío.",
+    empty: "{name} todavía no ha marcado ningún título como visto.",
+    anonymousNote:
+      "No tienes cuenta: el planificador importado se guarda solo en este dispositivo.",
+    merge: "Combinar con mis títulos",
+    mergeHint: "Títulos que se añadirían: {count}. No pierdes nada.",
+    replace: "Sustituir mi planificador",
+    replaceHint: "Tu planificador pasará a ser igual al de {name}.",
+    replaceWarning: "Atención: títulos vistos que perderías: {count}.",
+    replaceConfirm: "Sí, sustituir",
+    close: "No importar",
   },
   details: {
     keyScenes: {
@@ -366,6 +424,9 @@ export const es: Messages = {
       deviceLabel: "En tu dispositivo",
       deviceText:
         "sin cuenta, tu progreso se guarda solo en tu navegador (localStorage) y no se nos envía. El idioma y los filtros elegidos se recuerdan del mismo modo. Puedes borrar estos datos en cualquier momento desde «Preferencias de privacidad».",
+      shareLabel: "Compartir",
+      shareText:
+        "si activas la opción de compartir, tu nombre de superhéroe y los títulos que has visto son visibles para cualquiera que tenga el enlace, hasta la caducidad que elijas o hasta que lo desactives. El enlace contiene un código aleatorio, no tu identificador.",
     },
     purposes: {
       heading: "Por qué los tratamos",
@@ -387,7 +448,7 @@ export const es: Messages = {
     },
     retention: {
       heading: "Durante cuánto tiempo",
-      body: "Conservamos los datos de tu cuenta mientras exista. Las sesiones caducan a los 7 días y las caducadas se eliminan cada día; los contadores contra los accesos repetidos se eliminan al cabo de un día; la información sobre los títulos recibida de terceros permanece en caché como máximo 90 días. Cuando eliminas la cuenta, el nombre de superhéroe, el correo, el progreso y las sesiones se borran de inmediato; las posibles copias de seguridad técnicas se sobrescriben en un plazo de 30 días.",
+      body: "Conservamos los datos de tu cuenta mientras exista. Las sesiones caducan a los 7 días y las caducadas se eliminan cada día; los contadores contra los accesos repetidos se eliminan al cabo de un día; la información sobre los títulos recibida de terceros permanece en caché como máximo 90 días. Cuando eliminas la cuenta, el nombre de superhéroe, el correo, el progreso y las sesiones se borran de inmediato; las posibles copias de seguridad técnicas se sobrescriben en un plazo de 30 días. Los enlaces para compartir caducados se eliminan cada día.",
     },
     rights: {
       heading: "Tus derechos",

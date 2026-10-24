@@ -72,7 +72,22 @@ export function useWatched() {
     }
   }, [watched, repository]);
 
+  const importTitles = useCallback(
+    async (ids: ReadonlySet<string>, mode: "merge" | "replace") => {
+      setWatched(mode === "replace" ? new Set(ids) : new Set([...watched, ...ids]));
+      try {
+        if (mode === "replace") await repository.clear();
+        if (ids.size > 0) await repository.add([...ids]);
+        setError(null);
+      } catch {
+        setError(SAVE_ERROR);
+        setWatched(new Set(await repository.load().catch(() => watched)));
+      }
+    },
+    [watched, repository],
+  );
+
   const storage: ProgressStorage = isAccount ? "account" : isStorageAvailable ? "device" : "none";
 
-  return { watched, isLoading: loadedFor !== status, error, storage, toggle, reset };
+  return { watched, isLoading: loadedFor !== status, error, storage, toggle, reset, importTitles };
 }

@@ -18,6 +18,7 @@ npm run dev                      # sito e API su http://localhost:5173
 npm run dev                 # sviluppo: frontend + Worker + D1 locale
 npm run build               # type-check e build di produzione in dist/
 npm run lint                # ESLint
+npm test                    # test automatici (Vitest)
 npm run format              # Prettier
 npm run db:generate         # genera una migrazione da worker/db/schema.ts
 npm run db:migrate:local    # applica le migrazioni al database locale
@@ -54,20 +55,33 @@ migrations/                 # migrazioni SQL generate da drizzle-kit
 
 ## API
 
-| Metodo   | Percorso                  | Descrizione                                |
-| -------- | ------------------------- | ------------------------------------------ |
-| `*`      | `/api/auth/*`             | Registrazione, login, logout, sessione     |
-| `GET`    | `/api/account/export`     | Copia dei dati dell'utente (JSON)          |
-| `GET`    | `/api/images/:size/:file` | Locandine e sfondi TMDB, dal nostro server |
-| `GET`    | `/api/releases`           | Date di uscita aggiornate da TMDB          |
-| `GET`    | `/api/progress`           | Titoli visti dall'utente                   |
-| `POST`   | `/api/progress`           | Segna come visti `{ "titleIds": [...] }`   |
-| `DELETE` | `/api/progress/:titleId`  | Rimuove un titolo dai visti                |
-| `DELETE` | `/api/progress`           | Azzera i progressi                         |
-| `GET`    | `/api/titles/:titleId`    | Dettagli di un titolo (`?lang=`)           |
+| Metodo   | Percorso                     | Descrizione                                |
+| -------- | ---------------------------- | ------------------------------------------ |
+| `*`      | `/api/auth/*`                | Registrazione, login, logout, sessione     |
+| `GET`    | `/api/account/export`        | Copia dei dati dell'utente (JSON)          |
+| `GET`    | `/api/images/:size/:file`    | Locandine e sfondi TMDB, dal nostro server |
+| `GET`    | `/api/releases`              | Date di uscita aggiornate da TMDB          |
+| `GET`    | `/api/progress`              | Titoli visti dall'utente                   |
+| `POST`   | `/api/progress`              | Segna come visti `{ "titleIds": [...] }`   |
+| `DELETE` | `/api/progress/:titleId`     | Rimuove un titolo dai visti                |
+| `DELETE` | `/api/progress`              | Azzera i progressi                         |
+| `GET`    | `/api/titles/:titleId`       | Dettagli di un titolo (`?lang=`)           |
+| `GET`    | `/api/titles/:titleId/watch` | Dove guardare, per paese (TMDB/JustWatch)  |
+| `GET`    | `/api/share`                 | Link di condivisione attivo dell'utente    |
+| `POST`   | `/api/share`                 | Crea o rigenera il link `{ days: 7         | 30  | null }` |
+| `DELETE` | `/api/share`                 | Disattiva il link                          |
+| `GET`    | `/api/shared/:code`          | Planner condiviso (pubblico, `no-store`)   |
 
 Gli endpoint `/api/progress` richiedono una sessione valida e operano solo sui dati dell'utente autenticato.
 Al login, i progressi salvati sul dispositivo vengono uniti a quelli dell'account.
+
+## Condivisione del planner
+
+Solo gli utenti registrati possono creare un link (`/s/<codice>`). Il codice è casuale (128 bit), non l'id dell'utente: si può disattivare o rigenerare, e scade dopo 7 giorni, 30 giorni o mai. Chi apre il link vede nome da supereroe e titoli visti, e può unirli ai propri o sostituirli; senza account l'importazione resta nel browser. Dalla finestra di condivisione si scarica anche un'immagine verticale (1080×1920) con percentuale e codice QR.
+
+## Test
+
+`npm test` esegue i test in `tests/`: filtri, progresso, date di uscita, prontezza, importazione, coerenza di catalogo e traduzioni, e (in `tests/worker/`) la logica di condivisione e pulizia su un database SQLite in memoria con le migrazioni reali.
 
 ## Sicurezza
 

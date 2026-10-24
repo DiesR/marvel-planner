@@ -12,6 +12,7 @@ const DATA_ITEMS: { label: TranslationKey; text: TranslationKey }[] = [
   { label: "privacy.data.progressLabel", text: "privacy.data.progressText" },
   { label: "privacy.data.technicalLabel", text: "privacy.data.technicalText" },
   { label: "privacy.data.deviceLabel", text: "privacy.data.deviceText" },
+  { label: "privacy.data.shareLabel", text: "privacy.data.shareText" },
 ];
 
 const PURPOSE_KEYS: TranslationKey[] = ["privacy.purposes.service", "privacy.purposes.security"];

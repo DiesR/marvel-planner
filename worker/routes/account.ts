@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
 import { Hono } from "hono";
-import { session, watchedTitle } from "../db/schema";
+import { session, shareLink, watchedTitle } from "../db/schema";
 import { requireUser } from "../middleware/requireUser";
 import type { AppEnv } from "../types";
 
@@ -10,7 +10,7 @@ export const accountRoutes = new Hono<AppEnv>()
   .get("/export", async (c) => {
     const { user, db } = { user: c.var.user, db: c.var.db };
 
-    const [progress, sessions] = await Promise.all([
+    const [progress, sessions, shares] = await Promise.all([
       db
         .select({ titleId: watchedTitle.titleId, watchedAt: watchedTitle.watchedAt })
         .from(watchedTitle)
@@ -24,6 +24,10 @@ export const accountRoutes = new Hono<AppEnv>()
         })
         .from(session)
         .where(eq(session.userId, user.id)),
+      db
+        .select({ createdAt: shareLink.createdAt, expiresAt: shareLink.expiresAt })
+        .from(shareLink)
+        .where(eq(shareLink.userId, user.id)),
     ]);
 
     c.header("Content-Disposition", 'attachment; filename="marvel-planner-data.json"');
@@ -39,5 +43,6 @@ export const accountRoutes = new Hono<AppEnv>()
       },
       watchedTitles: progress,
       sessions,
+      shareLink: shares[0] ?? null,
     });
   });

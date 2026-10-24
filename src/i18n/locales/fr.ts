@@ -55,6 +55,12 @@ export const fr: Messages = {
       confirm: "Réinitialiser",
     },
     markWatched: "Marquer « {name} » comme vu",
+    next: {
+      heading: "À voir ensuite",
+      hiddenByFilters: "Ce titre est masqué par vos filtres actuels.",
+      markWatched: "Marquer comme vu",
+      allDone: "Vous avez tout vu de ce qui est sorti dans la continuité principale.",
+    },
     toolbar: {
       actions: "Actions",
       collapseAll: "Tout réduire",
@@ -99,6 +105,58 @@ export const fr: Messages = {
       alternateText:
         "X-Men '97, Your Friendly Neighborhood Spider-Man et Marvel Zombies sortent durant cette période mais se déroulent dans des lignes temporelles distinctes de la Sacred Timeline : à regarder à tout moment, non indispensables à l'intrigue principale.",
     },
+  },
+  share: {
+    open: "Partager",
+    title: "Partagez votre planificateur",
+    intro:
+      "Toute personne qui a le lien voit votre nom de super-héros et les titres que vous avez vus. Aucune autre donnée de votre compte.",
+    loginRequired: "Connectez-vous à votre compte pour partager votre planificateur.",
+    loginButton: "Se connecter",
+    loading: "Chargement…",
+    error: "Je ne peux pas gérer le lien pour le moment. Réessayez.",
+    duration: "Validité du lien",
+    days7: "7 jours",
+    days30: "30 jours",
+    never: "Sans expiration",
+    create: "Créer le lien",
+    regenerate: "Régénérer le lien",
+    regenerateHint: "Le lien précédent cesse de fonctionner.",
+    disable: "Désactiver le lien",
+    linkLabel: "Lien à partager",
+    copy: "Copier le lien",
+    copied: "Lien copié",
+    expires: "Expire le {date}.",
+    noExpiry: "Le lien n'expire pas tant que vous ne le désactivez pas.",
+    qrAlt: "Code QR du lien de partage",
+    imageHeading: "Image pour les stories",
+    downloadImage: "Télécharger l'image",
+    shareImage: "Partager l'image",
+    imageError: "Je ne peux pas créer l'image.",
+    shareTitle: "Mon Marvel Planner",
+    image: {
+      heading: "Le planificateur de {name}",
+      scan: "Scannez pour voir le planificateur",
+    },
+  },
+  import: {
+    title: "Planificateur partagé",
+    loading: "Chargement du planificateur partagé…",
+    notFound: "Ce lien n'est pas valide, a expiré ou a été désactivé.",
+    error: "Je ne peux pas charger le planificateur partagé. Réessayez.",
+    summary: "Titres vus par {name} : {done} / {total} ({percent} %).",
+    current: "Titres vus dans votre planificateur en ce moment : {count}.",
+    currentEmpty: "Votre planificateur est encore vide.",
+    empty: "{name} n'a encore marqué aucun titre comme vu.",
+    anonymousNote:
+      "Vous n'avez pas de compte : le planificateur importé reste enregistré uniquement sur cet appareil.",
+    merge: "Fusionner avec mes titres",
+    mergeHint: "Titres qui seraient ajoutés : {count}. Vous ne perdez rien.",
+    replace: "Remplacer mon planificateur",
+    replaceHint: "Votre planificateur deviendra identique à celui de {name}.",
+    replaceWarning: "Attention : titres vus que vous perdriez : {count}.",
+    replaceConfirm: "Oui, remplacer",
+    close: "Ne pas importer",
   },
   details: {
     keyScenes: {
@@ -368,6 +426,9 @@ export const fr: Messages = {
       deviceLabel: "Sur votre appareil",
       deviceText:
         "sans compte, votre progression reste enregistrée uniquement dans votre navigateur (localStorage) et ne nous est pas transmise. La langue et les filtres choisis sont mémorisés de la même façon. Vous pouvez supprimer ces données à tout moment depuis « Préférences de confidentialité ».",
+      shareLabel: "Partage",
+      shareText:
+        "si vous activez le partage, votre nom de super-héros et les titres que vous avez vus sont visibles par toute personne disposant du lien, jusqu'à l'expiration choisie ou jusqu'à sa désactivation. Le lien contient un code aléatoire, pas votre identifiant.",
     },
     purposes: {
       heading: "Pourquoi nous les traitons",
@@ -389,7 +450,7 @@ export const fr: Messages = {
     },
     retention: {
       heading: "Pendant combien de temps",
-      body: "Nous conservons les données de votre compte tant qu'il existe. Les sessions expirent après 7 jours et les sessions expirées sont supprimées chaque jour ; les compteurs limitant les connexions répétées sont supprimés après un jour ; les informations sur les titres reçues de tiers restent en cache 90 jours au maximum. Lorsque vous supprimez votre compte, le nom de super-héros, l'e-mail, la progression et les sessions sont supprimés immédiatement ; les éventuelles copies de sauvegarde techniques sont écrasées sous 30 jours.",
+      body: "Nous conservons les données de votre compte tant qu'il existe. Les sessions expirent après 7 jours et les sessions expirées sont supprimées chaque jour ; les compteurs limitant les connexions répétées sont supprimés après un jour ; les informations sur les titres reçues de tiers restent en cache 90 jours au maximum. Lorsque vous supprimez votre compte, le nom de super-héros, l'e-mail, la progression et les sessions sont supprimés immédiatement ; les éventuelles copies de sauvegarde techniques sont écrasées sous 30 jours. Les liens de partage expirés sont supprimés chaque jour.",
     },
     rights: {
       heading: "Vos droits",

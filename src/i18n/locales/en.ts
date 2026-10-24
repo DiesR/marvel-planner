@@ -54,6 +54,12 @@ export const en: Messages = {
       confirm: "Reset",
     },
     markWatched: 'Mark "{name}" as watched',
+    next: {
+      heading: "Up next",
+      hiddenByFilters: "This title is hidden by your current filters.",
+      markWatched: "Mark as watched",
+      allDone: "You have watched everything released in the main continuity.",
+    },
     toolbar: {
       actions: "Actions",
       collapseAll: "Collapse all",
@@ -98,6 +104,58 @@ export const en: Messages = {
       alternateText:
         "X-Men '97, Your Friendly Neighborhood Spider-Man and Marvel Zombies are released in this period but are set in timelines separate from the Sacred Timeline: watch them any time, they are not required for the main story.",
     },
+  },
+  share: {
+    open: "Share",
+    title: "Share your planner",
+    intro:
+      "Anyone with the link sees your superhero name and the titles you have watched. No other data from your account.",
+    loginRequired: "Sign in to your account to share your planner.",
+    loginButton: "Sign in",
+    loading: "Loading…",
+    error: "I can't manage the link right now. Please try again.",
+    duration: "Link validity",
+    days7: "7 days",
+    days30: "30 days",
+    never: "No expiry",
+    create: "Create link",
+    regenerate: "Regenerate link",
+    regenerateHint: "The previous link stops working.",
+    disable: "Turn off link",
+    linkLabel: "Link to share",
+    copy: "Copy link",
+    copied: "Link copied",
+    expires: "Expires on {date}.",
+    noExpiry: "The link does not expire until you turn it off.",
+    qrAlt: "QR code of the sharing link",
+    imageHeading: "Image for stories",
+    downloadImage: "Download image",
+    shareImage: "Share image",
+    imageError: "I can't create the image.",
+    shareTitle: "My Marvel Planner",
+    image: {
+      heading: "{name}'s planner",
+      scan: "Scan to see the planner",
+    },
+  },
+  import: {
+    title: "Shared planner",
+    loading: "Loading the shared planner…",
+    notFound: "This link is not valid, has expired or was turned off.",
+    error: "I can't load the shared planner. Please try again.",
+    summary: "Titles watched by {name}: {done} / {total} ({percent}%).",
+    current: "Titles watched in your planner right now: {count}.",
+    currentEmpty: "Your planner is still empty.",
+    empty: "{name} has not marked any title as watched yet.",
+    anonymousNote:
+      "You do not have an account: the imported planner stays saved on this device only.",
+    merge: "Merge with my titles",
+    mergeHint: "Titles that would be added: {count}. You lose nothing.",
+    replace: "Replace my planner",
+    replaceHint: "Your planner will become the same as {name}'s.",
+    replaceWarning: "Warning: the watched titles you would lose: {count}.",
+    replaceConfirm: "Yes, replace",
+    close: "Don't import",
   },
   details: {
     keyScenes: {
@@ -366,6 +424,9 @@ export const en: Messages = {
       deviceLabel: "On your device",
       deviceText:
         "without an account, your progress is saved only in your browser (localStorage) and is not sent to us. The language and filters you choose are remembered the same way. You can delete this data at any time from “Privacy settings”.",
+      shareLabel: "Sharing",
+      shareText:
+        "if you turn on sharing, your superhero name and the titles you have watched are visible to anyone with the link, until the expiry you choose or until you turn it off. The link contains a random code, not your identifier.",
     },
     purposes: {
       heading: "Why we process it",
@@ -387,7 +448,7 @@ export const en: Messages = {
     },
     retention: {
       heading: "How long we keep it",
-      body: "We keep your account data for as long as the account exists. Sessions expire after 7 days and expired ones are deleted every day; the counters that limit repeated sign-in attempts are deleted after one day; title information received from third parties stays in cache for at most 90 days. When you delete your account, superhero name, email, progress and sessions are deleted immediately; any technical backup copies are overwritten within 30 days.",
+      body: "We keep your account data for as long as the account exists. Sessions expire after 7 days and expired ones are deleted every day; the counters that limit repeated sign-in attempts are deleted after one day; title information received from third parties stays in cache for at most 90 days. When you delete your account, superhero name, email, progress and sessions are deleted immediately; any technical backup copies are overwritten within 30 days. Expired sharing links are deleted every day.",
     },
     rights: {
       heading: "Your rights",

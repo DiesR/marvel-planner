@@ -1,4 +1,4 @@
-import { ChevronsDownUp, ChevronsUpDown, RotateCcw } from "lucide-react";
+import { ChevronsDownUp, ChevronsUpDown, RotateCcw, Share2 } from "lucide-react";
 import { useId } from "react";
 import { useI18n } from "../../../i18n/useI18n";
 
@@ -6,9 +6,15 @@ interface PlannerActionsProps {
   areAllCollapsed: boolean;
   onToggleAll: () => void;
   onReset: () => void;
+  onShare: () => void;
 }
 
-export function PlannerActions({ areAllCollapsed, onToggleAll, onReset }: PlannerActionsProps) {
+export function PlannerActions({
+  areAllCollapsed,
+  onToggleAll,
+  onReset,
+  onShare,
+}: PlannerActionsProps) {
   const { t } = useI18n();
   const headingId = useId();
   const ToggleIcon = areAllCollapsed ? ChevronsUpDown : ChevronsDownUp;
@@ -21,6 +27,13 @@ export function PlannerActions({ areAllCollapsed, onToggleAll, onReset }: Planne
         <button type="button" onClick={onToggleAll}>
           <ToggleIcon aria-hidden />
           {areAllCollapsed ? t("planner.toolbar.expandAll") : t("planner.toolbar.collapseAll")}
+        </button>
+      </div>
+
+      <div>
+        <button type="button" aria-haspopup="dialog" onClick={onShare}>
+          <Share2 aria-hidden />
+          {t("share.open")}
         </button>
       </div>
 
