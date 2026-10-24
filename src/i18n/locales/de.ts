@@ -377,15 +377,7 @@ export const de: Messages = {
     warning: "Die Gründe verraten Handlungsdetails.",
     outside: "Außerhalb dieses Planers",
     provisional: "Vorläufige Liste: Sie kann sich ändern, sobald der Titel erscheint.",
-    status: {
-      standalone: "Du musst nichts anderes gesehen haben: Du kannst sofort loslegen.",
-      missingEssential: "Bevor du es ansiehst, solltest du Folgendes sehen: {titles}.",
-      ready:
-        "Du kannst es in Ruhe ansehen: Du hast alles Wesentliche gesehen. Die empfohlenen Titel liefern dir ein paar zusätzliche Bezüge.",
-      wellPrepared:
-        "Du kannst es in Ruhe ansehen: Du hast alles gesehen, was du für die Handlung brauchst. Es bleiben nur optionale Details.",
-      complete: "Du hast alles gesehen: Du kannst es in Ruhe ansehen und erkennst jede Anspielung.",
-    },
+    standalone: "Du musst nichts anderes gesehen haben: Du kannst sofort loslegen.",
   },
   postCredits: {
     heading: "Szenen im Abspann",

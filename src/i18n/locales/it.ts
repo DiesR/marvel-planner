@@ -372,15 +372,7 @@ export const it = {
     warning: "I motivi rivelano dettagli della trama.",
     outside: "Fuori dal planner",
     provisional: "Elenco provvisorio: potrebbe cambiare quando il titolo uscirà.",
-    status: {
-      standalone: "Non serve aver visto altro: puoi guardarlo subito.",
-      missingEssential: "Prima di guardarlo ti conviene vedere: {titles}.",
-      ready:
-        "Puoi guardarlo in serenità: hai visto tutto l'essenziale. I titoli consigliati ti daranno qualche riferimento in più.",
-      wellPrepared:
-        "Puoi guardarlo in serenità: hai visto tutto ciò che serve per capire la storia. Restano solo dettagli facoltativi.",
-      complete: "Hai visto tutto: puoi guardarlo in serenità e coglierai ogni riferimento.",
-    },
+    standalone: "Non serve aver visto altro: puoi guardarlo subito.",
   },
   postCredits: {
     heading: "Scene dopo i titoli di coda",

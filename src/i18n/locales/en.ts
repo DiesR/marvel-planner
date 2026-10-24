@@ -374,16 +374,7 @@ export const en: Messages = {
     warning: "The reasons reveal story details.",
     outside: "Outside this planner",
     provisional: "Provisional list: it may change when the title is released.",
-    status: {
-      standalone: "You don't need to have watched anything else: you can start right away.",
-      missingEssential: "Before watching it, you should see: {titles}.",
-      ready:
-        "You can watch it with peace of mind: you've seen everything essential. The recommended titles would add a few extra references.",
-      wellPrepared:
-        "You can watch it with peace of mind: you've seen everything you need to follow the story. Only optional details remain.",
-      complete:
-        "You've seen it all: you can watch it with peace of mind and catch every reference.",
-    },
+    standalone: "You don't need to have watched anything else: you can start right away.",
   },
   postCredits: {
     heading: "Credits scenes",

@@ -375,16 +375,7 @@ export const fr: Messages = {
     warning: "Les raisons révèlent des détails de l'histoire.",
     outside: "En dehors de ce planificateur",
     provisional: "Liste provisoire : elle pourrait changer à la sortie du titre.",
-    status: {
-      standalone: "Inutile d'avoir vu autre chose : vous pouvez le regarder tout de suite.",
-      missingEssential: "Avant de le regarder, il vaut mieux voir : {titles}.",
-      ready:
-        "Vous pouvez le regarder l'esprit tranquille : vous avez vu tout l'essentiel. Les titres recommandés vous donneront quelques références en plus.",
-      wellPrepared:
-        "Vous pouvez le regarder l'esprit tranquille : vous avez vu tout ce qu'il faut pour suivre l'histoire. Il ne reste que des détails facultatifs.",
-      complete:
-        "Vous avez tout vu : vous pouvez le regarder l'esprit tranquille et saisir chaque référence.",
-    },
+    standalone: "Inutile d'avoir vu autre chose : vous pouvez le regarder tout de suite.",
   },
   postCredits: {
     heading: "Scènes pendant et après le générique",

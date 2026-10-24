@@ -375,15 +375,7 @@ export const es: Messages = {
     warning: "Los motivos revelan detalles de la historia.",
     outside: "Fuera de este planificador",
     provisional: "Lista provisional: puede cambiar cuando se estrene el título.",
-    status: {
-      standalone: "No hace falta haber visto nada más: puedes verlo ahora mismo.",
-      missingEssential: "Antes de verlo te conviene ver: {titles}.",
-      ready:
-        "Puedes verlo con tranquilidad: has visto todo lo esencial. Los títulos recomendados te darán algunas referencias más.",
-      wellPrepared:
-        "Puedes verlo con tranquilidad: has visto todo lo necesario para seguir la historia. Solo quedan detalles opcionales.",
-      complete: "Lo has visto todo: puedes verlo con tranquilidad y captarás cada referencia.",
-    },
+    standalone: "No hace falta haber visto nada más: puedes verlo ahora mismo.",
   },
   postCredits: {
     heading: "Escenas durante y después de los créditos",
