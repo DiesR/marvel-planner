@@ -18,6 +18,7 @@ export function InfoTip({ label, children, placement = "top" }: InfoTipProps) {
   const bubbleRef = useRef<HTMLDivElement>(null);
   const timerRef = useRef<number | undefined>(undefined);
   const pointerTypeRef = useRef("mouse");
+  const isPointerFocusRef = useRef(false);
   const [isOpen, setIsOpen] = useState(false);
 
   const clearTimer = () => window.clearTimeout(timerRef.current);
@@ -100,8 +101,12 @@ export function InfoTip({ label, children, placement = "top" }: InfoTipProps) {
         aria-describedby={bubbleId}
         onPointerDown={(event) => {
           pointerTypeRef.current = event.pointerType;
+          isPointerFocusRef.current = true;
         }}
         onFocus={() => {
+          const isTouchFocus = isPointerFocusRef.current && pointerTypeRef.current !== "mouse";
+          isPointerFocusRef.current = false;
+          if (isTouchFocus) return;
           clearTimer();
           setIsOpen(true);
         }}
