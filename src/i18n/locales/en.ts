@@ -372,7 +372,7 @@ export const en: Messages = {
     notWatched: "Not watched yet",
     why: "Why?",
     infoLabel: "Spoiler alert",
-    warning: "Spoiler alert! Peek only if you dare.",
+    warning: "Heads up, story secrets ahead",
     outside: "Outside this planner",
     provisional: "Provisional list: it may change when the title is released.",
     standalone: "You don't need to have watched anything else: you can start right away.",

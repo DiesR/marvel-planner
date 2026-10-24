@@ -370,7 +370,7 @@ export const it = {
     notWatched: "Da vedere",
     why: "Perché?",
     infoLabel: "Avviso spoiler",
-    warning: "Allerta spoiler! Sbircia solo se te la senti.",
+    warning: "Attenzione, segreti della trama in arrivo",
     outside: "Fuori dal planner",
     provisional: "Elenco provvisorio: potrebbe cambiare quando il titolo uscirà.",
     standalone: "Non serve aver visto altro: puoi guardarlo subito.",

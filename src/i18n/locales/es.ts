@@ -373,7 +373,7 @@ export const es: Messages = {
     notWatched: "Aún por ver",
     why: "¿Por qué?",
     infoLabel: "Alerta de spoiler",
-    warning: "¡Alerta de spoiler! Echa un vistazo solo si te atreves.",
+    warning: "Ojo, se vienen secretos de la historia",
     outside: "Fuera de este planificador",
     provisional: "Lista provisional: puede cambiar cuando se estrene el título.",
     standalone: "No hace falta haber visto nada más: puedes verlo ahora mismo.",

@@ -375,7 +375,7 @@ export const de: Messages = {
     notWatched: "Noch nicht gesehen",
     why: "Warum?",
     infoLabel: "Spoiler-Warnung",
-    warning: "Spoiler-Alarm! Wirf nur einen Blick darauf, wenn du dich traust.",
+    warning: "Achtung, Geheimnisse der Handlung voraus",
     outside: "Außerhalb dieses Planers",
     provisional: "Vorläufige Liste: Sie kann sich ändern, sobald der Titel erscheint.",
     standalone: "Du musst nichts anderes gesehen haben: Du kannst sofort loslegen.",
