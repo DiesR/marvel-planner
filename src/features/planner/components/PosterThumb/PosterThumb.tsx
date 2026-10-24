@@ -4,23 +4,23 @@ import { posterUrl } from "../../utils/format";
 
 interface PosterThumbProps {
   titleId: string;
-  isLoaded: boolean;
 }
 
-function LoadedPoster({ titleId }: { titleId: string }) {
+export function PosterThumb({ titleId }: PosterThumbProps) {
   const { t } = useI18n();
   const state = useTitleDetails(titleId);
 
-  if (state.status !== "ready" || !state.details.posterPath) return null;
   return (
-    <img
-      src={posterUrl(state.details.posterPath)}
-      alt={t("details.posterAlt", { name: state.details.name })}
-      loading="lazy"
-    />
+    <div className="poster-thumb">
+      {state.status === "loading" && (
+        <span className="poster-thumb__loading">{t("common.loading")}</span>
+      )}
+      {state.status === "ready" && state.details.posterPath && (
+        <img
+          src={posterUrl(state.details.posterPath)}
+          alt={t("details.posterAlt", { name: state.details.name })}
+        />
+      )}
+    </div>
   );
-}
-
-export function PosterThumb({ titleId, isLoaded }: PosterThumbProps) {
-  return <div className="poster-thumb">{isLoaded && <LoadedPoster titleId={titleId} />}</div>;
 }

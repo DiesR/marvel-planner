@@ -49,7 +49,7 @@ export function TitleItem({ title, isWatched, watched, onToggle }: TitleItemProp
         </span>
       </label>
 
-      <PosterThumb titleId={title.id} isLoaded={hasBeenOpened} />
+      <PosterThumb titleId={title.id} />
 
       <details
         className="title-row__details"

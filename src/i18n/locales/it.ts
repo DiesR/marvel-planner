@@ -57,6 +57,7 @@ export const it = {
     },
     strip: {
       heading: "Tutti i {total} titoli",
+      phase: "Fase {number}",
       legendWatched: "Visti",
       legendNext: "Prossimo",
       legendTodo: "Da vedere",

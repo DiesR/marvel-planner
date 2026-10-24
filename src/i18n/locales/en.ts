@@ -59,6 +59,7 @@ export const en: Messages = {
     },
     strip: {
       heading: "All {total} titles",
+      phase: "Phase {number}",
       legendWatched: "Watched",
       legendNext: "Next",
       legendTodo: "To watch",

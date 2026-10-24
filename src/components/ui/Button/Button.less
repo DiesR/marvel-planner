@@ -22,10 +22,6 @@
 
   .on-hover({ opacity: 0.92; });
 
-  &:active:not(:disabled) {
-    transform: translateY(1px);
-  }
-
   &:disabled {
     opacity: 0.5;
   }
@@ -54,6 +50,12 @@
 .btn--dark {
   background: #14171f;
   color: #f7f8fa;
+}
+
+.btn--surface {
+  background: var(--surface);
+  color: var(--ink);
+  font-weight: 700;
 }
 
 .btn--soft {

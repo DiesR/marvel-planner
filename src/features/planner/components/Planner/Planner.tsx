@@ -140,7 +140,7 @@ export function Planner({ shareCode }: PlannerProps) {
               />
               {canCollapse && (
                 <CollapseToggle
-                  variant="soft"
+                  variant="surface"
                   areAllCollapsed={areAllCollapsed}
                   onToggleAll={toggleAll}
                 />

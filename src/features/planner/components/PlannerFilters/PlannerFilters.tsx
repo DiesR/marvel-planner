@@ -32,11 +32,14 @@ export function PlannerFilters({
         <h2 id={headingId} className="filters-card__title">
           {t("planner.filters.heading")}
         </h2>
-        {!areDefaultFilters(filters) && (
-          <Button variant="text" icon={<X aria-hidden />} onClick={() => onChange(DEFAULT_FILTERS)}>
-            {t("planner.filters.clear")}
-          </Button>
-        )}
+        <Button
+          variant="text"
+          icon={<X aria-hidden />}
+          disabled={areDefaultFilters(filters)}
+          onClick={() => onChange(DEFAULT_FILTERS)}
+        >
+          {t("planner.filters.clear")}
+        </Button>
       </div>
       <FiltersFields
         filters={filters}
