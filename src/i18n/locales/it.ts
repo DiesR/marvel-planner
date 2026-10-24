@@ -369,6 +369,7 @@ export const it = {
     watched: "Visto",
     notWatched: "Da vedere",
     why: "Perché?",
+    infoLabel: "Informazioni sui motivi",
     warning: "I motivi rivelano dettagli della trama.",
     outside: "Fuori dal planner",
     provisional: "Elenco provvisorio: potrebbe cambiare quando il titolo uscirà.",

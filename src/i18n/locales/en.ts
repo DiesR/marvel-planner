@@ -371,6 +371,7 @@ export const en: Messages = {
     watched: "Watched",
     notWatched: "Not watched yet",
     why: "Why?",
+    infoLabel: "About the reasons",
     warning: "The reasons reveal story details.",
     outside: "Outside this planner",
     provisional: "Provisional list: it may change when the title is released.",

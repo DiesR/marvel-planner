@@ -372,6 +372,7 @@ export const fr: Messages = {
     watched: "Vu",
     notWatched: "Pas encore vu",
     why: "Pourquoi ?",
+    infoLabel: "À propos des raisons",
     warning: "Les raisons révèlent des détails de l'histoire.",
     outside: "En dehors de ce planificateur",
     provisional: "Liste provisoire : elle pourrait changer à la sortie du titre.",

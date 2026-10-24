@@ -1,5 +1,6 @@
-import { Check, Eye, EyeOff, TriangleAlert } from "lucide-react";
+import { Check, Eye, EyeOff } from "lucide-react";
 import { useId, useState } from "react";
+import { InfoTip } from "../../../../components/ui/InfoTip";
 import { useI18n } from "../../../../i18n/useI18n";
 import { TITLES_BY_ID } from "../../data/catalog";
 import { getGuide } from "../../data/guides";
@@ -32,9 +33,14 @@ export function BeforeYouWatch({ title, watched }: BeforeYouWatchProps) {
   return (
     <section className="before-you-watch" aria-labelledby={headingId}>
       <div className="before-you-watch__header">
-        <h5 id={headingId} className="section-title">
-          {t("prerequisites.heading")}
-        </h5>
+        <div className="before-you-watch__title">
+          <h5 id={headingId} className="section-title">
+            {t("prerequisites.heading")}
+          </h5>
+          {guide.prerequisites.length > 0 && (
+            <InfoTip label={t("prerequisites.infoLabel")}>{t("prerequisites.warning")}</InfoTip>
+          )}
+        </div>
         {guide.prerequisites.length > 0 && (
           <button
             type="button"
@@ -48,13 +54,6 @@ export function BeforeYouWatch({ title, watched }: BeforeYouWatchProps) {
           </button>
         )}
       </div>
-
-      {guide.prerequisites.length > 0 && !areReasonsRevealed && (
-        <p className="before-you-watch__warning muted">
-          <TriangleAlert aria-hidden />
-          {t("prerequisites.warning")}
-        </p>
-      )}
 
       {title.status === "upcoming" && (
         <p className="before-you-watch__status muted">{t("prerequisites.provisional")}</p>

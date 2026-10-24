@@ -1,0 +1,81 @@
+@import (reference) "mixins";
+
+.info-tip {
+  --tip-bg: var(--ink);
+  --tip-fg: var(--bg);
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+.on-panel .info-tip {
+  --tip-bg: var(--panel-ink);
+  --tip-fg: var(--panel);
+}
+
+.info-tip__trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: var(--muted);
+
+  svg {
+    width: 20px;
+    height: 20px;
+    stroke-width: 2.2;
+  }
+}
+
+.on-panel .info-tip__trigger {
+  color: var(--panel-muted);
+}
+
+.info-tip__bubble {
+  position: fixed;
+  inset: auto;
+  margin: 0;
+  width: max-content;
+  max-width: 240px;
+  padding: 10px 14px;
+  border: 0;
+  border-radius: 14px;
+  background: var(--tip-bg);
+  color: var(--tip-fg);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.35;
+  text-align: left;
+  overflow: visible;
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    background: inherit;
+    transform: rotate(45deg);
+  }
+
+  &[data-placement="top"]::after {
+    bottom: -4px;
+    left: var(--tip-arrow, 16px);
+  }
+
+  &[data-placement="bottom"]::after {
+    top: -4px;
+    left: var(--tip-arrow, 16px);
+  }
+
+  &[data-placement="left"]::after {
+    right: -4px;
+    top: var(--tip-arrow, 16px);
+  }
+
+  &[data-placement="right"]::after {
+    left: -4px;
+    top: var(--tip-arrow, 16px);
+  }
+}

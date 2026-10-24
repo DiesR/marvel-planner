@@ -374,6 +374,7 @@ export const de: Messages = {
     watched: "Gesehen",
     notWatched: "Noch nicht gesehen",
     why: "Warum?",
+    infoLabel: "Zu den Gründen",
     warning: "Die Gründe verraten Handlungsdetails.",
     outside: "Außerhalb dieses Planers",
     provisional: "Vorläufige Liste: Sie kann sich ändern, sobald der Titel erscheint.",
