@@ -364,9 +364,7 @@ export const es: Messages = {
     },
     watched: "Visto",
     notWatched: "Aún por ver",
-    show: "Mostrar los motivos",
-    hide: "Ocultar los motivos",
-    warning: "Atención: los motivos pueden desvelar detalles de títulos anteriores.",
+    why: "¿Por qué? (spoilers)",
     outside: "Fuera de este planificador",
     provisional: "Lista provisional: puede cambiar cuando se estrene el título.",
     status: {

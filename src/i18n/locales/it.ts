@@ -361,9 +361,7 @@ export const it = {
     },
     watched: "Visto",
     notWatched: "Da vedere",
-    show: "Mostra i motivi",
-    hide: "Nascondi i motivi",
-    warning: "Attenzione: i motivi possono contenere spoiler sui titoli precedenti.",
+    why: "Perché? (spoiler)",
     outside: "Fuori dal planner",
     provisional: "Elenco provvisorio: potrebbe cambiare quando il titolo uscirà.",
     status: {

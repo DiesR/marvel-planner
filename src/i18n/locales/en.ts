@@ -363,9 +363,7 @@ export const en: Messages = {
     },
     watched: "Watched",
     notWatched: "Not watched yet",
-    show: "Show the reasons",
-    hide: "Hide the reasons",
-    warning: "Warning: the reasons may spoil earlier titles.",
+    why: "Why? (spoilers)",
     outside: "Outside this planner",
     provisional: "Provisional list: it may change when the title is released.",
     status: {

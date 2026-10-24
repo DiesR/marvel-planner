@@ -366,9 +366,7 @@ export const de: Messages = {
     },
     watched: "Gesehen",
     notWatched: "Noch nicht gesehen",
-    show: "Gründe anzeigen",
-    hide: "Gründe ausblenden",
-    warning: "Achtung: Die Gründe können frühere Titel spoilern.",
+    why: "Warum? (Spoiler)",
     outside: "Außerhalb dieses Planers",
     provisional: "Vorläufige Liste: Sie kann sich ändern, sobald der Titel erscheint.",
     status: {

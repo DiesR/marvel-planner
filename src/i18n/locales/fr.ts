@@ -364,9 +364,7 @@ export const fr: Messages = {
     },
     watched: "Vu",
     notWatched: "Pas encore vu",
-    show: "Afficher les raisons",
-    hide: "Masquer les raisons",
-    warning: "Attention : les raisons peuvent révéler des éléments des titres précédents.",
+    why: "Pourquoi ? (spoilers)",
     outside: "En dehors de ce planificateur",
     provisional: "Liste provisoire : elle pourrait changer à la sortie du titre.",
     status: {

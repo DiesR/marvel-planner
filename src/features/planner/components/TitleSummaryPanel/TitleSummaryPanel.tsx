@@ -1,5 +1,4 @@
-import { PlotSection } from "../PlotSection";
-import { SynopsisSection } from "../SynopsisSection";
+import { useI18n } from "../../../../i18n/useI18n";
 import { WithTitleDetails } from "../WithTitleDetails";
 
 interface TitleSummaryPanelProps {
@@ -7,14 +6,11 @@ interface TitleSummaryPanelProps {
 }
 
 export function TitleSummaryPanel({ titleId }: TitleSummaryPanelProps) {
+  const { t } = useI18n();
+
   return (
     <WithTitleDetails titleId={titleId}>
-      {(details) => (
-        <div className="title-summary">
-          <SynopsisSection synopsis={details.synopsis} />
-          <PlotSection details={details} />
-        </div>
-      )}
+      {(details) => <p className="title-summary">{details.synopsis || t("details.noSynopsis")}</p>}
     </WithTitleDetails>
   );
 }

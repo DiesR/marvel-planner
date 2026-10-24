@@ -4,7 +4,8 @@ import { Button } from "../../../../components/ui/Button";
 import { useI18n } from "../../../../i18n/useI18n";
 import { MEDIA_TYPE_KEYS } from "../../data/labels";
 import type { PhaseNumber, Title } from "../../types";
-import { formatRelease } from "../../utils/format";
+import { useTitleDetails } from "../../hooks/useTitleDetails";
+import { backdropUrl, formatRelease } from "../../utils/format";
 import { TitleDetailsDialog } from "../TitleDetailsDialog";
 
 interface NextToWatchProps {
@@ -12,6 +13,15 @@ interface NextToWatchProps {
   phase: PhaseNumber | null;
   isHiddenByFilters: boolean;
   onMarkWatched: (id: string) => void;
+}
+
+function Backdrop({ titleId }: { titleId: string }) {
+  const state = useTitleDetails(titleId);
+
+  if (state.status !== "ready" || !state.details.backdropPath) return null;
+  return (
+    <img className="next-card__backdrop" src={backdropUrl(state.details.backdropPath)} alt="" />
+  );
 }
 
 export function NextToWatch({ title, phase, isHiddenByFilters, onMarkWatched }: NextToWatchProps) {
@@ -22,6 +32,7 @@ export function NextToWatch({ title, phase, isHiddenByFilters, onMarkWatched }: 
 
   return (
     <section className="next-card card" aria-labelledby={headingId}>
+      {title && <Backdrop titleId={title.id} />}
       <h2 id={headingId} className="section-title">
         {t("planner.next.heading")}
       </h2>

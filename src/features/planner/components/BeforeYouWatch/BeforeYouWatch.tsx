@@ -1,6 +1,5 @@
-import { Check, Circle } from "lucide-react";
+import { Check, Circle, Eye, EyeOff } from "lucide-react";
 import { useId, useState } from "react";
-import { SpoilerToggle } from "../../../../components/ui/SpoilerToggle";
 import type { TranslationKey } from "../../../../i18n/types";
 import { useI18n } from "../../../../i18n/useI18n";
 import { TITLES_BY_ID } from "../../data/catalog";
@@ -50,14 +49,16 @@ export function BeforeYouWatch({ title, watched }: BeforeYouWatchProps) {
           {t("prerequisites.heading")}
         </h5>
         {guide.prerequisites.length > 0 && (
-          <SpoilerToggle
-            isRevealed={areReasonsRevealed}
-            onToggle={() => setAreReasonsRevealed(!areReasonsRevealed)}
-            controls={reasonIds}
-            showLabel={t("prerequisites.show")}
-            hideLabel={t("prerequisites.hide")}
-            warning={t("prerequisites.warning")}
-          />
+          <button
+            type="button"
+            className="why-toggle"
+            aria-expanded={areReasonsRevealed}
+            aria-controls={reasonIds}
+            onClick={() => setAreReasonsRevealed(!areReasonsRevealed)}
+          >
+            {areReasonsRevealed ? <EyeOff aria-hidden /> : <Eye aria-hidden />}
+            {t("prerequisites.why")}
+          </button>
         )}
       </div>
 
