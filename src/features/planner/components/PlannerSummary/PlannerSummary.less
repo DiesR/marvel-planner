@@ -45,6 +45,12 @@
   color: var(--on-gold);
   font-size: 1.125rem;
   font-weight: 800;
+  .tones(#ffc23d, #e09f10);
+
+  &:focus-visible {
+    outline: 3px solid var(--ink);
+    outline-offset: 2px;
+  }
 
   svg {
     flex: none;
@@ -72,6 +78,7 @@
   .pill();
   background: var(--panel-2);
   font-weight: 700;
+  .tones(#323a50, #3a4260);
 }
 
 .progress-card__footer {
@@ -103,4 +110,8 @@
   font-size: 2.5rem;
   line-height: 0.95;
   margin-bottom: 12px;
+}
+
+.share-poster .btn {
+  --btn-ring: #14171f;
 }

@@ -1,5 +1,6 @@
 import { Download } from "lucide-react";
 import { useId, useState } from "react";
+import { Button } from "../../../../components/ui/Button";
 import { useI18n } from "../../../../i18n/useI18n";
 
 const EXPORT_FILE_NAME = "marvel-planner-data.json";
@@ -34,10 +35,15 @@ export function ExportSection() {
       <h3 id={headingId}>{t("account.export.heading")}</h3>
       <p>{t("account.export.description")}</p>
       {hasFailed && <p role="alert">{t("account.export.error")}</p>}
-      <button type="button" className="btn btn--soft" disabled={isPending} onClick={download}>
-        <Download aria-hidden />
-        {isPending ? t("account.export.pending") : t("account.export.button")}
-      </button>
+      <Button
+        variant="soft"
+        icon={<Download aria-hidden />}
+        isLoading={isPending}
+        loadingLabel={t("account.export.pending")}
+        onClick={download}
+      >
+        {t("account.export.button")}
+      </Button>
     </section>
   );
 }

@@ -2,6 +2,7 @@ import { Copy, Download, Link2Off, RefreshCw, Share2 } from "lucide-react";
 import QRCode from "qrcode";
 import { useEffect, useId, useState } from "react";
 import type { ShareDuration, ShareLinkInfo } from "../../../../../shared/share";
+import { Button } from "../../../../components/ui/Button";
 import { Modal } from "../../../../components/ui/Modal";
 import type { TranslationKey } from "../../../../i18n/types";
 import { useI18n } from "../../../../i18n/useI18n";
@@ -190,30 +191,36 @@ function ShareManager({ name, progress }: { name: string; progress: Progress }) 
 
       {link ? (
         <div>
-          <button
-            type="button"
-            className="btn btn--soft"
-            disabled={isBusy}
+          <Button
+            variant="soft"
+            icon={<RefreshCw aria-hidden />}
+            isLoading={isBusy}
+            loadingLabel={t("share.regenerating")}
             onClick={() => save(daysOf(duration), true)}
           >
-            <RefreshCw aria-hidden />
             {t("share.regenerate")}
-          </button>
+          </Button>
           <p>{t("share.regenerateHint")}</p>
-          <button type="button" className="btn btn--text" disabled={isBusy} onClick={disable}>
-            <Link2Off aria-hidden />
+          <Button
+            variant="text"
+            icon={<Link2Off aria-hidden />}
+            isLoading={isBusy}
+            loadingLabel={t("share.disabling")}
+            onClick={disable}
+          >
             {t("share.disable")}
-          </button>
+          </Button>
         </div>
       ) : (
-        <button
-          type="button"
-          className="btn btn--primary btn--lg"
-          disabled={isBusy}
+        <Button
+          variant="primary"
+          size="lg"
+          isLoading={isBusy}
+          loadingLabel={t("share.creating")}
           onClick={() => save(daysOf(duration), false)}
         >
           {t("share.create")}
-        </button>
+        </Button>
       )}
     </div>
   );
@@ -228,15 +235,16 @@ function ShareContent({ progress, onClose }: { progress: Progress; onClose: () =
     return (
       <div>
         <p>{t("share.loginRequired")}</p>
-        <button
-          type="button"
+        <Button
+          variant="primary"
+          size="lg"
           onClick={() => {
             onClose();
             open("login");
           }}
         >
           {t("share.loginButton")}
-        </button>
+        </Button>
       </div>
     );
   }

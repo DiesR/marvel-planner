@@ -98,3 +98,28 @@
 .on-panel .choice-group legend {
   color: var(--panel-muted);
 }
+
+.choice {
+  .on-hover({
+    .choice__face {
+      background: var(--cell-off);
+    }
+  });
+}
+
+.choice__input:checked + .choice__face,
+.choice:hover .choice__input:checked + .choice__face {
+  background: var(--ink);
+}
+
+.on-panel .choice {
+  .on-hover({
+    .choice__face {
+      background: #323a50;
+    }
+  });
+}
+
+.on-panel .choice__input:checked + .choice__face {
+  background: var(--gold);
+}
