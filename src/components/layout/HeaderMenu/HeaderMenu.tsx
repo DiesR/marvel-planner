@@ -6,6 +6,7 @@ import { PATHS } from "../../../app/paths";
 import { SITE } from "../../../app/site";
 import { Button, buttonClass } from "../../ui/Button";
 import { useDialog } from "../../ui/useDialog";
+import { useIsDesktopWithReset } from "../../ui/useMediaQuery";
 import { useAuth } from "../../../features/auth/hooks/useAuth";
 import { useAuthDialog } from "../../../features/auth/hooks/useAuthDialog";
 import { initials } from "../../../features/auth/utils/initials";
@@ -71,6 +72,7 @@ export function HeaderMenu() {
   const [isOpen, setIsOpen] = useState(false);
   const dialogRef = useDialog(isOpen);
   const close = () => setIsOpen(false);
+  useIsDesktopWithReset(close);
 
   return (
     <>

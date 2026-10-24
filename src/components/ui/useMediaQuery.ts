@@ -1,4 +1,4 @@
-import { useCallback, useSyncExternalStore } from "react";
+import { useCallback, useState, useSyncExternalStore } from "react";
 
 export const DESKTOP_QUERY = "(min-width: 1024px)";
 
@@ -19,3 +19,15 @@ export function useMediaQuery(query: string): boolean {
 }
 
 export const useIsDesktop = () => useMediaQuery(DESKTOP_QUERY);
+
+export function useIsDesktopWithReset(onBecomesDesktop: () => void): boolean {
+  const isDesktop = useIsDesktop();
+  const [wasDesktop, setWasDesktop] = useState(isDesktop);
+
+  if (wasDesktop !== isDesktop) {
+    setWasDesktop(isDesktop);
+    if (isDesktop) onBecomesDesktop();
+  }
+
+  return isDesktop;
+}

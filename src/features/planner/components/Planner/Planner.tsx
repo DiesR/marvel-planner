@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import { FOOTER_ID } from "../../../../app/dom";
 import { PATHS } from "../../../../app/paths";
 import { ConfirmDialog } from "../../../../components/ui/ConfirmDialog";
-import { useIsDesktop } from "../../../../components/ui/useMediaQuery";
+import { useIsDesktopWithReset } from "../../../../components/ui/useMediaQuery";
 import { useI18n } from "../../../../i18n/useI18n";
 import { STORAGE_KEYS } from "../../../../lib/storageKeys";
 import { usePersistentState } from "../../../../lib/usePersistentState";
@@ -45,7 +45,8 @@ interface PlannerProps {
 export function Planner({ shareCode }: PlannerProps) {
   const { t } = useI18n();
   const navigate = useNavigate();
-  const isDesktop = useIsDesktop();
+  const [isFiltersOpen, setIsFiltersOpen] = useState(false);
+  const isDesktop = useIsDesktopWithReset(() => setIsFiltersOpen(false));
   const [filters, setFilters] = usePersistentState(
     STORAGE_KEYS.filters,
     DEFAULT_FILTERS,
@@ -58,7 +59,6 @@ export function Planner({ shareCode }: PlannerProps) {
   );
   const [isResetDialogOpen, setIsResetDialogOpen] = useState(false);
   const [isShareDialogOpen, setIsShareDialogOpen] = useState(false);
-  const [isFiltersOpen, setIsFiltersOpen] = useState(false);
   const progressRef = useRef<HTMLDivElement>(null);
 
   const catalog = useResolvedCatalog();
