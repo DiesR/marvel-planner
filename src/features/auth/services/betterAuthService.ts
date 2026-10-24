@@ -13,6 +13,7 @@ const ERROR_KEYS: Record<string, TranslationKey> = {
   INVALID_EMAIL: "auth.errors.invalidEmail",
   INVALID_PASSWORD: "auth.errors.wrongPassword",
   INVALID_NAME: "auth.errors.invalidName",
+  NAME_TAKEN: "auth.errors.nameTaken",
   USER_ALREADY_EXISTS: "auth.errors.userExists",
   USER_ALREADY_EXISTS_USE_ANOTHER_EMAIL: "auth.errors.userExists",
   PASSWORD_TOO_SHORT: "auth.errors.passwordShort",

@@ -4,7 +4,12 @@ import { isMaintenanceOn } from "../services/siteSettings";
 import type { AppEnv } from "../types";
 
 const RETRY_AFTER_SECONDS = 3600;
-const OPEN_DURING_MAINTENANCE = [/^\/api\/auth\//, /^\/api\/status$/];
+const OPEN_DURING_MAINTENANCE = [
+  /^\/api\/auth\/sign-in\/email$/,
+  /^\/api\/auth\/sign-out$/,
+  /^\/api\/auth\/get-session$/,
+  /^\/api\/status$/,
+];
 
 export const maintenance = createMiddleware<AppEnv>(async (c, next) => {
   if (!(await isMaintenanceOn(c.var.db))) return next();

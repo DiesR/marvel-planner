@@ -9,7 +9,7 @@ Questo documento descrive tutto ciò che il sito fa oggi, come è fatto e che co
 - **Non ufficiale**: non è affiliato a Marvel Studios né a The Walt Disney Company. Lo dice il footer.
 - **Pubblico**: appassionati di ogni livello, anche chi comincia ora e teme spoiler. Su telefono si usa molto (spesso davanti alla TV).
 - **Lingue**: italiano (base), inglese, francese, spagnolo, tedesco. Tutto il sito è tradotto; i **titoli delle opere restano sempre in inglese** (sono marcati `lang="en"`). Francese e tedesco hanno testi più lunghi dell'italiano: i layout devono reggerli.
-- **Stato**: il codice è completo e verificato (73 test automatici). Il sito è ancora dietro una password di sviluppo e non è pubblico. Il design è l'ultima fase.
+- **Stato**: il codice è completo e verificato (73 test automatici). Il sito è in manutenzione finché l'amministratore non lo apre, quindi non è ancora pubblico. Il design è l'ultima fase.
 
 ## 2. Principi non negoziabili
 
@@ -139,7 +139,7 @@ Stati: caricamento; **link non valido/scaduto/disattivato**; errore + riprova; p
 ## 9. Pagina admin e altri stati di servizio
 
 - **Dashboard `/admin`** (solo amministratore, funzionale: bassa priorità estetica ma deve essere chiara): sezione **Manutenzione** (stato "Sito online / Manutenzione attiva", pulsante con conferma), sezione **Attività automatiche** (data e ora dell'ultima esecuzione di pulizia giornaliera e ricerca settimanale, presenza del token TMDB), sezione **Nuovi titoli da valutare** (elenco con nome, "nuovo titolo/nuova stagione", data, e per ognuno: "Genera codice" che mostra due righe di codice con pulsante "Copia", "Apri su TMDB", "Ignora").
-- **Pagina di manutenzione**: titolo "Sito in manutenzione" e una frase. L'header resta visibile (serve per l'accesso dell'amministratore).
+- **Pagina di manutenzione**: titolo "Sito in manutenzione", una frase e, per chi non ha fatto l'accesso, il pulsante "Accesso amministratori" che apre il popup di accesso. L'header resta visibile. Durante la manutenzione non è possibile registrarsi.
 - **404** e **errore imprevisto**: titolo, spiegazione breve, link per tornare al planner.
 
 ## 10. Stati e contenuti da stressare nel design

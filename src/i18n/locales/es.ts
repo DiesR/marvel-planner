@@ -264,6 +264,7 @@ export const es: Messages = {
       invalidEmail: "La dirección de correo no es válida.",
       wrongPassword: "La contraseña no es correcta.",
       invalidName: "Introduce un nombre válido.",
+      nameTaken: "Este nombre de superhéroe ya está en uso. Elige otro.",
       userExists: "Ya existe una cuenta con este correo.",
       passwordShort: "La contraseña debe tener al menos {min} caracteres.",
       passwordLong: "La contraseña es demasiado larga.",
@@ -470,6 +471,7 @@ export const es: Messages = {
   maintenance: {
     title: "Sitio en mantenimiento",
     body: "Estamos trabajando en el sitio. Vuelve en un momento.",
+    adminLogin: "Acceso de administradores",
   },
   notFound: {
     title: "Página no encontrada",

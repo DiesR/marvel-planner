@@ -1,3 +1,4 @@
+import { and, ne, sql } from "drizzle-orm";
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { APIError } from "better-auth/api";
@@ -17,6 +18,21 @@ function normalizeName(name: unknown): string {
   return normalized.slice(0, MAX_NAME_LENGTH);
 }
 
+async function assertNameAvailable(db: Database, name: string, ownerId?: string) {
+  const [taken] = await db
+    .select({ id: schema.user.id })
+    .from(schema.user)
+    .where(
+      and(
+        sql`lower(${schema.user.name}) = lower(${name})`,
+        ownerId ? ne(schema.user.id, ownerId) : undefined,
+      ),
+    );
+  if (taken) {
+    throw new APIError("BAD_REQUEST", { code: "NAME_TAKEN", message: "Name already taken" });
+  }
+}
+
 export function createAuth(env: Env, db: Database) {
   return betterAuth({
     baseURL: env.BETTER_AUTH_URL,
@@ -33,11 +49,19 @@ export function createAuth(env: Env, db: Database) {
     databaseHooks: {
       user: {
         create: {
-          before: async (user) => ({ data: { ...user, name: normalizeName(user.name) } }),
+          before: async (user) => {
+            const name = normalizeName(user.name);
+            await assertNameAvailable(db, name);
+            return { data: { ...user, name } };
+          },
         },
         update: {
-          before: async (user) =>
-            "name" in user ? { data: { ...user, name: normalizeName(user.name) } } : undefined,
+          before: async (user, context) => {
+            if (!("name" in user)) return undefined;
+            const name = normalizeName(user.name);
+            await assertNameAvailable(db, name, context?.context.session?.user.id);
+            return { data: { ...user, name } };
+          },
         },
       },
     },

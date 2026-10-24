@@ -6,7 +6,6 @@ import { withContext } from "./middleware/context";
 import { maintenance } from "./middleware/maintenance";
 import { securityHeaders } from "./middleware/securityHeaders";
 import { sameOrigin } from "./middleware/sameOrigin";
-import { siteGate } from "./middleware/siteGate";
 import { accountRoutes } from "./routes/account";
 import { adminRoutes } from "./routes/admin";
 import { imageRoutes } from "./routes/images";
@@ -42,7 +41,6 @@ const api = new Hono<AppEnv>()
 
 const app = new Hono<AppEnv>()
   .use(securityHeaders)
-  .use(siteGate)
   .route("/api", api)
   .all("*", async (c) => {
     const asset = await c.env.ASSETS.fetch(c.req.raw);

@@ -266,6 +266,7 @@ export const de: Messages = {
       invalidEmail: "Die E-Mail-Adresse ist ungültig.",
       wrongPassword: "Das Passwort ist nicht korrekt.",
       invalidName: "Gib einen gültigen Namen ein.",
+      nameTaken: "Dieser Superheldenname ist bereits vergeben. Wähle einen anderen.",
       userExists: "Mit dieser E-Mail existiert bereits ein Konto.",
       passwordShort: "Das Passwort muss mindestens {min} Zeichen lang sein.",
       passwordLong: "Das Passwort ist zu lang.",
@@ -474,6 +475,7 @@ export const de: Messages = {
   maintenance: {
     title: "Seite in Wartung",
     body: "Wir arbeiten an der Seite. Schau bald wieder vorbei.",
+    adminLogin: "Administrator-Anmeldung",
   },
   notFound: {
     title: "Seite nicht gefunden",

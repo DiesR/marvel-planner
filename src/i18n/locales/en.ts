@@ -263,6 +263,7 @@ export const en: Messages = {
       invalidEmail: "The email address is not valid.",
       wrongPassword: "The password is incorrect.",
       invalidName: "Enter a valid name.",
+      nameTaken: "This superhero name is already taken. Please choose another.",
       userExists: "An account with this email already exists.",
       passwordShort: "The password must be at least {min} characters long.",
       passwordLong: "The password is too long.",
@@ -470,6 +471,7 @@ export const en: Messages = {
   maintenance: {
     title: "Site under maintenance",
     body: "We are working on the site. Please come back shortly.",
+    adminLogin: "Administrator sign-in",
   },
   notFound: {
     title: "Page not found",

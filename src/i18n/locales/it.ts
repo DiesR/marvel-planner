@@ -261,6 +261,7 @@ export const it = {
       invalidEmail: "L'indirizzo email non è valido.",
       wrongPassword: "La password non è corretta.",
       invalidName: "Inserisci un nome valido.",
+      nameTaken: "Questo nome da supereroe è già in uso. Scegline un altro.",
       userExists: "Esiste già un account con questa email.",
       passwordShort: "La password deve avere almeno {min} caratteri.",
       passwordLong: "La password è troppo lunga.",
@@ -468,6 +469,7 @@ export const it = {
   maintenance: {
     title: "Sito in manutenzione",
     body: "Stiamo lavorando al sito. Torna a trovarci tra poco.",
+    adminLogin: "Accesso amministratori",
   },
   notFound: {
     title: "Pagina non trovata",

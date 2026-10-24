@@ -45,6 +45,7 @@ function createApp() {
 
 describe("modalità manutenzione", () => {
   it("con il sito online lascia passare tutti", async () => {
+    await setMaintenance(db, false);
     const { call } = createApp();
     expect((await call("/api/progress")).status).toBe(200);
   });
@@ -58,10 +59,27 @@ describe("modalità manutenzione", () => {
     expect((await call("/api/progress", "utente")).status).toBe(503);
   });
 
+  it("dopo le migrazioni il sito parte in manutenzione", async () => {
+    resetMaintenanceCache();
+    expect(await isMaintenanceOn(db)).toBe(true);
+    const { call } = createApp();
+    expect((await call("/api/titles/i-iron-man")).status).toBe(503);
+  });
+
+  it("in manutenzione non ci si può registrare né usare altre funzioni di accesso", async () => {
+    await setMaintenance(db, true);
+    const { call } = createApp();
+    expect((await call("/api/auth/sign-up/email")).status).toBe(503);
+    expect((await call("/api/auth/delete-user")).status).toBe(503);
+    expect((await call("/api/auth/change-password")).status).toBe(503);
+  });
+
   it("in manutenzione restano aperti solo accesso e stato del sito", async () => {
     await setMaintenance(db, true);
     const { call } = createApp();
     expect((await call("/api/auth/sign-in/email")).status).toBe(200);
+    expect((await call("/api/auth/get-session")).status).toBe(200);
+    expect((await call("/api/auth/sign-out")).status).toBe(200);
     expect((await call("/api/status")).status).toBe(200);
     expect((await call("/api/statusx")).status).toBe(503);
   });

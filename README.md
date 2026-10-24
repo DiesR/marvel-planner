@@ -189,12 +189,9 @@ Interfaccia e contenuti sono disponibili in italiano, francese, spagnolo, ingles
 - Nelle traduzioni, `{nome}` è un segnaposto; `rich()` permette di inserire link dentro una frase.
 - Aggiungere una lingua: codice in `shared/languages.ts`, file in `locales/`, locale TMDB in `worker/services/tmdb.ts`, intestazioni della trama in `worker/services/wikipedia.ts`.
 
-## Accesso riservato durante lo sviluppo
+## Apertura del sito
 
-Se il secret `SITE_PASSWORD` è impostato, il Worker chiede utente e password (HTTP Basic Auth) per ogni richiesta, pagine e API comprese. Utente: `marvel`.
-
-- Attivare o cambiare password: `npx wrangler secret put SITE_PASSWORD`
-- Rendere il sito pubblico: `npx wrangler secret delete SITE_PASSWORD`
+Dopo le migrazioni il sito **parte in manutenzione** (la migrazione `0007` inserisce l'interruttore su "on"): gli utenti vedono solo la pagina di avviso e le API sono chiuse. Per aprirlo: impostare `ADMIN_USER_ID`, accedere dal pulsante "Accesso amministratori", aprire `/admin` e disattivare la manutenzione. Durante la manutenzione restano aperti solo accesso, uscita, lettura della sessione e stato del sito: non ci si può registrare.
 
 ## Pubblicazione
 
