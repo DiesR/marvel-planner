@@ -3,6 +3,8 @@ import { CATALOG } from "../src/features/planner/data/catalog";
 import { flattenTitles } from "../src/features/planner/utils/filters";
 import { planImport } from "../src/features/planner/utils/importPlan";
 import { findNextTitle } from "../src/features/planner/utils/nextTitle";
+import { chronologicalTitles, titlesInOrder } from "../src/features/planner/utils/order";
+import { CHRONOLOGICAL_ORDER } from "../src/features/planner/data/chronology";
 
 const titles = flattenTitles(CATALOG);
 const known = new Set(titles.map((title) => title.id));
@@ -32,8 +34,8 @@ describe("importazione di un planner condiviso", () => {
 
 describe("prossimo da guardare", () => {
   it("è il primo titolo non visto del catalogo", () => {
-    expect(findNextTitle(CATALOG, new Set())?.id).toBe(a);
-    expect(findNextTitle(CATALOG, new Set([a]))?.id).not.toBe(a);
+    expect(findNextTitle(titles, new Set())?.id).toBe(a);
+    expect(findNextTitle(titles, new Set([a]))?.id).not.toBe(a);
   });
 
   it("salta i titoli non ancora usciti e la continuità alternativa", () => {
@@ -42,6 +44,30 @@ describe("prossimo da guardare", () => {
         .filter((title) => title.status === "released" && title.continuity === "main")
         .map((title) => title.id),
     );
-    expect(findNextTitle(CATALOG, everythingEligibleWatched)).toBeNull();
+    expect(findNextTitle(titles, everythingEligibleWatched)).toBeNull();
+  });
+});
+
+describe("ordine cronologico", () => {
+  it("cita solo titoli del catalogo, senza duplicati", () => {
+    expect(CHRONOLOGICAL_ORDER.filter((id) => !known.has(id))).toEqual([]);
+    expect(new Set(CHRONOLOGICAL_ORDER).size).toBe(CHRONOLOGICAL_ORDER.length);
+  });
+
+  it("separa i titoli collocati da quelli senza collocazione senza perderne", () => {
+    const { placed, unplaced } = chronologicalTitles(CATALOG);
+    expect(placed.length + unplaced.length).toBe(titles.length);
+    expect(placed.map((title) => title.id)).toEqual(CHRONOLOGICAL_ORDER);
+    expect(unplaced.every((title) => !CHRONOLOGICAL_ORDER.includes(title.id))).toBe(true);
+  });
+
+  it("in ordine cronologico parte dal primo titolo della linea temporale", () => {
+    expect(titlesInOrder(CATALOG, "chronological")[0].id).toBe(CHRONOLOGICAL_ORDER[0]);
+    expect(titlesInOrder(CATALOG, "release")[0].id).toBe(a);
+  });
+
+  it("il prossimo da guardare segue l'ordine scelto", () => {
+    const chronological = titlesInOrder(CATALOG, "chronological");
+    expect(findNextTitle(chronological, new Set())?.id).toBe(CHRONOLOGICAL_ORDER[0]);
   });
 });

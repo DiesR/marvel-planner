@@ -13,6 +13,8 @@ export const it = {
     privacy: "Privacy",
     cookies: "Cookie",
     privacySettings: "Preferenze privacy",
+    credits: "Dati sulla disponibilità: {justwatch}. Trame: {wikipedia}, {license}.",
+    creditsLicense: "licenza CC BY-SA 4.0",
     coffee: "Se ti sono stato utile, offrimi un caffè",
   },
   catalog: {
@@ -57,6 +59,18 @@ export const it = {
       hiddenByFilters: "Questo titolo è nascosto dai filtri attuali.",
       markWatched: "Segna come visto",
       allDone: "Hai guardato tutto ciò che è uscito nella continuità principale.",
+    },
+    order: {
+      heading: "Ordine di visione",
+      release: "Per data di uscita",
+      chronological: "Cronologico (storia)",
+      chronologicalHeading: "In ordine cronologico",
+      chronologicalNote:
+        "Segue la linea temporale di Disney+, riportata da Wikipedia. Non è un ordine ufficiale definitivo: per esempio Loki, What If…? e Werewolf by Night non hanno una collocazione fissa nella storia.",
+      sourceLink: "Linea temporale su Wikipedia",
+      unplacedHeading: "Senza collocazione cronologica",
+      unplacedNote:
+        "Questi titoli non compaiono nella linea temporale che usiamo come fonte, quindi non li collochiamo a caso.",
     },
     toolbar: {
       actions: "Azioni",
@@ -159,6 +173,7 @@ export const it = {
     keyScenes: {
       heading: "Scene da guardare con attenzione",
       editorial: "Consigli redazionali: scelte nostre, non provengono da una fonte esterna.",
+      source: "Fonte di queste indicazioni",
       show: "Mostra le scene",
       hide: "Nascondi le scene",
       warning: "Attenzione: contiene spoiler.",
@@ -373,6 +388,11 @@ export const it = {
       kind: "Archiviazione locale (propria)",
       purpose: "Ricorda i filtri che hai scelto nel planner.",
       duration: "Finché non li cancelli",
+    },
+    viewOrder: {
+      kind: "Archiviazione locale (propria)",
+      purpose: "Ricorda se vedi i titoli per uscita o in ordine cronologico.",
+      duration: "Finché non lo cancelli",
     },
     manageHeading: "Come gestirli",
     manageBody:

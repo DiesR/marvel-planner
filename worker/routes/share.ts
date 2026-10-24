@@ -2,6 +2,7 @@ import { Hono } from "hono";
 import { z } from "zod";
 import { SHARE_CODE_PATTERN } from "../../shared/share";
 import { requireUser } from "../middleware/requireUser";
+import { isBlocked, recordMiss } from "../services/missLimit";
 import { getActiveShare, getSharedPlanner, revokeShare, saveShare } from "../services/share";
 import type { AppEnv } from "../types";
 
@@ -32,13 +33,24 @@ export const shareRoutes = new Hono<AppEnv>()
     return c.body(null, 204);
   });
 
+const SHARED_SCOPE = "shared";
+const BLOCK_SECONDS = 600;
+
 export const sharedRoutes = new Hono<AppEnv>().get("/:code", async (c) => {
   const code = c.req.param("code");
+  const client = c.req.header("cf-connecting-ip") ?? "unknown";
   c.header("Cache-Control", "no-store");
   c.header("X-Robots-Tag", "noindex, nofollow");
-  if (!SHARE_CODE_PATTERN.test(code)) return c.json({ error: "not_found" }, 404);
 
-  const planner = await getSharedPlanner(c.var.db, code);
-  if (!planner) return c.json({ error: "not_found" }, 404);
+  if (await isBlocked(c.var.db, SHARED_SCOPE, client)) {
+    c.header("Retry-After", String(BLOCK_SECONDS));
+    return c.json({ error: "too_many_requests" }, 429);
+  }
+
+  const planner = SHARE_CODE_PATTERN.test(code) ? await getSharedPlanner(c.var.db, code) : null;
+  if (!planner) {
+    await recordMiss(c.var.db, SHARED_SCOPE, client);
+    return c.json({ error: "not_found" }, 404);
+  }
   return c.json(planner);
 });

@@ -1,3 +1,4 @@
+import { Info } from "lucide-react";
 import { useId, useState } from "react";
 import { SpoilerToggle } from "../../../components/ui/SpoilerToggle";
 import { useI18n } from "../../../i18n/useI18n";
@@ -10,6 +11,8 @@ interface KeyScenesProps {
 export function KeyScenes({ titleId }: KeyScenesProps) {
   const { t, language } = useI18n();
   const [isRevealed, setIsRevealed] = useState(false);
+  const [isSourceShown, setIsSourceShown] = useState(false);
+  const sourceId = useId();
   const headingId = useId();
   const listId = useId();
 
@@ -19,7 +22,18 @@ export function KeyScenes({ titleId }: KeyScenesProps) {
   return (
     <section aria-labelledby={headingId}>
       <h4 id={headingId}>{t("details.keyScenes.heading")}</h4>
-      <p>{t("details.keyScenes.editorial")}</p>
+      <button
+        type="button"
+        aria-expanded={isSourceShown}
+        aria-controls={sourceId}
+        onClick={() => setIsSourceShown(!isSourceShown)}
+      >
+        <Info aria-hidden />
+        {t("details.keyScenes.source")}
+      </button>
+      <p id={sourceId} hidden={!isSourceShown}>
+        {t("details.keyScenes.editorial")}
+      </p>
       <SpoilerToggle
         isRevealed={isRevealed}
         onToggle={() => setIsRevealed(!isRevealed)}

@@ -4,6 +4,7 @@ import { useI18n } from "../../../i18n/useI18n";
 
 interface PlannerActionsProps {
   areAllCollapsed: boolean;
+  canCollapse: boolean;
   onToggleAll: () => void;
   onReset: () => void;
   onShare: () => void;
@@ -11,6 +12,7 @@ interface PlannerActionsProps {
 
 export function PlannerActions({
   areAllCollapsed,
+  canCollapse,
   onToggleAll,
   onReset,
   onShare,
@@ -23,12 +25,14 @@ export function PlannerActions({
     <section aria-labelledby={headingId}>
       <h2 id={headingId}>{t("planner.toolbar.actions")}</h2>
 
-      <div>
-        <button type="button" onClick={onToggleAll}>
-          <ToggleIcon aria-hidden />
-          {areAllCollapsed ? t("planner.toolbar.expandAll") : t("planner.toolbar.collapseAll")}
-        </button>
-      </div>
+      {canCollapse && (
+        <div>
+          <button type="button" onClick={onToggleAll}>
+            <ToggleIcon aria-hidden />
+            {areAllCollapsed ? t("planner.toolbar.expandAll") : t("planner.toolbar.collapseAll")}
+          </button>
+        </div>
+      )}
 
       <div>
         <button type="button" aria-haspopup="dialog" onClick={onShare}>

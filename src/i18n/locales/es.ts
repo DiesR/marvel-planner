@@ -15,6 +15,8 @@ export const es: Messages = {
     privacy: "Privacidad",
     cookies: "Cookies",
     privacySettings: "Preferencias de privacidad",
+    credits: "Datos de disponibilidad: {justwatch}. Tramas: {wikipedia}, {license}.",
+    creditsLicense: "licencia CC BY-SA 4.0",
     coffee: "Si te he sido útil, invítame a un café",
   },
   catalog: {
@@ -60,6 +62,18 @@ export const es: Messages = {
       hiddenByFilters: "Este título está oculto por tus filtros actuales.",
       markWatched: "Marcar como visto",
       allDone: "Has visto todo lo estrenado en la continuidad principal.",
+    },
+    order: {
+      heading: "Orden de visionado",
+      release: "Por fecha de estreno",
+      chronological: "Cronológico (historia)",
+      chronologicalHeading: "En orden cronológico",
+      chronologicalNote:
+        "Sigue la línea temporal de Disney+, recogida por Wikipedia. No es un orden oficial definitivo: por ejemplo Loki, What If…? y Werewolf by Night no tienen un lugar fijo en la historia.",
+      sourceLink: "Línea temporal en Wikipedia",
+      unplacedHeading: "Sin ubicación cronológica",
+      unplacedNote:
+        "Estos títulos no aparecen en la línea temporal que usamos como fuente, así que no los colocamos al azar.",
     },
     toolbar: {
       actions: "Acciones",
@@ -162,6 +176,7 @@ export const es: Messages = {
     keyScenes: {
       heading: "Escenas a las que prestar atención",
       editorial: "Consejos editoriales: elecciones nuestras, no proceden de una fuente externa.",
+      source: "Fuente de estos consejos",
       show: "Mostrar las escenas",
       hide: "Ocultar las escenas",
       warning: "Atención: contiene spoilers.",
@@ -376,6 +391,11 @@ export const es: Messages = {
       kind: "Almacenamiento local (propio)",
       purpose: "Recuerda los filtros que elegiste en el planificador.",
       duration: "Hasta que los borres",
+    },
+    viewOrder: {
+      kind: "Almacenamiento local (propio)",
+      purpose: "Recuerda si ves los títulos por estreno o en orden cronológico.",
+      duration: "Hasta que lo borres",
     },
     manageHeading: "Cómo gestionarlos",
     manageBody:

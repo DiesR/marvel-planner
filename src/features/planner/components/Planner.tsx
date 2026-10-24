@@ -8,6 +8,7 @@ import { STORAGE_KEYS } from "../../../lib/storageKeys";
 import { usePersistentState } from "../../../lib/usePersistentState";
 import { ImportSharedDialog, type ImportMode } from "../../share/components/ImportSharedDialog";
 import { ShareDialog } from "../../share/components/ShareDialog";
+import type { Title } from "../types";
 import { useCollapsedPhases } from "../hooks/useCollapsedPhases";
 import { useFloatingProgressVisibility } from "../hooks/useFloatingProgressVisibility";
 import { useResolvedCatalog } from "../hooks/useResolvedCatalog";
@@ -20,12 +21,15 @@ import {
   matchesFilters,
 } from "../utils/filters";
 import { findNextTitle } from "../utils/nextTitle";
+import { chronologicalTitles, isViewOrder, titlesInOrder } from "../utils/order";
 import { computeProgress } from "../utils/progress";
+import { ChronologicalList } from "./ChronologicalList";
 import { FloatingProgress } from "./FloatingProgress";
 import { NextToWatch } from "./NextToWatch";
 import { PlannerActions } from "./PlannerActions";
 import { PlannerFilters } from "./PlannerFilters";
 import { PlannerGuide } from "./PlannerGuide";
+import { PlannerViewOrder } from "./PlannerViewOrder";
 import { PlannerSummary } from "./PlannerSummary";
 import { SagaSection } from "./SagaSection";
 
@@ -40,6 +44,11 @@ export function Planner({ shareCode }: PlannerProps) {
     STORAGE_KEYS.filters,
     DEFAULT_FILTERS,
     isFilters,
+  );
+  const [viewOrder, setViewOrder] = usePersistentState(
+    STORAGE_KEYS.viewOrder,
+    "release",
+    isViewOrder,
   );
   const [isResetDialogOpen, setIsResetDialogOpen] = useState(false);
   const [isShareDialogOpen, setIsShareDialogOpen] = useState(false);
@@ -58,7 +67,12 @@ export function Planner({ shareCode }: PlannerProps) {
     () => new Set(flattenTitles(catalog).map((title) => title.id)),
     [catalog],
   );
-  const nextTitle = findNextTitle(catalog, watched);
+  const nextTitle = findNextTitle(titlesInOrder(catalog, viewOrder), watched);
+  const chronological = useMemo(() => {
+    const { placed, unplaced } = chronologicalTitles(catalog);
+    const isShown = (title: Title) => matchesFilters(title, filters);
+    return { placed: placed.filter(isShown), unplaced: unplaced.filter(isShown) };
+  }, [catalog, filters]);
 
   const confirmReset = () => {
     setIsResetDialogOpen(false);
@@ -89,6 +103,8 @@ export function Planner({ shareCode }: PlannerProps) {
         />
       )}
 
+      <PlannerViewOrder value={viewOrder} onChange={setViewOrder} />
+
       <PlannerFilters
         filters={filters}
         onChange={setFilters}
@@ -98,22 +114,34 @@ export function Planner({ shareCode }: PlannerProps) {
 
       <PlannerActions
         areAllCollapsed={areAllCollapsed}
+        canCollapse={viewOrder === "release"}
         onToggleAll={toggleAll}
         onReset={() => setIsResetDialogOpen(true)}
         onShare={() => setIsShareDialogOpen(true)}
       />
 
       <div aria-busy={isLoading}>
-        {sagas.map((saga) => (
-          <SagaSection
-            key={saga.id}
-            saga={saga}
+        {viewOrder === "release" ? (
+          <>
+            {sagas.map((saga) => (
+              <SagaSection
+                key={saga.id}
+                saga={saga}
+                watched={watched}
+                collapsed={collapsed}
+                onPhaseCollapsedChange={setPhaseCollapsed}
+                onToggleTitle={toggle}
+              />
+            ))}
+          </>
+        ) : (
+          <ChronologicalList
+            placed={chronological.placed}
+            unplaced={chronological.unplaced}
             watched={watched}
-            collapsed={collapsed}
-            onPhaseCollapsedChange={setPhaseCollapsed}
             onToggleTitle={toggle}
           />
-        ))}
+        )}
       </div>
 
       <PlannerGuide />

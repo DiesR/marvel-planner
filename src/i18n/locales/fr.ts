@@ -15,6 +15,8 @@ export const fr: Messages = {
     privacy: "Confidentialité",
     cookies: "Cookies",
     privacySettings: "Préférences de confidentialité",
+    credits: "Données de disponibilité : {justwatch}. Résumés : {wikipedia}, {license}.",
+    creditsLicense: "licence CC BY-SA 4.0",
     coffee: "Si je vous ai été utile, offrez-moi un café",
   },
   catalog: {
@@ -60,6 +62,18 @@ export const fr: Messages = {
       hiddenByFilters: "Ce titre est masqué par vos filtres actuels.",
       markWatched: "Marquer comme vu",
       allDone: "Vous avez tout vu de ce qui est sorti dans la continuité principale.",
+    },
+    order: {
+      heading: "Ordre de visionnage",
+      release: "Par date de sortie",
+      chronological: "Chronologique (histoire)",
+      chronologicalHeading: "Dans l'ordre chronologique",
+      chronologicalNote:
+        "Suit la chronologie de Disney+, rapportée par Wikipédia. Ce n'est pas un ordre officiel définitif : par exemple Loki, What If…? et Werewolf by Night n'ont pas de place fixe dans l'histoire.",
+      sourceLink: "Chronologie sur Wikipédia",
+      unplacedHeading: "Sans place chronologique",
+      unplacedNote:
+        "Ces titres ne figurent pas dans la chronologie que nous utilisons comme source ; nous ne les plaçons donc pas au hasard.",
     },
     toolbar: {
       actions: "Actions",
@@ -162,6 +176,7 @@ export const fr: Messages = {
     keyScenes: {
       heading: "Scènes à suivre de près",
       editorial: "Conseils de la rédaction : nos choix, pas issus d'une source externe.",
+      source: "Source de ces conseils",
       show: "Afficher les scènes",
       hide: "Masquer les scènes",
       warning: "Attention : contient des spoilers.",
@@ -377,6 +392,11 @@ export const fr: Messages = {
       kind: "Stockage local (propre)",
       purpose: "Mémorise les filtres choisis dans le planificateur.",
       duration: "Jusqu'à ce que vous les supprimiez",
+    },
+    viewOrder: {
+      kind: "Stockage local (propre)",
+      purpose: "Mémorise si vous voyez les titres par sortie ou dans l'ordre chronologique.",
+      duration: "Jusqu'à ce que vous le supprimiez",
     },
     manageHeading: "Comment les gérer",
     manageBody:

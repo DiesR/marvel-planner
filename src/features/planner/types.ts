@@ -27,6 +27,8 @@ export interface Saga {
   phases: Phase[];
 }
 
+export type ViewOrder = "release" | "chronological";
+
 export interface Filters {
   types: MediaType[];
   showAlternate: boolean;

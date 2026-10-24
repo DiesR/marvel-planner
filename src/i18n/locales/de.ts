@@ -16,6 +16,8 @@ export const de: Messages = {
     privacy: "Datenschutz",
     cookies: "Cookies",
     privacySettings: "Datenschutzeinstellungen",
+    credits: "Verfügbarkeitsdaten: {justwatch}. Handlungen: {wikipedia}, {license}.",
+    creditsLicense: "Lizenz CC BY-SA 4.0",
     coffee: "Wenn ich dir weitergeholfen habe, spendier mir einen Kaffee",
   },
   catalog: {
@@ -62,6 +64,18 @@ export const de: Messages = {
       hiddenByFilters: "Dieser Titel ist durch deine aktuellen Filter ausgeblendet.",
       markWatched: "Als gesehen markieren",
       allDone: "Du hast alles gesehen, was in der Hauptkontinuität erschienen ist.",
+    },
+    order: {
+      heading: "Ansehreihenfolge",
+      release: "Nach Erscheinungsdatum",
+      chronological: "Chronologisch (Handlung)",
+      chronologicalHeading: "In chronologischer Reihenfolge",
+      chronologicalNote:
+        "Folgt der Disney+-Zeitleiste, wie sie Wikipedia wiedergibt. Sie ist keine endgültige offizielle Reihenfolge: Zum Beispiel haben Loki, What If…? und Werewolf by Night keinen festen Platz in der Handlung.",
+      sourceLink: "Zeitleiste auf Wikipedia",
+      unplacedHeading: "Ohne chronologische Einordnung",
+      unplacedNote:
+        "Diese Titel kommen in der Zeitleiste, die wir als Quelle nutzen, nicht vor; wir ordnen sie daher nicht willkürlich ein.",
     },
     toolbar: {
       actions: "Aktionen",
@@ -164,6 +178,7 @@ export const de: Messages = {
     keyScenes: {
       heading: "Szenen, auf die du achten solltest",
       editorial: "Redaktionelle Tipps: unsere eigene Auswahl, nicht aus einer externen Quelle.",
+      source: "Quelle dieser Tipps",
       show: "Szenen anzeigen",
       hide: "Szenen ausblenden",
       warning: "Achtung: enthält Spoiler.",
@@ -378,6 +393,11 @@ export const de: Messages = {
       kind: "Lokaler Speicher (eigener)",
       purpose: "Merkt sich die im Planer gewählten Filter.",
       duration: "Bis du sie löschst",
+    },
+    viewOrder: {
+      kind: "Lokaler Speicher (eigener)",
+      purpose: "Merkt sich, ob du die Titel nach Erscheinen oder chronologisch ansiehst.",
+      duration: "Bis du ihn löschst",
     },
     manageHeading: "So verwaltest du sie",
     manageBody:

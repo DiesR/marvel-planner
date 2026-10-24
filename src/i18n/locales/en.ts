@@ -15,6 +15,8 @@ export const en: Messages = {
     privacy: "Privacy",
     cookies: "Cookies",
     privacySettings: "Privacy settings",
+    credits: "Availability data: {justwatch}. Plots: {wikipedia}, {license}.",
+    creditsLicense: "CC BY-SA 4.0 license",
     coffee: "If I've been useful to you, buy me a coffee",
   },
   catalog: {
@@ -59,6 +61,18 @@ export const en: Messages = {
       hiddenByFilters: "This title is hidden by your current filters.",
       markWatched: "Mark as watched",
       allDone: "You have watched everything released in the main continuity.",
+    },
+    order: {
+      heading: "Viewing order",
+      release: "By release date",
+      chronological: "Chronological (story)",
+      chronologicalHeading: "In chronological order",
+      chronologicalNote:
+        "Follows the Disney+ timeline, as reported by Wikipedia. It is not a definitive official order: for example Loki, What If…? and Werewolf by Night have no fixed place in the story.",
+      sourceLink: "Timeline on Wikipedia",
+      unplacedHeading: "No chronological placement",
+      unplacedNote:
+        "These titles do not appear in the timeline we use as a source, so we do not place them at random.",
     },
     toolbar: {
       actions: "Actions",
@@ -161,6 +175,7 @@ export const en: Messages = {
     keyScenes: {
       heading: "Scenes to watch closely",
       editorial: "Editorial advice: our own picks, not from an outside source.",
+      source: "Source of these tips",
       show: "Show the scenes",
       hide: "Hide the scenes",
       warning: "Warning: contains spoilers.",
@@ -376,6 +391,11 @@ export const en: Messages = {
       kind: "Local storage (first-party)",
       purpose: "Remembers the filters you chose in the planner.",
       duration: "Until you delete them",
+    },
+    viewOrder: {
+      kind: "Local storage (first-party)",
+      purpose: "Remembers whether you view titles by release or in chronological order.",
+      duration: "Until you delete it",
     },
     manageHeading: "How to manage them",
     manageBody:

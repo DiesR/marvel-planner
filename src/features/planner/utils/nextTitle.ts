@@ -1,9 +1,8 @@
-import type { Saga, Title } from "../types";
-import { flattenTitles } from "./filters";
+import type { Title } from "../types";
 
-export function findNextTitle(catalog: Saga[], watched: ReadonlySet<string>): Title | null {
+export function findNextTitle(titles: Title[], watched: ReadonlySet<string>): Title | null {
   return (
-    flattenTitles(catalog).find(
+    titles.find(
       (title) =>
         !watched.has(title.id) && title.status === "released" && title.continuity === "main",
     ) ?? null
