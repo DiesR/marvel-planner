@@ -1,0 +1,40 @@
+@import (reference) "mixins";
+
+dialog.filters-sheet {
+  .sheet-surface();
+  inset: auto 0 0 0;
+  width: 100%;
+  max-height: calc(100dvh - 24px);
+  border-radius: @radius-block @radius-block 0 0;
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.filters-sheet__body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px 16px 24px;
+}
+
+.filters-sheet__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.filters-sheet__title {
+  .display-font();
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.filters-sheet__actions {
+  display: flex;
+  gap: 8px;
+
+  .btn {
+    flex: 1;
+  }
+}

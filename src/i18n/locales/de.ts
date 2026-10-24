@@ -8,6 +8,7 @@ export const de: Messages = {
     logout: "Abmelden",
     language: "Sprache",
     skipToContent: "Zum Inhalt springen",
+    menu: "Menü",
     admin: "Verwaltung",
   },
   footer: {
@@ -20,6 +21,9 @@ export const de: Messages = {
     credits: "Verfügbarkeitsdaten: {justwatch}. Handlungen: {wikipedia}, {license}.",
     creditsLicense: "Lizenz CC BY-SA 4.0",
     coffee: "Wenn ich dir weitergeholfen habe, spendier mir einen Kaffee",
+    fonts: "Schriften Anton und Hanken Grotesk, {license}.",
+    fontsLicense: "SIL-OFL-1.1-Lizenz",
+    madeInItaly: "Made in Italy",
   },
   catalog: {
     sagas: {
@@ -39,11 +43,27 @@ export const de: Messages = {
       late: "Ende {year}",
     },
   },
+  theme: {
+    label: "Design",
+    system: "System",
+    light: "Hell",
+    dark: "Dunkel",
+    current: "Design: {name}. Design wechseln.",
+  },
   planner: {
-    eyebrow: "Marvel Cinematic Universe",
     title: "Watch-Planer",
-    intro:
-      "Alle Filme und Serien des MCU, nach Saga und Phase geordnet, in der Reihenfolge ihres Erscheinens. Hake ab, was du schon gesehen hast.",
+    progressHeading: "Dein Fortschritt",
+    watchedCount: "{done} von {total} gesehen",
+    sharePoster: {
+      title: "Teile deinen Planer",
+      text: "Schick Freunden einen Link zu dem, was du gesehen hast.",
+    },
+    strip: {
+      heading: "Alle {total} Titel",
+      legendWatched: "Gesehen",
+      legendNext: "Als Nächstes",
+      legendTodo: "Noch offen",
+    },
     completed: "Abgeschlossen",
     storage: {
       account: "Dein Fortschritt wird in deinem Konto gespeichert.",
@@ -63,6 +83,7 @@ export const de: Messages = {
     next: {
       heading: "Als Nächstes ansehen",
       hiddenByFilters: "Dieser Titel ist durch deine aktuellen Filter ausgeblendet.",
+      details: "Details",
       markWatched: "Als gesehen markieren",
       allDone: "Du hast alles gesehen, was in der Hauptkontinuität erschienen ist.",
     },
@@ -86,6 +107,8 @@ export const de: Messages = {
     },
     filters: {
       heading: "Filter",
+      show: "{count} Titel anzeigen",
+      activeCount: "{count} aktive Filter",
       results: "{shown} von {total} angezeigt",
       clear: "Filter zurücksetzen",
       type: "Art",
@@ -326,6 +349,7 @@ export const de: Messages = {
     cancel: "Abbrechen",
     loading: "Wird geladen …",
     retry: "Erneut versuchen",
+    ofCount: "{done} von {total}",
   },
   error: {
     title: "Etwas ist schiefgelaufen",
@@ -407,6 +431,11 @@ export const de: Messages = {
     viewOrder: {
       kind: "Lokaler Speicher (eigener)",
       purpose: "Merkt sich, ob du die Titel nach Erscheinen oder chronologisch ansiehst.",
+      duration: "Bis du ihn löschst",
+    },
+    theme: {
+      kind: "Lokaler Speicher (eigener)",
+      purpose: "Merkt sich das gewählte Design (System, hell oder dunkel).",
       duration: "Bis du ihn löschst",
     },
     manageHeading: "So verwaltest du sie",

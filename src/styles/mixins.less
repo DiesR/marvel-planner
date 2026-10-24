@@ -1,0 +1,70 @@
+@import "variables";
+
+.desktop(@rules) {
+  @media (min-width: @desktop) {
+    @rules();
+  }
+}
+
+.on-hover(@rules) {
+  @media (hover: hover) {
+    &:hover {
+      @rules();
+    }
+  }
+}
+
+.display-font() {
+  font-family: var(--font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.pill() {
+  border-radius: @radius-pill;
+}
+
+.block() {
+  border-radius: @radius-block;
+}
+
+.panel-surface() {
+  background: var(--panel);
+  color: var(--panel-ink);
+}
+
+.touch-target() {
+  min-height: 44px;
+}
+
+.status-page() {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  max-width: 640px;
+  margin: 48px auto;
+  padding: 32px;
+  .block();
+  background: var(--surface);
+
+  h1 {
+    .display-font();
+    font-size: 2.75rem;
+    line-height: 1.05;
+  }
+}
+
+.sheet-surface() {
+  position: fixed;
+  margin: 0;
+  max-width: none;
+  border: 0;
+  padding: 0;
+  overflow: auto;
+
+  &::backdrop {
+    background: var(--scrim);
+  }
+}

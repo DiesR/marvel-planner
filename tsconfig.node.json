@@ -5,7 +5,7 @@
     "lib": ["ES2022"],
     "module": "ESNext",
     "moduleResolution": "bundler",
-    "types": [],
+    "types": ["node"],
     "strict": true,
     "isolatedModules": true,
     "skipLibCheck": true,

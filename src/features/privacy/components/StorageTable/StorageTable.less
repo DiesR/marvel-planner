@@ -1,0 +1,38 @@
+@import (reference) "mixins";
+
+.storage-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 4px;
+  font-size: 0.875rem;
+
+  th,
+  td {
+    padding: 10px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  thead th {
+    color: var(--muted);
+  }
+
+  tbody tr {
+    background: var(--surface-2);
+  }
+
+  tbody th {
+    border-radius: @radius-sub 0 0 @radius-sub;
+    overflow-wrap: anywhere;
+  }
+
+  tbody td:last-child {
+    border-radius: 0 @radius-sub @radius-sub 0;
+  }
+
+  caption {
+    padding-bottom: 8px;
+    text-align: left;
+    font-weight: 700;
+  }
+}

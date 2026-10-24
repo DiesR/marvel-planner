@@ -1,6 +1,6 @@
 import { STORAGE_KEYS } from "../../../lib/storageKeys";
 
-export type StorageItemId = "session" | "progress" | "language" | "filters" | "viewOrder";
+export type StorageItemId = "session" | "progress" | "language" | "filters" | "viewOrder" | "theme";
 
 export const STORAGE_INVENTORY: { id: StorageItemId; name: string }[] = [
   { id: "session", name: "better-auth.session_token" },
@@ -8,4 +8,5 @@ export const STORAGE_INVENTORY: { id: StorageItemId; name: string }[] = [
   { id: "language", name: STORAGE_KEYS.language },
   { id: "filters", name: STORAGE_KEYS.filters },
   { id: "viewOrder", name: STORAGE_KEYS.viewOrder },
+  { id: "theme", name: STORAGE_KEYS.theme },
 ];

@@ -1,0 +1,18 @@
+@import (reference) "mixins";
+
+.coffee-link {
+  display: inline-flex;
+  align-items: center;
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    .touch-target();
+  }
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+}

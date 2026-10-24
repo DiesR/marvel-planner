@@ -1,0 +1,65 @@
+@import "variables";
+
+.light-tokens() {
+  color-scheme: light;
+  --bg: #e9ecf1;
+  --surface: #f7f8fa;
+  --surface-2: #dce0e8;
+  --ink: #14171f;
+  --muted: #4d5465;
+  --red: #c8202b;
+  --red-text: #b81c27;
+  --gold: #f2b01e;
+  --panel: #14171f;
+  --panel-2: #262b38;
+  --panel-ink: #f2f4f8;
+  --panel-muted: #a9b0c2;
+  --cell-on: #c8202b;
+  --cell-off: #cdd2dc;
+}
+
+.dark-tokens() {
+  color-scheme: dark;
+  --bg: #0d1322;
+  --surface: #151d33;
+  --surface-2: #1f2a48;
+  --ink: #eef0f6;
+  --muted: #a6aec4;
+  --red: #d9303a;
+  --red-text: #ff7a72;
+  --gold: #f2b01e;
+  --panel: #060a14;
+  --panel-2: #1b2542;
+  --panel-ink: #eef0f6;
+  --panel-muted: #a6aec4;
+  --cell-on: #e8434c;
+  --cell-off: #26314f;
+}
+
+:root {
+  .light-tokens();
+
+  --on-gold: #14171f;
+  --on-red: #ffffff;
+  --strip-on-panel-off: #3a4260;
+  --strip-on-panel-on: #e8434c;
+  --scrim: rgba(6, 10, 20, 0.65);
+  --font-display: "Anton", "Impact", "Arial Narrow", sans-serif;
+  --font-body: "Hanken Grotesk Variable", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --floating-progress-height: 5rem;
+  --floating-progress-gap: 0.75rem;
+  --floating-progress-clearance: calc(
+    var(--floating-progress-height) + var(--floating-progress-gap) * 2 +
+      env(safe-area-inset-bottom, 0px)
+  );
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    .dark-tokens();
+  }
+}
+
+:root[data-theme="dark"] {
+  .dark-tokens();
+}

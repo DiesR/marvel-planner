@@ -6,6 +6,7 @@ export const it = {
     logout: "Esci",
     language: "Lingua",
     skipToContent: "Vai al contenuto",
+    menu: "Menu",
     admin: "Amministrazione",
   },
   footer: {
@@ -17,6 +18,9 @@ export const it = {
     credits: "Dati sulla disponibilità: {justwatch}. Trame: {wikipedia}, {license}.",
     creditsLicense: "licenza CC BY-SA 4.0",
     coffee: "Se ti sono stato utile, offrimi un caffè",
+    fonts: "Caratteri Anton e Hanken Grotesk, {license}.",
+    fontsLicense: "licenza SIL OFL 1.1",
+    madeInItaly: "Fatto in Italia",
   },
   catalog: {
     sagas: {
@@ -36,11 +40,27 @@ export const it = {
       late: "fine {year}",
     },
   },
+  theme: {
+    label: "Tema",
+    system: "Sistema",
+    light: "Chiaro",
+    dark: "Scuro",
+    current: "Tema: {name}. Cambia tema.",
+  },
   planner: {
-    eyebrow: "Marvel Cinematic Universe",
     title: "Planner di visione",
-    intro:
-      "Tutti i film e le serie del MCU, divisi per saga e fase, in ordine di uscita. Spunta ciò che hai già visto.",
+    progressHeading: "I tuoi progressi",
+    watchedCount: "{done} di {total} visti",
+    sharePoster: {
+      title: "Condividi il tuo planner",
+      text: "Manda agli amici un link ai titoli che hai visto.",
+    },
+    strip: {
+      heading: "Tutti i {total} titoli",
+      legendWatched: "Visti",
+      legendNext: "Prossimo",
+      legendTodo: "Da vedere",
+    },
     completed: "Completati",
     storage: {
       account: "I progressi vengono salvati sul tuo account.",
@@ -58,6 +78,7 @@ export const it = {
     next: {
       heading: "Prossimo da guardare",
       hiddenByFilters: "Questo titolo è nascosto dai filtri attuali.",
+      details: "Dettagli",
       markWatched: "Segna come visto",
       allDone: "Hai guardato tutto ciò che è uscito nella continuità principale.",
     },
@@ -81,6 +102,8 @@ export const it = {
     },
     filters: {
       heading: "Filtri",
+      show: "Mostra {count} titoli",
+      activeCount: "{count} filtri attivi",
       results: "Mostrati {shown} di {total}",
       clear: "Rimuovi filtri",
       type: "Tipo",
@@ -321,6 +344,7 @@ export const it = {
     cancel: "Annulla",
     loading: "Caricamento…",
     retry: "Riprova",
+    ofCount: "{done} di {total}",
   },
   error: {
     title: "Qualcosa è andato storto",
@@ -402,6 +426,11 @@ export const it = {
     viewOrder: {
       kind: "Archiviazione locale (propria)",
       purpose: "Ricorda se vedi i titoli per uscita o in ordine cronologico.",
+      duration: "Finché non lo cancelli",
+    },
+    theme: {
+      kind: "Archiviazione locale (propria)",
+      purpose: "Ricorda il tema scelto (sistema, chiaro o scuro).",
       duration: "Finché non lo cancelli",
     },
     manageHeading: "Come gestirli",

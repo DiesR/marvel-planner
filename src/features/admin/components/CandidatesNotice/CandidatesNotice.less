@@ -1,0 +1,18 @@
+@import (reference) "mixins";
+
+.candidates-notice {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px 20px;
+  .pill();
+  background: var(--gold);
+  color: var(--on-gold);
+  font-weight: 700;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}

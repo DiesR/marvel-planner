@@ -1,0 +1,96 @@
+@import (reference) "mixins";
+
+.choice-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  legend {
+    margin-bottom: 8px;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--muted);
+  }
+}
+
+.choice-group__options {
+  display: grid;
+  gap: 4px;
+}
+
+.choice-group__options--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.choice-group__options--3 {
+  display: flex;
+  flex-wrap: wrap;
+
+  .choice {
+    flex: 1 1 auto;
+  }
+}
+
+.choice {
+  position: relative;
+  display: block;
+  min-width: 0;
+}
+
+.choice__input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.choice__face {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 52px;
+  padding: 6px 12px;
+  .pill();
+  background: var(--surface-2);
+  color: var(--ink);
+  font-weight: 600;
+  text-align: center;
+  overflow-wrap: break-word;
+
+  svg {
+    flex: none;
+    width: 16px;
+    height: 16px;
+    stroke-width: 3.4;
+  }
+}
+
+.choice__input:checked + .choice__face {
+  background: var(--ink);
+  color: var(--bg);
+  font-weight: 700;
+}
+
+.choice__input:focus-visible + .choice__face {
+  outline: 3px solid var(--red);
+  outline-offset: 2px;
+}
+
+.on-panel .choice__face {
+  background: var(--panel-2);
+  color: var(--panel-ink);
+}
+
+.on-panel .choice__input:checked + .choice__face {
+  background: var(--gold);
+  color: var(--on-gold);
+  font-weight: 800;
+}
+
+.on-panel .choice__input:focus-visible + .choice__face {
+  outline-color: var(--gold);
+}

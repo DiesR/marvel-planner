@@ -1,0 +1,46 @@
+@import (reference) "mixins";
+
+.phase.card {
+  padding: 8px;
+}
+
+.phase__summary {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 64px;
+  padding: 10px 16px 10px 20px;
+}
+
+.phase[open] > .phase__summary {
+  margin-bottom: 6px;
+}
+
+.phase__heading {
+  flex: 1;
+  min-width: 0;
+}
+
+.phase__name {
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.phase__years {
+  font-size: 0.875rem;
+}
+
+.phase__count {
+  font-weight: 700;
+}
+
+.phase__titles {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.phase__empty {
+  padding: 8px 20px 16px;
+}

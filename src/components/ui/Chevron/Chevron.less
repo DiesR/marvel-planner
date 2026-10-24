@@ -1,0 +1,11 @@
+.chevron {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  transition: transform 0.18s ease-out;
+}
+
+details[open] > summary .chevron,
+[aria-expanded="true"] > .chevron {
+  transform: rotate(180deg);
+}

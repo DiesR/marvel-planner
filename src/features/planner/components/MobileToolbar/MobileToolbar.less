@@ -1,0 +1,39 @@
+@import (reference) "mixins";
+
+.mobile-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mobile-toolbar__buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.mobile-toolbar__filters {
+  flex: 1;
+  justify-content: space-between;
+}
+
+.mobile-toolbar__status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.875rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 26px;
+  height: 26px;
+  padding: 0 6px;
+  border-radius: 13px;
+  background: var(--red);
+  color: var(--on-red);
+  font-size: 0.875rem;
+  font-weight: 800;
+}

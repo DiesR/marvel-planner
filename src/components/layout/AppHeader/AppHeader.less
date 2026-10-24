@@ -1,0 +1,33 @@
+@import (reference) "mixins";
+
+.site-header {
+  .panel-surface();
+  border-radius: 0 0 28px 28px;
+}
+
+.site-header__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: @header-height;
+  padding: 10px 16px;
+
+  .desktop({ padding: 10px 32px; });
+}
+
+.wordmark {
+  .display-font();
+  font-size: 1.875rem;
+  letter-spacing: 0.03em;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.site-header__actions {
+  display: none;
+  align-items: center;
+  gap: 8px;
+
+  .desktop({ display: flex; });
+}

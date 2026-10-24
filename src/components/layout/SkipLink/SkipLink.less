@@ -1,0 +1,17 @@
+@import (reference) "mixins";
+
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -100px;
+  z-index: 50;
+  padding: 12px 20px;
+  .pill();
+  background: var(--gold);
+  color: var(--on-gold);
+  font-weight: 800;
+
+  &:focus {
+    top: 12px;
+  }
+}

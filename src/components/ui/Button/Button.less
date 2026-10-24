@@ -1,0 +1,83 @@
+@import (reference) "mixins";
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 0 22px;
+  .pill();
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+
+  svg {
+    flex: none;
+    width: 20px;
+    height: 20px;
+  }
+
+  .on-hover({ opacity: 0.92; });
+
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+  }
+}
+
+.btn--lg {
+  min-height: 52px;
+  font-size: 1.0625rem;
+}
+
+.btn--icon {
+  width: 48px;
+  padding: 0;
+}
+
+.btn--primary {
+  background: var(--red);
+  color: var(--on-red);
+}
+
+.btn--accent {
+  background: var(--gold);
+  color: var(--on-gold);
+}
+
+.btn--dark {
+  background: #14171f;
+  color: #f7f8fa;
+}
+
+.btn--soft {
+  background: var(--surface-2);
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.btn--panel {
+  background: var(--panel-2);
+  color: var(--panel-ink);
+  font-weight: 700;
+}
+
+.btn--panel[aria-pressed="true"] {
+  background: var(--gold);
+  color: var(--on-gold);
+}
+
+.btn--text {
+  .touch-target();
+  padding: 0 4px;
+  background: none;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}

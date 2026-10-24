@@ -21,6 +21,13 @@ export function areDefaultFilters(filters: Filters): boolean {
   );
 }
 
+export function countActiveFilters(filters: Filters): number {
+  const differsInTypes =
+    DEFAULT_FILTERS.types.length !== filters.types.length ||
+    !DEFAULT_FILTERS.types.every((type) => filters.types.includes(type));
+  return [differsInTypes, !filters.showAlternate, !filters.showUpcoming].filter(Boolean).length;
+}
+
 export function filterCatalog(catalog: Saga[], filters: Filters): Saga[] {
   return catalog.map((saga) => ({
     ...saga,

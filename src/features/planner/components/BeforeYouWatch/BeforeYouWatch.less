@@ -1,0 +1,77 @@
+@import (reference) "mixins";
+
+.before-you-watch {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.before-you-watch__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px 12px;
+}
+
+.before-you-watch__status {
+  font-size: 0.875rem;
+}
+
+.before-you-watch__list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.prereq {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+  gap: 4px 12px;
+  padding: 10px 16px;
+  border-radius: @radius-sub;
+  background: var(--surface-2);
+
+  .desktop({ grid-template-columns: 110px minmax(0, 1fr) auto; });
+}
+
+.prereq__level {
+  font-size: 0.875rem;
+}
+
+.prereq__name {
+  font-weight: 700;
+}
+
+.prereq__state {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+  font-weight: 700;
+
+  svg {
+    flex: none;
+    width: 18px;
+    height: 18px;
+    stroke-width: 3;
+  }
+}
+
+.prereq__state--done {
+  color: var(--gold);
+}
+
+.prereq__state--todo {
+  color: var(--muted);
+}
+
+.prereq__reason {
+  grid-column: 1 / -1;
+  font-size: 0.875rem;
+}
+
+.before-you-watch__outside {
+  font-size: 0.875rem;
+}

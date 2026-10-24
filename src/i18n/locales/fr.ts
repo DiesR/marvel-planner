@@ -8,6 +8,7 @@ export const fr: Messages = {
     logout: "Se déconnecter",
     language: "Langue",
     skipToContent: "Aller au contenu",
+    menu: "Menu",
     admin: "Administration",
   },
   footer: {
@@ -19,6 +20,9 @@ export const fr: Messages = {
     credits: "Données de disponibilité : {justwatch}. Résumés : {wikipedia}, {license}.",
     creditsLicense: "licence CC BY-SA 4.0",
     coffee: "Si je vous ai été utile, offrez-moi un café",
+    fonts: "Polices Anton et Hanken Grotesk, {license}.",
+    fontsLicense: "licence SIL OFL 1.1",
+    madeInItaly: "Fait en Italie",
   },
   catalog: {
     sagas: {
@@ -38,11 +42,27 @@ export const fr: Messages = {
       late: "fin {year}",
     },
   },
+  theme: {
+    label: "Thème",
+    system: "Système",
+    light: "Clair",
+    dark: "Sombre",
+    current: "Thème : {name}. Changer de thème.",
+  },
   planner: {
-    eyebrow: "Marvel Cinematic Universe",
     title: "Planificateur de visionnage",
-    intro:
-      "Tous les films et séries du MCU, classés par saga et par phase, dans l'ordre de sortie. Cochez ce que vous avez déjà vu.",
+    progressHeading: "Votre progression",
+    watchedCount: "{done} sur {total} vus",
+    sharePoster: {
+      title: "Partagez votre planificateur",
+      text: "Envoyez à vos amis un lien vers ce que vous avez vu.",
+    },
+    strip: {
+      heading: "Les {total} titres",
+      legendWatched: "Vus",
+      legendNext: "Suivant",
+      legendTodo: "À voir",
+    },
     completed: "Terminés",
     storage: {
       account: "Votre progression est enregistrée sur votre compte.",
@@ -61,6 +81,7 @@ export const fr: Messages = {
     next: {
       heading: "À voir ensuite",
       hiddenByFilters: "Ce titre est masqué par vos filtres actuels.",
+      details: "Détails",
       markWatched: "Marquer comme vu",
       allDone: "Vous avez tout vu de ce qui est sorti dans la continuité principale.",
     },
@@ -84,6 +105,8 @@ export const fr: Messages = {
     },
     filters: {
       heading: "Filtres",
+      show: "Afficher {count} titres",
+      activeCount: "{count} filtres actifs",
       results: "{shown} affichés sur {total}",
       clear: "Réinitialiser les filtres",
       type: "Type",
@@ -324,6 +347,7 @@ export const fr: Messages = {
     cancel: "Annuler",
     loading: "Chargement…",
     retry: "Réessayer",
+    ofCount: "{done} sur {total}",
   },
   error: {
     title: "Un problème est survenu",
@@ -406,6 +430,11 @@ export const fr: Messages = {
     viewOrder: {
       kind: "Stockage local (propre)",
       purpose: "Mémorise si vous voyez les titres par sortie ou dans l'ordre chronologique.",
+      duration: "Jusqu'à ce que vous le supprimiez",
+    },
+    theme: {
+      kind: "Stockage local (propre)",
+      purpose: "Mémorise le thème choisi (système, clair ou sombre).",
       duration: "Jusqu'à ce que vous le supprimiez",
     },
     manageHeading: "Comment les gérer",

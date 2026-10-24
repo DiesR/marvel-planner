@@ -1,0 +1,142 @@
+@import (reference) "mixins";
+
+.title-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 10px 12px 14px 4px;
+  border-radius: @radius-row;
+  background: var(--bg);
+
+  .desktop({ gap: 12px; padding: 10px 16px 14px 8px; });
+}
+
+.title-row--open {
+  --bg: var(--panel);
+  --ink: var(--panel-ink);
+  --muted: var(--panel-muted);
+  --surface: var(--panel-2);
+  --surface-2: var(--panel-2);
+  --red-text: var(--gold);
+  color: var(--ink);
+
+  :focus-visible {
+    outline-color: var(--gold);
+  }
+
+  .title-row__check {
+    display: none;
+  }
+
+  .title-row__summary {
+    min-height: 0;
+    padding-top: 2px;
+  }
+
+  .poster-thumb {
+    width: 72px;
+    height: 108px;
+
+    .desktop({ width: 96px; height: 144px; });
+  }
+}
+
+.title-row__check {
+  position: relative;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-top: 10px;
+  cursor: pointer;
+
+  input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+}
+
+.title-row__box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border: 3px solid var(--ink);
+  border-radius: 9px;
+  color: #ffffff;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    stroke-width: 4;
+    opacity: 0;
+  }
+}
+
+.title-row__check input:checked + .title-row__box {
+  border-color: var(--red);
+  background: var(--red);
+
+  svg {
+    opacity: 1;
+  }
+}
+
+.title-row__check input:focus-visible + .title-row__box {
+  outline: 3px solid var(--red);
+  outline-offset: 2px;
+}
+
+.title-row__details {
+  flex: 1;
+  min-width: 0;
+}
+
+.title-row__summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 64px;
+}
+
+.title-row__heading {
+  flex: 1;
+  min-width: 0;
+}
+
+.title-row__name {
+  display: block;
+  font-size: 1.125rem;
+  font-weight: 800;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.title-row__meta {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.title-row__content {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.title-row__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}

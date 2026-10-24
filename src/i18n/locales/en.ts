@@ -8,6 +8,7 @@ export const en: Messages = {
     logout: "Sign out",
     language: "Language",
     skipToContent: "Skip to content",
+    menu: "Menu",
     admin: "Administration",
   },
   footer: {
@@ -19,6 +20,9 @@ export const en: Messages = {
     credits: "Availability data: {justwatch}. Plots: {wikipedia}, {license}.",
     creditsLicense: "CC BY-SA 4.0 license",
     coffee: "If I've been useful to you, buy me a coffee",
+    fonts: "Fonts Anton and Hanken Grotesk, {license}.",
+    fontsLicense: "SIL OFL 1.1 license",
+    madeInItaly: "Made in Italy",
   },
   catalog: {
     sagas: {
@@ -38,11 +42,27 @@ export const en: Messages = {
       late: "late {year}",
     },
   },
+  theme: {
+    label: "Theme",
+    system: "System",
+    light: "Light",
+    dark: "Dark",
+    current: "Theme: {name}. Change theme.",
+  },
   planner: {
-    eyebrow: "Marvel Cinematic Universe",
     title: "Watch planner",
-    intro:
-      "All the MCU films and series, grouped by saga and phase, in release order. Check off what you've already watched.",
+    progressHeading: "Your progress",
+    watchedCount: "{done} of {total} watched",
+    sharePoster: {
+      title: "Share your planner",
+      text: "Send friends a link to what you have watched.",
+    },
+    strip: {
+      heading: "All {total} titles",
+      legendWatched: "Watched",
+      legendNext: "Next",
+      legendTodo: "To watch",
+    },
     completed: "Completed",
     storage: {
       account: "Your progress is saved to your account.",
@@ -60,6 +80,7 @@ export const en: Messages = {
     next: {
       heading: "Up next",
       hiddenByFilters: "This title is hidden by your current filters.",
+      details: "Details",
       markWatched: "Mark as watched",
       allDone: "You have watched everything released in the main continuity.",
     },
@@ -83,6 +104,8 @@ export const en: Messages = {
     },
     filters: {
       heading: "Filters",
+      show: "Show {count} titles",
+      activeCount: "{count} active filters",
       results: "Showing {shown} of {total}",
       clear: "Clear filters",
       type: "Type",
@@ -323,6 +346,7 @@ export const en: Messages = {
     cancel: "Cancel",
     loading: "Loading…",
     retry: "Try again",
+    ofCount: "{done} of {total}",
   },
   error: {
     title: "Something went wrong",
@@ -405,6 +429,11 @@ export const en: Messages = {
     viewOrder: {
       kind: "Local storage (first-party)",
       purpose: "Remembers whether you view titles by release or in chronological order.",
+      duration: "Until you delete it",
+    },
+    theme: {
+      kind: "Local storage (first-party)",
+      purpose: "Remembers the theme you chose (system, light or dark).",
       duration: "Until you delete it",
     },
     manageHeading: "How to manage them",

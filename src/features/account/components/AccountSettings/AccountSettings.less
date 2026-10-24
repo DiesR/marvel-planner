@@ -1,0 +1,16 @@
+@import (reference) "mixins";
+
+.account-settings {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  > section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px;
+    border-radius: @radius-row;
+    background: var(--bg);
+  }
+}

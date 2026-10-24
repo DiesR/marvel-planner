@@ -53,6 +53,28 @@ worker/                     # backend
 migrations/                 # migrazioni SQL generate da drizzle-kit
 ```
 
+## Stili (LESS)
+
+Ogni componente React sta in una cartella con lo stesso nome, che contiene il `.tsx`, il suo `.less` e un `index.ts` (così gli import restano brevi: `../ui/Button`). Ogni gruppo di cartelle ha un `index.less` che importa i `.less` dei suoi componenti, e `src/styles/index.less` importa tutti i gruppi.
+
+```
+src/styles/
+├── variables.less          # breakpoint, raggi, altezza header
+├── mixins.less             # .desktop(), .on-hover(), .pill(), .block()...
+├── tokens.less             # colori chiaro/scuro come variabili CSS, font
+├── base.less               # reset, elementi nativi, utilità (.card, .muted, .visually-hidden)
+└── index.less              # importa tokens, base e gli index dei componenti
+
+src/components/ui/Button/   # Button.tsx, Button.less, index.ts
+src/components/ui/index.less
+```
+
+Un nuovo componente: creare la cartella con `.tsx`, `.less` (inizia con `@import (reference) "mixins";`) e `index.ts`, poi aggiungere una riga all'`index.less` del gruppo. Eccezioni senza stile proprio (nessun `.less`): `main.tsx`, `App`, `router` e i Provider. Qualche `.less` di wrapper (`AdminPage`, `PlannerPage`, `AuthDialogs`...) è vuoto perché lo stile sta nei componenti che contengono.
+
+Colori e tema: le variabili in `tokens.less`; il tema (sistema, chiaro, scuro) è l'attributo `data-theme` su `<html>`, salvato in locale e applicato prima del primo rendering. Le icone sono solo Lucide. Niente stili inline né risorse esterne (CSP): le larghezze proporzionali della striscia dei progressi usano classi `phase-strip__phase--size-N`.
+
+**Caratteri**: Anton e Hanken Grotesk, entrambi con licenza SIL Open Font License 1.1 (uso commerciale consentito), ospitati da noi tramite i pacchetti `@fontsource`. Il testo delle licenze è in `public/licenses/fonts-OFL.txt` ed è linkato dal footer: va mantenuto se si ridistribuiscono i file dei caratteri.
+
 ## API
 
 | Metodo   | Percorso                     | Descrizione                                |

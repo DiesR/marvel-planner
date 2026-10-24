@@ -1,0 +1,38 @@
+@import (reference) "mixins";
+
+.candidates__list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.candidate {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px 20px;
+  border-radius: @radius-row;
+  background: var(--bg);
+}
+
+.candidate__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.snippet-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  pre {
+    margin: 0;
+    padding: 12px 16px;
+    border-radius: @radius-sub;
+    background: var(--surface-2);
+    overflow-x: auto;
+    font-size: 0.875rem;
+  }
+}

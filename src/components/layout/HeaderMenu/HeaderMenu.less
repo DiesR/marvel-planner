@@ -1,0 +1,45 @@
+@import (reference) "mixins";
+
+.site-header__menu-button {
+  .desktop({ display: none; });
+}
+
+dialog.menu-panel {
+  .sheet-surface();
+  inset: 0 0 auto 0;
+  width: 100%;
+  max-height: 100dvh;
+  .panel-surface();
+  border-radius: 0 0 @radius-block @radius-block;
+}
+
+.menu-panel__body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 10px 16px 24px;
+}
+
+.menu-panel__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 56px;
+}
+
+.menu-panel__account {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.menu-panel__language .language-select {
+  display: flex;
+  width: 100%;
+  min-height: 52px;
+
+  select {
+    flex: 1;
+  }
+}

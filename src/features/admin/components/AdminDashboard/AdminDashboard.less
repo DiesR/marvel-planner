@@ -1,0 +1,30 @@
+@import (reference) "mixins";
+
+.admin {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 880px;
+  margin: 16px auto;
+
+  h1 {
+    .display-font();
+    font-size: 2.75rem;
+    line-height: 1.05;
+    padding: 8px 0;
+  }
+
+  > section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 24px;
+    .block();
+    background: var(--surface);
+  }
+
+  h2 {
+    font-size: 1.25rem;
+    font-weight: 800;
+  }
+}

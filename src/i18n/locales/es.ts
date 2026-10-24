@@ -8,6 +8,7 @@ export const es: Messages = {
     logout: "Cerrar sesión",
     language: "Idioma",
     skipToContent: "Saltar al contenido",
+    menu: "Menú",
     admin: "Administración",
   },
   footer: {
@@ -19,6 +20,9 @@ export const es: Messages = {
     credits: "Datos de disponibilidad: {justwatch}. Tramas: {wikipedia}, {license}.",
     creditsLicense: "licencia CC BY-SA 4.0",
     coffee: "Si te he sido útil, invítame a un café",
+    fonts: "Tipografías Anton y Hanken Grotesk, {license}.",
+    fontsLicense: "licencia SIL OFL 1.1",
+    madeInItaly: "Hecho en Italia",
   },
   catalog: {
     sagas: {
@@ -38,11 +42,27 @@ export const es: Messages = {
       late: "finales de {year}",
     },
   },
+  theme: {
+    label: "Tema",
+    system: "Sistema",
+    light: "Claro",
+    dark: "Oscuro",
+    current: "Tema: {name}. Cambiar tema.",
+  },
   planner: {
-    eyebrow: "Marvel Cinematic Universe",
     title: "Planificador de visionado",
-    intro:
-      "Todas las películas y series del MCU, divididas por saga y fase, en orden de estreno. Marca lo que ya has visto.",
+    progressHeading: "Tu progreso",
+    watchedCount: "{done} de {total} vistos",
+    sharePoster: {
+      title: "Comparte tu planificador",
+      text: "Envía a tus amigos un enlace a lo que has visto.",
+    },
+    strip: {
+      heading: "Los {total} títulos",
+      legendWatched: "Vistos",
+      legendNext: "Siguiente",
+      legendTodo: "Por ver",
+    },
     completed: "Completados",
     storage: {
       account: "Tu progreso se guarda en tu cuenta.",
@@ -61,6 +81,7 @@ export const es: Messages = {
     next: {
       heading: "Lo siguiente que ver",
       hiddenByFilters: "Este título está oculto por tus filtros actuales.",
+      details: "Detalles",
       markWatched: "Marcar como visto",
       allDone: "Has visto todo lo estrenado en la continuidad principal.",
     },
@@ -84,6 +105,8 @@ export const es: Messages = {
     },
     filters: {
       heading: "Filtros",
+      show: "Mostrar {count} títulos",
+      activeCount: "{count} filtros activos",
       results: "Mostrando {shown} de {total}",
       clear: "Quitar filtros",
       type: "Tipo",
@@ -324,6 +347,7 @@ export const es: Messages = {
     cancel: "Cancelar",
     loading: "Cargando…",
     retry: "Reintentar",
+    ofCount: "{done} de {total}",
   },
   error: {
     title: "Algo ha salido mal",
@@ -405,6 +429,11 @@ export const es: Messages = {
     viewOrder: {
       kind: "Almacenamiento local (propio)",
       purpose: "Recuerda si ves los títulos por estreno o en orden cronológico.",
+      duration: "Hasta que lo borres",
+    },
+    theme: {
+      kind: "Almacenamiento local (propio)",
+      purpose: "Recuerda el tema elegido (sistema, claro u oscuro).",
       duration: "Hasta que lo borres",
     },
     manageHeading: "Cómo gestionarlos",
