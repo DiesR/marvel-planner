@@ -85,8 +85,8 @@ export const it = {
     },
     order: {
       heading: "Ordine di visione",
-      release: "Per data di uscita",
-      chronological: "Cronologico (storia)",
+      release: "Per uscita",
+      chronological: "Cronologico",
       chronologicalHeading: "In ordine cronologico",
       chronologicalNote:
         "Segue la linea temporale di Disney+, riportata da Wikipedia. Non è un ordine ufficiale definitivo: per esempio Loki, What If…? e Werewolf by Night non hanno una collocazione fissa nella storia.",
@@ -106,6 +106,7 @@ export const it = {
       show: "Mostra {count} titoli",
       activeCount: "{count} filtri attivi",
       results: "Mostrati {shown} di {total}",
+      remove: "Rimuovi",
       clear: "Rimuovi filtri",
       type: "Tipo",
       visibility: "Visibilità",

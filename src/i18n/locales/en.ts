@@ -87,8 +87,8 @@ export const en: Messages = {
     },
     order: {
       heading: "Viewing order",
-      release: "By release date",
-      chronological: "Chronological (story)",
+      release: "By release",
+      chronological: "Chronological",
       chronologicalHeading: "In chronological order",
       chronologicalNote:
         "Follows the Disney+ timeline, as reported by Wikipedia. It is not a definitive official order: for example Loki, What If…? and Werewolf by Night have no fixed place in the story.",
@@ -108,6 +108,7 @@ export const en: Messages = {
       show: "Show {count} titles",
       activeCount: "{count} active filters",
       results: "Showing {shown} of {total}",
+      remove: "Remove",
       clear: "Clear filters",
       type: "Type",
       visibility: "Visibility",

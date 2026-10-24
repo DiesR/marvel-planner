@@ -90,8 +90,8 @@ export const de: Messages = {
     },
     order: {
       heading: "Ansehreihenfolge",
-      release: "Nach Erscheinungsdatum",
-      chronological: "Chronologisch (Handlung)",
+      release: "Nach Erscheinen",
+      chronological: "Chronologisch",
       chronologicalHeading: "In chronologischer Reihenfolge",
       chronologicalNote:
         "Folgt der Disney+-Zeitleiste, wie sie Wikipedia wiedergibt. Sie ist keine endgültige offizielle Reihenfolge: Zum Beispiel haben Loki, What If…? und Werewolf by Night keinen festen Platz in der Handlung.",
@@ -111,6 +111,7 @@ export const de: Messages = {
       show: "{count} Titel anzeigen",
       activeCount: "{count} aktive Filter",
       results: "{shown} von {total} angezeigt",
+      remove: "Entfernen",
       clear: "Filter zurücksetzen",
       type: "Art",
       visibility: "Sichtbarkeit",
