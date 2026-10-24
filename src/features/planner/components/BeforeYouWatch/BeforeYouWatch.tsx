@@ -1,4 +1,4 @@
-import { Check, Circle, Eye, EyeOff, TriangleAlert } from "lucide-react";
+import { Check, Eye, EyeOff, TriangleAlert } from "lucide-react";
 import { useId, useState } from "react";
 import { useI18n } from "../../../../i18n/useI18n";
 import { TITLES_BY_ID } from "../../data/catalog";
@@ -68,7 +68,6 @@ export function BeforeYouWatch({ title, watched }: BeforeYouWatchProps) {
         <ul className="before-you-watch__list">
           {ordered.map((item) => {
             const isWatched = watched.has(item.id);
-            const StatusIcon = isWatched ? Check : Circle;
             return (
               <li key={item.id} className="prereq">
                 <span className="prereq__level muted">
@@ -78,7 +77,7 @@ export function BeforeYouWatch({ title, watched }: BeforeYouWatchProps) {
                   {nameOf(item.id)}
                 </span>
                 <span className={`prereq__state prereq__state--${isWatched ? "done" : "todo"}`}>
-                  <StatusIcon aria-hidden />
+                  {isWatched && <Check aria-hidden />}
                   {t(isWatched ? "prerequisites.watched" : "prerequisites.notWatched")}
                 </span>
                 <p
