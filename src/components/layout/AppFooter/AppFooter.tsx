@@ -69,7 +69,9 @@ export function AppFooter() {
           {t("footer.privacySettings")}
         </Button>
         <CoffeeLink />
-        <span className="site-footer__made muted">{t("footer.madeInItaly")}</span>
+        <span className="site-footer__made muted" lang="en">
+          Made in Italy
+        </span>
       </nav>
     </footer>
   );

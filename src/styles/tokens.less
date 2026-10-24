@@ -54,6 +54,12 @@
   );
 }
 
+@media (min-width: @desktop) {
+  :root {
+    --floating-progress-clearance: 0px;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     .dark-tokens();

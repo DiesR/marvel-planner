@@ -22,7 +22,6 @@ export const es: Messages = {
     coffee: "Si te he sido útil, invítame a un café",
     fonts: "Tipografías Anton y Hanken Grotesk, {license}.",
     fontsLicense: "licencia SIL OFL 1.1",
-    madeInItaly: "Hecho en Italia",
   },
   catalog: {
     sagas: {
@@ -84,6 +83,9 @@ export const es: Messages = {
       confirm: "Restablecer",
     },
     markWatched: 'Marcar "{name}" como visto',
+    compact: {
+      nextUp: "Siguiente: {title}",
+    },
     next: {
       heading: "Lo siguiente que ver",
       hiddenByFilters: "Este título está oculto por tus filtros actuales.",

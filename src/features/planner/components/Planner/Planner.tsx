@@ -27,6 +27,7 @@ import { chronologicalTitles, isViewOrder, titlesInOrder } from "../../utils/ord
 import { computeProgress } from "../../utils/progress";
 import { buildPhaseStrip } from "../../utils/strip";
 import { ChronologicalList } from "../ChronologicalList";
+import { CompactProgress } from "../CompactProgress";
 import { CollapseToggle } from "../CollapseToggle";
 import { FiltersSheet } from "../FiltersSheet";
 import { FloatingProgress } from "../FloatingProgress";
@@ -130,6 +131,11 @@ export function Planner({ shareCode }: PlannerProps) {
         {isDesktop ? (
           <>
             <div className="planner__rail">
+              <CompactProgress
+                progress={overall}
+                nextTitle={nextTitle}
+                isVisible={isFloatingProgressVisible}
+              />
               <PlannerFilters
                 filters={filters}
                 onChange={setFilters}
@@ -194,7 +200,7 @@ export function Planner({ shareCode }: PlannerProps) {
         </div>
       </div>
 
-      <FloatingProgress progress={overall} isVisible={isFloatingProgressVisible} />
+      {!isDesktop && <FloatingProgress progress={overall} isVisible={isFloatingProgressVisible} />}
 
       <ShareDialog
         isOpen={isShareDialogOpen}

@@ -22,7 +22,6 @@ export const fr: Messages = {
     coffee: "Si je vous ai été utile, offrez-moi un café",
     fonts: "Polices Anton et Hanken Grotesk, {license}.",
     fontsLicense: "licence SIL OFL 1.1",
-    madeInItaly: "Fait en Italie",
   },
   catalog: {
     sagas: {
@@ -84,6 +83,9 @@ export const fr: Messages = {
       confirm: "Réinitialiser",
     },
     markWatched: "Marquer « {name} » comme vu",
+    compact: {
+      nextUp: "À suivre : {title}",
+    },
     next: {
       heading: "À voir ensuite",
       hiddenByFilters: "Ce titre est masqué par vos filtres actuels.",

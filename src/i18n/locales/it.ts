@@ -20,7 +20,6 @@ export const it = {
     coffee: "Se ti sono stato utile, offrimi un caffè",
     fonts: "Caratteri Anton e Hanken Grotesk, {license}.",
     fontsLicense: "licenza SIL OFL 1.1",
-    madeInItaly: "Fatto in Italia",
   },
   catalog: {
     sagas: {
@@ -81,6 +80,9 @@ export const it = {
       confirm: "Azzera",
     },
     markWatched: 'Segna "{name}" come visto',
+    compact: {
+      nextUp: "Prossimo da guardare: {title}",
+    },
     next: {
       heading: "Prossimo da guardare",
       hiddenByFilters: "Questo titolo è nascosto dai filtri attuali.",

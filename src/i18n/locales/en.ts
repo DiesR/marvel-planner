@@ -22,7 +22,6 @@ export const en: Messages = {
     coffee: "If I've been useful to you, buy me a coffee",
     fonts: "Fonts Anton and Hanken Grotesk, {license}.",
     fontsLicense: "SIL OFL 1.1 license",
-    madeInItaly: "Made in Italy",
   },
   catalog: {
     sagas: {
@@ -83,6 +82,9 @@ export const en: Messages = {
       confirm: "Reset",
     },
     markWatched: 'Mark "{name}" as watched',
+    compact: {
+      nextUp: "Next up: {title}",
+    },
     next: {
       heading: "Up next",
       hiddenByFilters: "This title is hidden by your current filters.",

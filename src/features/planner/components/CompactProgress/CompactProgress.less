@@ -1,0 +1,57 @@
+@import (reference) "mixins";
+
+.compact-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px 24px;
+  .panel-surface();
+  .block();
+
+  progress {
+    background: var(--panel-2);
+
+    &::-webkit-progress-bar {
+      background: var(--panel-2);
+    }
+
+    &::-webkit-progress-value {
+      min-width: 10px;
+      background: var(--gold);
+    }
+
+    &::-moz-progress-bar {
+      min-width: 10px;
+      background: var(--gold);
+    }
+  }
+}
+
+.compact-progress__row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.compact-progress__count {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.compact-progress__percent {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  line-height: 1;
+  color: var(--gold);
+}
+
+.compact-progress__next {
+  font-size: 0.875rem;
+  color: var(--panel-muted);
+
+  strong {
+    font-weight: 700;
+    color: var(--panel-ink);
+  }
+}
